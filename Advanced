@@ -1,0 +1,171 @@
+Advance Interview Concepts
+
+1. Closures- 
+A closure is the combination of a function and the lexical environment within which that function was declared.
+OR
+When inner function can have access to the outer function variables and parameter.
+
+The return statement does not execute the inner function - function is only executed only when followed by ()parathesis, but rather than returns the entire
+body of the function.
+
+Uses/advantages of closures:
+-event handlers
+-callback functions
+-Encapsulation: can store data in separate store
+-Object data privacy
+-Module Design Pattern
+-Currying
+-Functions like once
+-memoize
+-setTimeouts
+-Iterators
+-maintaining state in async world
+
+Disadvantages of closures:
+1. Creating function inside a function leads to duplicate in memory and cause slowing down the application means use only when required privacy.
+2. As long as the clousers are active, the memory can't be garbage collected means if we are using clousers in ten places then untill all the 10 process complete 
+it hold the memory and can overcome to set closure to Null.
+
+const outerFunction =(a)=>{
+  let b=10;
+  const innerFunction =()=>{
+    let sum = a+b;
+    console.log(sum)
+  }
+  innerFunction()
+}
+outerFunction(5)// 15
+
+const outerFunction =(a)=>{
+  let b=10;
+  const innerFunction =()=>{
+    let sum = a+b;
+    console.log(sum)
+  }
+  return innerFunction
+}
+outerFunction(5) //output : 
+ ()=>{
+    let sum = a+b;
+    console.log(sum)
+  }
+
+const outerFunction =(a)=>{
+  let b=10;
+  const innerFunction =()=>{
+    let sum = a+b;
+    console.log(sum)
+  }
+  return innerFunction
+}
+let inner = outerFunction(5)
+console.log(inner)
+inner() //15
+================================================================================================================================================================================
+Prototype: 
+Prototype allow to easily define methods to all the instances of object. It stored in the memory once but every object instances can access it.
+
+1. Javascript is a prototype based language, so, whenever we are creating a function using javascript, javascript engine adds a prototype property inside a function,
+Prototype property is basically an object (also known as Prototype object), where we can attach methods and properties in a prototype object, which enables all the
+other objects to inherit these methods and properties.
+2. We are creating prototype in constructor function. All the intances of objects can able to access properties and methods from constuctor function.
+3. The prototype is an object that is associated with every functions and objects by default in JavaScript, where function's prototype property is accessible and 
+modifiable and object's prototype property (aka attribute) is not visible.
+4. object's prototype property is invisible. Use Object.getPrototypeOf(obj) method instead of __proto__ to access prototype object.
+5. prototype is useful in keeping only one copy of functions for all the objects (instances).
+6. An Object has a prototype. A prototype is also an object. Hence Even it may have its own prototype object. This is referred to as prototype chain.
+
+<A>Several Types:
+1. Object.prototype- It is a prototype OBJECT of object(cunstruction function where it will inherit all properties of Object.protorype). 
+Prototype Object of Object.prototype is NULL.
+2. Array.prototype-Prototype Object of Array.prototype is Object.prototype and Prototype Object of Object.prototype is NULL.
+3. Function.prototype
+4. Example-
+var person = function(name){
+   this.name = name;
+}
+person.prototype.age = 21;
+var piya = new person("Piya");
+var priya = new person("Priya");
+console.log(piya.age) //21
+console.log(priya.age) //21
+
+<B>Purpose/Use of prototype:
+1) to find properties and methods of an object 
+2) to implement inheritance in JavaScript
+
+<C>Difference between Prototype and __proto__:
+1. In reality, the only true difference between prototype and __proto__ is that the former is a property of a class constructor, 
+   while the latter is a property of a class instance.
+2. Instances have __proto__, classes have prototype.
+3. Instances of a constructor function use __proto__ to access the prototype property of its constructor function.
+4. __proto__ is invisible property of an object. It returns prototype object of a function to which it links to. 
+5. __proto__ is Deprecated. 
+6. Example:
+function Person(name){
+    this.name = name
+ }; 
+var eve = new Person("Eve"); 
+eve.__proto__ == Person.prototype //true
+eve.prototype  //undefined
+7. Example:
+function Person() {
+    this.name = 'John'
+}
+// adding property 
+Person.prototype.name = 'Peter';
+Person.prototype.age = 23
+const person1 = new Person();
+console.log(person1.name); // John
+console.log(person1.age); // 23
+
+================================================================================================================================================================================
+CSS Positions:
+
+1. Static: HTML elements are positioned static by default. Static positioned elements are not affected by the top, bottom, left, and right properties. 
+   Imapct of margin or padding. Object can't move. it is always positioned according to the normal flow of the page.
+2. Relative: Object can move. It is positioned relative to its normal position. If want gap from its actual placed position then use it. It work with left,
+   right, top, bottom properties.
+3. Fixed: Not allow to scroll up or down. is positioned relative to the viewport, which means it always stays in the same place even if the page is scrolled. 
+   The top, right, bottom, and left properties are used to position the element. The element is positioned relative to the browser window
+4. Absolute: it is work with relative i.e, w.r.t parent. It is positioned relative to the nearest positioned ancestor (instead of positioned relative to the 
+   viewport, like fixed). if an absolute positioned element has no positioned ancestors, it uses the document body, and moves along with page scrolling.
+5. Sticky: An element with position: sticky; is positioned based on the user's scroll position. Internet Explorer does not support sticky positioning. 
+   You must also specify at least one of top, right, bottom or left for sticky positioning to work. Use for to create menu.
+
+================================================================================================================================================================================
+Time based Event:
+
+SetTimeout: 
+1. allows us to run a FUNCTION ONCE, after the interval of time
+2. setTimeout() executes the passed function after given time. The id_value returned by setTimeout() function is stored in a variable and 
+   it’s passed into the clearTimeout() function to clear the timer. 
+3. Syntax- let timerId = setTimeout(function, milliseconds, [arg1], [arg2], ...)
+4. Don't make a mistake by adding brackets () after the function otherwise gives undefined and nothing will scheduled.
+5. Example-
+let timerId = function sayHi(phrase, who) {
+  console.log( phrase + who );
+}
+setTimeout(sayHi, 1000, "Hello", "John"); 
+
+SetInterval:
+1. allows us to run a function repeatedly, starting after the interval of time, then repeating continuously at that interval.
+2. setInterval() executes the passed function for the given time interval. The number id value returned by setInterval() function is stored 
+   in a variable and it’s passed into the clearInterval() function to clear the interval.
+3. Syntax-
+4. Example
+let timerId = function sayHi(phrase, who) {
+  console.log( phrase + who );
+}
+setInterval(sayHi, 1000, "Hello", "John");
+
+ClearTimeout:
+1. This method is used to cancel a setTimeout().  Inside the method you have to reference the timeoutID.
+clearTimeout(timerId)
+
+ClearInterval:
+1. This method is used to cancel a setInterval().  Inside the method you have to reference the intervalID.
+clearInterval(timerId)
+================================================================================================================================================================================
+
+
