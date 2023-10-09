@@ -167,5 +167,534 @@ ClearInterval:
 1. This method is used to cancel a setInterval().  Inside the method you have to reference the intervalID.
 clearInterval(timerId)
 ================================================================================================================================================================================
+                                          
+Debouncing and Throttling in JavaScript: using in search box, scrolling or resize the widow size
+
+1. It Creates impact on performance of your website, but also prevent unnecessary API calls and load on the server.
+2. Throttling and debouncing are techniques used to control the frequency of executing a function. It is useful when dealing with user interactions and optimizing performance. 
+3. The main difference between throttling and debouncing is that throttling executes the function at a regular interval, while debouncing executes the function only 
+   after some cooling period.
+4. Example: If you're scrolling, throttle will slowly call your function while you scroll (every X milliseconds). Debounce will wait until after you're done scrolling 
+   to call your function.
+
+examples : on button click, mouse move, search bar, window scrolling and window resize allow the user to decide when to execute.
+
+Throttling-
+Throttling is a technique in which, no matter how many times the user fires the event, the attached function will be executed only once in a given time interval.
+                                                                        or
+Throttling limits the execution of a function to a specified interval, ensuring that it is not called more frequently than the defined delay.
+
+import React, { useState, useEffect } from 'react';
+function ThrottleExample() {
+  const [count, setCount] = useState(0);
+
+  const throttle = (func, delay) => {
+    let timeout;  //  
+
+    return function () {
+      if (!timeout) {
+        func.apply(this, arguments);    // this represents - capture the current context    //argumenst represents - capture the arguments passed to the throttle
+        timeout = setTimeout(() => {
+        timeout = null;
+      }, delay);
+      }
+    };                                   
+  };                                    
+
+  const handleClickThrottle = throttle(() => {
+    setCount(count + 1);
+  }, 1000);
+
+  return (
+    <div>
+      <p>Throttle Example: {count}</p>
+      <button onClick={handleClickThrottle}>Increment</button>
+    </div>
+  );
+}
+
+export default ThrottleExample;
+In this example, the throttle function ensures that the handleClickThrottle function can only be called once every 1000 milliseconds (1 second), preventing rapid clicking.
+================================================================================================================================================================================
+
+Debouncing- 
+No matter how many times the user fires the event, the attached function will be executed only after the specified time once the user stops firing the event.
+The Debounce technique allow us to “group” multiple sequential calls in a single one.
+                                                        or
+Debouncing postpones the execution of a function until a specified amount of time has passed since the last invocation.
+It is typically used in scenarios where the function should only be triggered once a certain event has stopped occurring.
+
+import React, { useState, useEffect } from 'react';
+
+function DebounceExample() {
+  const [input, setInput] = useState('');
+  const [output, setOutput] = useState('');
+
+  const debounce = (func, delay) => {
+    let timer;
+
+    return function () {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        func.apply(this, arguments);
+      }, delay);
+    };
+  };
+
+  const handleChangeDebounce = (event) => {
+    const inputValue = event.target.value;
+
+    const updateOutput = debounce(() => {
+      setOutput(inputValue);
+    }, 1000);
+
+    updateOutput();
+  };
+
+  return (
+    <div>
+      <input
+        type="text"
+        placeholder="Type something..."
+        onChange={handleChangeDebounce}
+      />
+      <p>Debounced Output: {output}</p>
+    </div>
+  );
+}
+
+export default DebounceExample;
+
+In this example, the handleChangeDebounce function is debounced, so it only updates the output state after a 1000ms (1 second) pause in typing.
+This is particularly useful for search bars and filtering in real-time.
+================================================================================================================================================================================
+
+CALL, APPLY and BIND method: These methods allow us to write a function once and invoke it in a different context. They all attach this into a function (or object) 
+and the difference is in the function invocation. Call and apply are pretty interchangeable. Just decide whether it’s easier to send in an array or a comma separated 
+list of arguments. I always remember which one is which by remembering that Call is for comma (separated list) and Apply is for Array. Bind is a bit different. 
+It returns a new function. Call and Apply execute the current function immediately. The main concept behind all this methods is Function burrowing.
+
+CALL:
+1. It is predefined javascript method.
+2. call is used to invoke a function with a specified this value and individual arguments passed one by one.
+3. It's useful when you know the exact number of arguments the function expects and you can pass them individually. 
+
+APPLY:
+1. Apply is also used to invoke a function with a specified this value, but it takes arguments as an array. 
+2. It's helpful when you want to pass an array of arguments to a function or when the number of arguments may vary. 
+
+BIND:
+1. We can bind an object to a common function, so that the function gives different results when its need.
+2. It takes an object as an first argument and creates a new function.
+                                                or
+1. Bind returns a new function with a bound this value but does not immediately invoke the function. 
+2. It's commonly used when you want to create a new function with a fixed this value to be called later. 
+
+summary :
+1. call and apply both invoke a function with a specified this value, but call takes individual arguments, while apply takes an array of arguments. 
+2. bind returns a new function with a fixed this value, which can be called later with any number of arguments.
+
+Example1:
+const employee = {
+  fName: "Manoj",
+  Lname:"Odela"
+}
+const Details = function(a, b){
+  console.log("Hi "+this.fName+" "+this.Lname+" "+ a +" "+ b)
+}
+
+Details.call(employee, "Hello", "How are you"); //Hi Manoj Odela Hello How are you
+Details.apply(employee, ["Hello", "How are you"]); //Hi Manoj Odela Hello How are you
+let result = Details.bind(employee);
+result("good morning", "!"); //Hi Manoj Odela good morning !
+
+Example2:
+const obj = {name:"Priya"}
+let greeting = function(a,b){
+  return a+" "+this.name+" "+b;
+}
+console.log(greeting.call(obj, "Hello", "How are you?"));
+console.log(greeting.apply(obj, ["Hello", "How are you?"]));
+let test=greeting.bind(obj);
+console.log(test("Hello", "How are you?"))
+
+================================================================================================================================================================================
+
+Hoisting:
+1. Hoisting is a JavaScript behavior where variable and function declarations are moved to the top of their scope during the compilation phase.
+2. This means that you can use variables and functions before they are declared in your code.
+3. However, only the declarations are hoisted, not the initializations or assignments.
+4. Hoisting is the process of putting all declarations, such as variables and functions, into memory during the compile phase.
+
+-------------------------------------------------------------------
+console.log(a); // undefined
+console.log(b); // ReferenceError
+console.log(c); // ReferenceError
+
+var a = 10;
+let b = 20;
+const c = 30;
+
+1. Variables declared with var will be hoisted and initialized with undefined.
+2. Variables declared with let and const, are hoisted, but not initialized with undefined.
+3. They can be accessed only after initialization, otherwise we receive a ReferenceError.
+4. This is because of the Temporal Dead Zone, a time window where the variable exists but it still uninitialized. 
+
+----------------------------------------------------------------------
+greet1();
+greet2();
+greet3();
+greet4();
+
+// function declaration is fully hoisted
+function greet1() {
+  console.log("HELLO");
+}
+
+// TypeError: greet1 is not a function
+var greet2 = function () {
+  console.log("HELLO");
+};
+
+// ReferenceError: Cannot access 'greet3' before initialization
+let greet3 =  () =>  {
+  console.log("HELLO");
+};
+
+//Uncaught TypeError: greeting1 is not a function because its treeting like a variable not a function, so rather then storing a function body it's storing undefined by default.
+const greet4 = function () {
+  console.log("HELLO");
+};
+
+1. Traditional function declarations will be fully hoisted thus making function accessible throughout our code.
+2. But with function expressions and arrow functions, we are unable to call a function before it has been declared. 
+3. In order to solve these errors Either change the function expression/arrow functions to traditional function declarations or call the function after the declarations.
+
+================================================================================================================================================================================
+Window and This:
+
+Window:
+1. Javascript engine create global context execution and allocate some memory space. It is a big object with lot of methods and functions which is created in global space 
+by JS engine.
+2. Window is the main JavaScript object root, aka the global object in a browser, and it can also be treated as the root of the document object model. You can access it as window.
+3. window.document or just document is the main object of the potentially visible (or better yet: rendered) document object model/DOM.
+4. window is the global object, you can reference any properties of it with just the property name - so you do not have to write down window. - it will be figured out by the runtime.
+5. window.document.getElementById("header") is the same as document.getElementById("header").
+
+This:
+1. At global level THIS points to the window. 
+2. With Window object THIS variable is created by default.
+3. This === window //true
+
+Example:
+var a=10;
+function b(){
+ var x=10;
+}
+console.log(window.a); //10
+console.log(a); //10
+console.log(this.a); //10
+================================================================================================================================================================================
+
+Even Propogation an STOP Propogation: Bydefault event capturing happen first and then even bubbling happen.
+
+Event Bubbling:
+1. When an event happens on an element, it first runs the handlers on it, then on its parent, then all the way up on other ancestors. With bubbling, the event is 
+   first captured and handled by the innermost element and then propagated to outer elements.
+2. Bydefault event bubbling execute. To run event bubbling required to mention 3rd argument as FALSE or nothing.
+3. "child clicked"
+"parent clicked"
+"grandparent clicked"
+4. Drawback: Bubbling not occur at blur, focus, resizing of window etc.
+
+Event Capturing or Event Trickling:
+1. With capturing, the event is first captured by the outermost element and propagated to the inner elements.
+2. To run event capturing required to mention 3rd argument as TRUE.
+3. "grandparent clicked"
+"parent clicked"
+"child clicked"
+
+Example:
+html-
+<div id="grandparent">
+  <div id="parent">
+    <div id="child">
+      </div>
+</div>
+</div>
+
+css-
+div{
+  min-width: 10px;
+  min-height: 10px;
+  border: 1px solid red;
+  padding: 30px;
+}
+
+js-
+for bubbling:
+document.querySelector("#grandparent").addEventListener("click",()=> {console.log("grandparent clicked")}, false);
+or
+document.querySelector("#grandparent").addEventListener("click",()=> {console.log("grandparent clicked")});
+document.querySelector("#parent").addEventListener("click",()=> {console.log("parent clicked")}, false);
+or
+document.querySelector("#parent").addEventListener("click",()=> {console.log("parent clicked")});
+document.querySelector("#child").addEventListener("click",()=> {console.log("child clicked")}, false);
+or
+document.querySelector("#child").addEventListener("click",()=> {console.log("child clicked")})
+
+------------------------------
+
+for capturing:
+document.querySelector("#grandparent").addEventListener("click",()=> {console.log("grandparent clicked")}, true);
+document.querySelector("#parent").addEventListener("click",()=> {console.log("parent clicked")},true);
+document.querySelector("#child").addEventListener("click",()=> {console.log("child clicked")},true); 
+
+stopPropogation:
+document.querySelector("#grandparent").addEventListener("click",()=> {console.log("grandparent clicked")}, false);
+
+document.querySelector("#parent").addEventListener("click",(e)=> {console.log("parent clicked"); e.stopPropogation()},false);
+
+document.querySelector("#child").addEventListener("click",()=> {console.log("child clicked")},false); 
+
+================================================================================================================================================================================
+Event Delegation:
+
+1. Event delegation makes use of one of the Event Propagation techniques called Event Bubbling
+2. if we have a lot of elements handled in a similar way, then instead of assigning a handler to each of them – we put a single handler on their common ancestor.
+3. In the handler we get event.target to see where the event actually happened and handle it.
+4. Less memory usage, better performance.
+5. Less time required to set up event handlers on the page.
+6. Event delegation is a pattern to handle events efficiently in JavaScript. The main idea is to reduce the number of event handlers on a webpage and thus 
+   improving the performance of the website.
+7. When there are multiple DOM elements present, instead of adding event handlers on each one of them, you can just add one event handler 
+   (on the parent/common ancestor element) which can do the exact same work which all those multiple event handlers were supposed to do.
+
+Example:
+
+html-
+Counter: <input type="button" value="1" data-counter>
+One more counter: <input type="button" value="2" data-counter>
+<script>
+  document.addEventListener('click', function(event) {
+
+    if (event.target.dataset.counter != undefined) { 
+      event.target.value++;
+      console.log(event.target.value)
+    }
+  });
+</script>
+================================================================================================================================================================================
+Polyfill:
+
+1. With the help of polyfill can write own implementation of BIND function.
+2. Polyfills is a way to use modern features (usually JS) on browsers where it is currently unsupported.  We do this by mimicking the functionality using supported methods 
+along with our own logic.
+3. A polyfill is a piece of code (usually JavaScript on the Web) used to provide modern functionality on older browsers that do not natively support it.
+
+Polyfill: Sometimes array push, pop or filter methods and some window's functions like window.localstorage and window.sessionstorage these functions are not supported
+by browser, so in this case we can provide our own fallback support or own code that it replace the native functions
+
+Example for bind:
+With Bind-
+let name ={
+  first: "Priya",
+  last: "Bagde"
+}
+let printName = function(){
+  console.log(this.first+this.last)
+}
+let printNameFinal= printName.bind(name)
+printNameFinal()
+
+Without Bind-
+let name ={ first: "Priya", last: "Bagde"}
+let printName = function(town, state){ console.log(this.first+" "+this.last+" "+town+" "+state)}
+Function.prototype.mybind= function(...args){ //printName arguments
+  let obj = this; //printName
+  params = args.slice(1)
+  return function(...args2){ //printNameFinal arguments
+   obj.apply(args[0], [...params, ...args2])
+  }
+}
+let printNameFinal= printName.mybind(name, "chhindwara")
+printNameFinal("MadyaPradesh")
+================================================================================================================================================================================
+Promises:-
+
+👉Why do you need a promise?
+✌🏼Promises are used to handle asynchronous operations. They provide an alternative approach for callbacks by reducing the callback hell and writing the cleaner code.
+
+👉What are the three states of promise ?
+✌🏼Promises have three states:
+Pending: This is an initial state of the Promise before an operation begins
+Fulfilled: This state indicates that the specified operation was completed.
+Rejected: This state indicates that the operation did not complete. In this case an error value will be thrown.
+
+👉What is promise chaining ?
+✌🏼The process of executing a sequence of asynchronous tasks one after another using promises is known as Promise chaining.
+
+👉What is promise.all ?
+✌🏼Promise.all is a promise that takes an array of promises as an input (an iterable), and it gets resolved when all the promises get resolved or any one of them gets rejected. For example, the syntax of promise.all method is below,
+Promise.all([Promise1, Promise2, Promise3])
+.then(result) => { console.log(result) })
+.catch(error => console.log(`Error in promises ${error}`))
+
+👉What are the pros and cons of promises over callbacks ?
+✌🏼Pros:
+It avoids callback hell which is unreadable
+Easy to write sequential asynchronous code with .then()
+Easy to write parallel asynchronous code with Promise.all()
+Solves some of the common problems of callbacks(call the callback too late, too early, many times and swallow errors/exceptions)
+Cons:
+It makes little complex code
+You need to load a polyfill if ES6 is not supported
+
+👉How to cancel a fetch request ?
+✌🏼One shortcoming of native promises is no direct way to cancel a fetch request. But the new AbortController from js specification allows you to use a signal to abort one or multiple fetch calls. 
+================================================================================================================================================================================
+👉What are default parameters?
+✌🏼In E5, we need to depend on logical OR operators to handle default values of function parameters. Whereas in ES6, Default function parameters feature allows parameters to be initialized with default values if no value or undefined is passed. Let's compare the behavior with an examples,
+//ES5
+var calculateArea = function(height, width) {
+   height =  height || 50;
+   width = width || 60;
+   return width * height;
+}
+console.log(calculateArea()); //300
+//ES6
+var calculateArea = function(height = 50, width = 60) {
+   return width * height;
+}
+console.log(calculateArea()); //300
+
+✌🏼After default parameters you should not have parameters without default value-
+function printValue(a=1, b) {
+    console.log("a = " + a + " and b = " + b);
+}
+printValue();    // Logs: a = 1 and b = undefined
+printValue(7);    // Logs: a = 7 and b = undefined
+printValue(7, 3);    // Logs: a = 7 and b = 3
+
+✌🏼Default values for parameters and calling it without arguments-
+function add(a=10, b=20)
+{
+	return a+b;
+}
+console.log(" Sum is : " + add());   // No argument //30
+console.log(" Sum is : " + add(1));   // with one argument //21
+console.log(" Sum is : " + add(5,6));   // with both argument  //11
+
+✌🏼JavaScript Default Parameters with null or empty Argument-
+function test(a = 1)
+{
+    console.log(typeof a);
+    console.log("Value of a: " + a);
+}
+test();    // number, Value of a: 1
+test(undefined);    // number, Value of a: 1
+test('');    // string, Value of a: 
+test(null);    // object, Value of a: null
+
+✌🏼Default Parameters are evaluated at Call time-
+function append(value, array = []) {
+    array.push(value)
+    return array
+}
+append(1)  // [1]
+append(2)  // [2], not [1, 2]
+================================================================================================================================================================================
+JWT Token:
+1. JSON Web Token (JWT) is an open standard (RFC 7519) that defines a compact and self-contained way for securely transmitting information between parties as a JSON object.
+2. This information can be verified and trusted because it is digitally signed. JWTs can be signed using a public/private key pair using RSA.
+================================================================================================================================================================================
+
+Rest Parameter in Array : 
+function addSum(a,b,c, ...rest){ // ...rest indicating combination of those arguments which are left(rest).
+  console.log(...rest) //6,7
+  console.log(rest) //[6,7]
+  console.log(arguments) //ES5 //{"0":2, "1":3, "2":4, "3":6, "4":7}
+  return a+b+c+rest[0]+rest[1];
+}
+console.log(addSum(2,3,4,6,7)) //22
+======================================================================================================================================================================
+//Spread Operator  in Array:
+function getNames(name1, name2, name3){
+  console.log(name1,name2, name3);
+}
+var names =["priya", "riya", "supriya"]
+getNames(names[0], names[1], names[2]); //"priya" "riya" "supriya"
+getNames(...names) //spread operator here used to spread the individual arguments //best approach because here we are passing all the arguments but we can use some of the arguments inside function without an error. Other approaches will gives an error to pass those arguments which are used in function.
+getNames(names)
+=========================================================================================================================================================================
+Rest operator:
+1. The rest operator is used in function parameters to collect multiple arguments into a single array.
+2. It's especially useful when you want to work with a variable number of arguments.
+
+Syntax: It is denoted by three dots (...) followed by a parameter name that will hold the rest of the arguments.
+
+function sum(...numbers) {
+  return numbers.reduce((total, num) => total + num, 0);
+}
+const result = sum(1, 2, 3, 4); // Result is 10
+
+----------------------------------------------------------------
+
+var student ={
+  name: "priya",
+  age : 100,
+  hobbies : ["cooking", "dancing"]
+}
+
+//const age = student.age; //earlier we like this
+//console.log(age) //10
+
+//const {age, ...rest} = student; //using destructuring
+//console.log(age, rest) //100 {"name": "priya", "hobbies":["cooking", "dancing"]}
+
+const {...rest} = student;
+console.log(rest) //{"name": "priya", "age": 100, "hobbies":["cooking", "dancing"]}
+=====================================================================================================================================================================
+Spread Operator: 
+1. The spread operator allows you to expand an iterable (like an array or a string) into individual elements.
+2. It's used for various tasks, such as creating shallow copies of arrays, merging arrays, and passing multiple arguments to functions.
+Syntax: It is denoted by three dots (...) followed by the iterable you want to spread.
+
+//spread operator in object: (Change the value of age)
+var student ={
+  name: "priya",
+  age : 100,
+  hobbies : ["cooking", "dancing"]
+}
+
+var newStudent ={
+  ...student, //coping one object to another object
+  age : 101
+}
+console.log(newStudent)
+-------------------------------------------------------
+const numbers = [1, 2, 3];
+const newArray = [...numbers, 4, 5];
+====================================================================================================================================================================
+
+Default Parameter:
+1.Default parameters allow you to assign default values to function parameters. 
+2. If a parameter is not provided when the function is called, it will use the default value.
+
+Syntax: Default parameters are assigned within the function's parameter list using the assignment operator (=).
+
+function greet(name = "Guest") {
+  return `Hello, ${name}!`;
+}
+const greeting = greet(); // "Hello, Guest!"
+
+====================================================================================================================================================================
+In summary:
+
+Spread operator spreads elements of an iterable.
+Rest operator collects multiple function arguments into an array.
+Default parameter assigns a default value to a function parameter if no value is provided when calling the function.
+
+====================================================================================================================================================================
 
 
