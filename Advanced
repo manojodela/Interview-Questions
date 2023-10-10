@@ -526,10 +526,10 @@ Promises:-
 ✌🏼Promises are used to handle asynchronous operations. They provide an alternative approach for callbacks by reducing the callback hell and writing the cleaner code.
 
 👉What are the three states of promise ?
-✌🏼Promises have three states:
-Pending: This is an initial state of the Promise before an operation begins
-Fulfilled: This state indicates that the specified operation was completed.
-Rejected: This state indicates that the operation did not complete. In this case an error value will be thrown.
+✌🏼Promises have three states: 
+	pending: initial state, neither fulfilled nor rejected.
+	fulfilled: meaning that the operation completed successfully.
+	rejected: meaning that the operation failed. In this case an error value will be thrown.
 
 👉What is promise chaining ?
 ✌🏼The process of executing a sequence of asynchronous tasks one after another using promises is known as Promise chaining.
