@@ -554,7 +554,11 @@ You need to load a polyfill if ES6 is not supported
 ✌🏼One shortcoming of native promises is no direct way to cancel a fetch request. But the new AbortController from js specification allows you to use a signal to abort one or multiple fetch calls. 
 ================================================================================================================================================================================
 👉What are default parameters?
-✌🏼In E5, we need to depend on logical OR operators to handle default values of function parameters. Whereas in ES6, Default function parameters feature allows parameters to be initialized with default values if no value or undefined is passed. Let's compare the behavior with an examples,
+✌🏼In E5, we need to depend on logical OR operators to handle default values of function parameters.
+Whereas in ES6, Default parameters allow you to assign default values to function parameters.
+If a parameter is not provided when the function is called, it will use the default value.
+
+Let's compare the behavior with an examples,
 //ES5
 var calculateArea = function(height, width) {
    height =  height || 50;
@@ -608,8 +612,13 @@ JWT Token:
 1. JSON Web Token (JWT) is an open standard (RFC 7519) that defines a compact and self-contained way for securely transmitting information between parties as a JSON object.
 2. This information can be verified and trusted because it is digitally signed. JWTs can be signed using a public/private key pair using RSA.
 ================================================================================================================================================================================
+Rest operator:
+1. The rest operator is used in function parameters to collect multiple arguments into a single array.
+2. It's especially useful when you want to work with a variable number of arguments.
 
-Rest Parameter in Array : 
+Syntax: It is denoted by three dots (...) followed by a parameter name that will hold the rest of the arguments.
+
+// Rest Parameter in Array : 
 function addSum(a,b,c, ...rest){ // ...rest indicating combination of those arguments which are left(rest).
   console.log(...rest) //6,7
   console.log(rest) //[6,7]
@@ -617,29 +626,8 @@ function addSum(a,b,c, ...rest){ // ...rest indicating combination of those argu
   return a+b+c+rest[0]+rest[1];
 }
 console.log(addSum(2,3,4,6,7)) //22
-======================================================================================================================================================================
-//Spread Operator  in Array:
-function getNames(name1, name2, name3){
-  console.log(name1,name2, name3);
-}
-var names =["priya", "riya", "supriya"]
-getNames(names[0], names[1], names[2]); //"priya" "riya" "supriya"
-getNames(...names) //spread operator here used to spread the individual arguments //best approach because here we are passing all the arguments but we can use some of the arguments inside function without an error. Other approaches will gives an error to pass those arguments which are used in function.
-getNames(names)
-=========================================================================================================================================================================
-Rest operator:
-1. The rest operator is used in function parameters to collect multiple arguments into a single array.
-2. It's especially useful when you want to work with a variable number of arguments.
 
-Syntax: It is denoted by three dots (...) followed by a parameter name that will hold the rest of the arguments.
-
-function sum(...numbers) {
-  return numbers.reduce((total, num) => total + num, 0);
-}
-const result = sum(1, 2, 3, 4); // Result is 10
-
-----------------------------------------------------------------
-
+// Rest Spread in object: 
 var student ={
   name: "priya",
   age : 100,
@@ -654,11 +642,20 @@ var student ={
 
 const {...rest} = student;
 console.log(rest) //{"name": "priya", "age": 100, "hobbies":["cooking", "dancing"]}
-=====================================================================================================================================================================
+======================================================================================================================================================================
 Spread Operator: 
 1. The spread operator allows you to expand an iterable (like an array or a string) into individual elements.
 2. It's used for various tasks, such as creating shallow copies of arrays, merging arrays, and passing multiple arguments to functions.
 Syntax: It is denoted by three dots (...) followed by the iterable you want to spread.
+
+//Spread Operator  in Array:
+function getNames(name1, name2, name3){
+  console.log(name1,name2, name3);
+}
+var names =["priya", "riya", "supriya"]
+getNames(names[0], names[1], names[2]); //"priya" "riya" "supriya"
+getNames(...names) //spread operator here used to spread the individual arguments //best approach because here we are passing all the arguments but we can use some of the arguments inside function without an error. Other approaches will gives an error to pass those arguments which are used in function.
+getNames(names)
 
 //spread operator in object: (Change the value of age)
 var student ={
@@ -672,9 +669,6 @@ var newStudent ={
   age : 101
 }
 console.log(newStudent)
--------------------------------------------------------
-const numbers = [1, 2, 3];
-const newArray = [...numbers, 4, 5];
 ====================================================================================================================================================================
 
 Default Parameter:
