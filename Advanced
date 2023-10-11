@@ -6,9 +6,10 @@ Types of Dependency:- There are two types of dependency.
 2) Normal Dependency- Used in the production phase
 
 ◽Difference between caret and tilde 
-1) Caret (^): The caret is used to specify a range of compatible versions with some flexibility. When used with a major version number, it allows for backward-compatible updates.
-2) Tilde (~): The tilde is used to specify a range of versions with a more restrictive approach. It allows only for updates within the same major version and includes patch-level updates.
-
+1) Caret (^): The caret is used to specify a range of compatible versions with some flexibility.
+	When used with a major version number, it allows for backward-compatible updates.
+2) Tilde (~): The tilde is used to specify a range of versions with a more restrictive approach.
+	It allows only for updates within the same major version and includes patch-level updates.
 
 ◽Package.json:- It is a configuration for npm. It keeps attracting, of what version is installed in our app.
 
@@ -16,7 +17,9 @@ Types of Dependency:- There are two types of dependency.
 
 ◽Node-Modules:- It contains the code which we fetch from the NPM or we can say it is like a database where our all code exists.
 
-◽Parcel:- Parcel is a web application bundler that simplifies the process of building and bundling web applications. Parcel simplifies the development workflow by providing a fast, easy-to-use, and zero-configuration bundling solution. It reduces the initial setup time, improves development productivity with features like HMR, and automatically optimizes the performance of the bundled output.
+◽Parcel:- Parcel is a web application bundler that simplifies the process of building and bundling web applications.
+Parcel simplifies the development workflow by providing a fast, easy-to-use, and zero-configuration bundling solution.
+It reduces the initial setup time, improves development productivity with features like HMR, and automatically optimizes the performance of the bundled output.
 
 ◽Superpower of Parcel:- 
 HMR - Hot Module Replacement
