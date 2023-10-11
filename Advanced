@@ -80,7 +80,9 @@ After the microtask queue is empty, the event loop checks the callback queue and
 This cycle continues, with the event loop checking and executing microtasks and tasks,
 ensuring that asynchronous operations are processed efficiently without blocking the main program.
 
-In simple terms, the event loop allows JavaScript to handle multiple asynchronous tasks, ensuring that they are executed in a non-blocking manner and in a specific order. It helps maintain the responsiveness of web applications and ensures predictable behavior in an otherwise single-threaded environment.
+In simple terms, the event loop allows JavaScript to handle multiple asynchronous tasks,
+ensuring that they are executed in a non-blocking manner and in a specific order.
+It helps maintain the responsiveness of web applications and ensures predictable behavior in an otherwise single-threaded environment.
 ================================================================================================================================================================================
 
 Closures- 
