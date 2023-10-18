@@ -369,8 +369,8 @@ APPLY:
 2. It's helpful when you want to pass an array of arguments to a function or when the number of arguments may vary. 
 
 BIND:
-1. We can bind an object to a common function, so that the function gives different results when its need.
-2. It takes an object as an first argument and creates a new function.
+1. Bind method is used to create a new function with a specified this value, without invoking the function immediately.
+2. This is useful for creating functions with a fixed this value. However we still need to separetely invoke the returned function.
                                                 or
 1. Bind returns a new function with a bound this value but does not immediately invoke the function. 
 2. It's commonly used when you want to create a new function with a fixed this value to be called later. 
@@ -378,6 +378,8 @@ BIND:
 summary :
 1. call and apply both invoke a function with a specified this value, but call takes individual arguments, while apply takes an array of arguments. 
 2. bind returns a new function with a fixed this value, which can be called later with any number of arguments.
+3. These methods are powerful tools for managing the 'this' context  and passing arguments when working with js functions and are commomly used in 
+scenarios like event handling, function composition and oop.
 
 Example1:
 const employee = {
