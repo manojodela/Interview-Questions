@@ -231,7 +231,7 @@ SetTimeout:
 let timerId = function sayHi(phrase, who) {
   console.log( phrase + who );
 }
-setTimeout(sayHi, 1000, "Hello", "John"); 
+setTimeout(timerId, 1000, "Hello", "John"); 
 
 SetInterval:
 1. allows us to run a function repeatedly, starting after the interval of time, then repeating continuously at that interval.
@@ -242,7 +242,7 @@ SetInterval:
 let timerId = function sayHi(phrase, who) {
   console.log( phrase + who );
 }
-setInterval(sayHi, 1000, "Hello", "John");
+setInterval(timerId, 1000, "Hello", "John");
 
 ClearTimeout:
 1. This method is used to cancel a setTimeout().  Inside the method you have to reference the timeoutID.
