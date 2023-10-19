@@ -842,6 +842,7 @@ let arrayIntegers1 = arrayIntegersOriginal1.splice(0, 2); // returns [1, 2]; ori
 let arrayIntegers2 = arrayIntegersOriginal2.splice(3); // returns [4, 5]; original array: [1, 2, 3] 
 let arrayIntegers3 = arrayIntegersOriginal3.splice(3, 1, "a", "b", "c"); //returns [4]; original array: [1, 2, 3, "a", "b", "c", 5] 
 
+====================================================================================================================================================================
 
 What is the difference between slice and splice
 
@@ -850,15 +851,91 @@ Doesn't modify the original array(immutable)	Modifies the original array(mutable
 Returns the subset of original array		Returns the deleted elements as array
 Used to pick the elements from array		Used to insert or delete elements to/from array
 
+====================================================================================================================================================================
+
 What is JSON and its common operations
-JSON is a text-based data format following JavaScript object syntax,
+JSON stands for JavaScript Object Notation
+It is a text-based format
 It is useful when you want to transmit data across a network and
-it is basically just a text file with an extension of .json, and a MIME type of application/json
+it is basically just a text file with an extension of .json.
 
-Parsing: Converting a string to a native object
-JSON.parse(text);
+JSON ARRAY : 
+"employees":[
+  {"firstName":"John", "lastName":"Doe"},
+  {"firstName":"Anna", "lastName":"Smith"},
+  {"firstName":"Peter", "lastName":"Jones"}
+]
 
-Stringification: converting a native object to a string so it can be transmitted across the network
-JSON.stringify(object);
+Accessing json data:
 
+let data = {
+   "name": "John Doe",
+   "age": 25,
+   "location": "New York"
+   "address": {
+      "street": "123 Main St",
+      "city": "New York",
+      "state": "NY",
+      "zip": "10001"
+   }
+};
+
+console.log(data.name); // Output: John Doe
+console.log(data['name']); // Output: John Doe
+--------------------------
+console.log(data.address.street); // Output: 123 Main St
+console.log(data['address']['city']); // Output: New York
+
+Modifying JSON DATA:
+
+data.name = "Jane Doe"; // Modify the name property
+console.log(data); // Output: {"name": "Jane Doe", "age": 25, "location": "New York"}
+----------------------------
+data['name'] = "Bob Smith"; // Modify the name property
+console.log(data); // Output: {"name": "Bob Smith", "age": 25, "location": "New York"}
+
+REMOVING JSON DATA
+
+delete data.age; // Remove the age property
+console.log(data); // Output: {"name": "John Doe", "location": "New York", "email": "john.doe@example.com", "phone": "555-1234"}
+
+====================================================================================================================================================================
+
+Parsing: 
+ The JSON.parse() method is used to parse a JSON string into a JavaScript object.
+ The method takes a string as its parameter and returns a JavaScript object.
+
+let jsonString = '{"name": "John Doe", "age": 25, "location": "New York"}';
+let jsonObject = JSON.parse(jsonString);
+console.log(jsonObject); // Output: {"name": "John Doe", "age": 25, "location": "New York"}
+
+====================================================================================================================================================================
+
+Stringification:
+ The JSON.stringify() method is used to convert a JavaScript object into a JSON string.
+ The method takes an object as its parameter and returns a JSON string.
+
+let data = {
+   "name": "John Doe",
+   "age": 25,
+   "location": "New York"
+};
+
+let jsonString = JSON.stringify(data);
+console.log(jsonString); // Output: {"name":"John Doe","age":25,"location":"New York"}
+
+====================================================================================================================================================================
+
+Handling Errors: 
+When using the JSON.parse() method, it is important to handle errors that may occur during the parsing process.
+If the JSON string is not properly formatted, the JSON.parse() method will throw an error. To handle errors, you can use a try-catch block.
+
+let jsonString = '{"name": "John Doe, "age": 25, "location": "New York"}'; // Missing a closing quote for the "name" value
+
+try {
+  let jsonObject = JSON.parse(jsonString);
+  console.log(jsonObject);
+} catch (error) {
+  console.log("Error parsing JSON string:", error);
+}
 
