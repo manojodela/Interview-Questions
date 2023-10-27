@@ -1,0 +1,716 @@
+1.Write a JavaScript function to calculate the sum of two numbers.  
+
+const sum = (a, b) =>{
+  return a+b;
+}
+
+console.log(sum(2, 3)); // 5
+===================================================================================================
+
+2. Write a JavaScript program to find the maximum number in an array. 
+
+function findMaxNumber(arr) {
+  if (arr.length === 0) {
+    return undefined;
+  }
+
+  let max = [];   // or 0 Initialize max to the first element of the array
+
+  for (let i = 1; i < arr.length; i++) {
+    if (arr[i] > max) {
+      max = arr[i]; // Update max if a larger number is found
+    }
+  }
+  return max;
+}
+
+console.log(findMaxNumber([3, 6, 9, 1, 8, 23, 110]))
+----------------------------------------------------------------using forEach
+function findMaxNumber(arr) { 
+let maxVal = 0;
+let data = arr.forEach((item) =>{
+  if(maxVal < item)
+  {
+    maxVal = item;
+  }
+});
+return maxVal
+} 
+
+console.log(findMaxNumber([3, 6, 9, 1, 8, 23, 110]))
+---------------------------------------------------------------using method
+function findMaxNumber(arr) { 
+  return Math.max(…arr); 
+} 
+===================================================================================================
+
+3. Write a JavaScript function to check if a given string is a palindrome (reads the same forwards and backwards). 
+
+function isPalindrome(str) { 
+  return str === str.split('').reverse().join(''); 
+}
+
+console.log(isPalindrome("madam"))  //true
+---------------------------------------------------using for loop------------------------------------
+function isPalindrome(str) { 
+let reversedStr= '';
+ for(let i=str.length-1; i>=0; i--){
+    reversedStr += str[i];  
+ }
+  return  reversedStr === str;
+}
+console.log(isPalindrome("madam"))  //true
+===================================================================================================
+
+4. Write a JavaScript program to reverse a given string. 
+
+const reverseString = (str) => str.split('').reverse().join(''); 
+console.log(reverseString("manoj")) //jonam
+===================================================================================================
+
+5.Write a JavaScript function that takes an array of numbers and returns a new array with only the even numbers. 
+
+function filterEvenNumbers(numbers) { 
+  return numbers.filter(num => num % 2 === 0); 
+}
+===================================================================================================
+
+6. Write a JavaScript program to calculate the factorial of a given number. 
+
+function factorial(number) { 
+  if (number === 0 || number === 1) { 
+    return 1; 
+  } else { 
+    return number * factorial(number – 1); 
+  } 
+} 
+---------------------------------------------------using for loop---------------
+function factorialIterative(n) {
+  let result = 1;
+  for (let i = 1; i <= n; i++) {
+    result *= i;
+  }
+  return result;
+}
+const result = factorialIterative(5);
+console.log(`The factorial of ${number} is: ${result}`);
+===================================================================================================
+
+7. Write a JavaScript function to check if a given number is prime. 
+
+function isPrime(num) { 
+  if (num <= 1) return false; 
+  for (let i = 2; i <= Math.sqrt(num); i++) { 
+    if (num % i === 0) return false; 
+  } 
+  return true; 
+} 
+
+===================================================================================================
+
+8. Write a JavaScript program to find the largest element in a nested array. 
+
+function findLargestInNestedArray(arr) {
+  let largest = -Infinity; // Initialize largest with negative infinity
+
+  for (let i = 0; i < arr.length; i++) {
+    if (Array.isArray(arr[i])) {
+      // If the element is an array, recursively find the largest element in that sub-array
+      const largestInSubarray = findLargestInNestedArray(arr[i]);
+      if (largestInSubarray > largest) {
+        largest = largestInSubarray;
+      }
+    } else {
+      // If the element is a number, compare it to the current largest
+      if (arr[i] > largest) {
+        largest = arr[i];
+      }
+    }
+  }
+
+  return largest;
+}
+
+// Example usage:
+const nestedArray = [1, [2, [3, 4], 5], 6, [7, 8, [9]]];
+const largestElement = findLargestInNestedArray(nestedArray);
+console.log("The largest element in the nested array is: " + largestElement);  // 9
+
+===================================================================================================
+9. Write a JavaScript function that returns the Fibonacci sequence up to a given number of terms. 
+
+function generateFibonacci(n) {
+  const fibonacciSequence = [];
+  if (n >= 1) {
+    fibonacciSequence.push(0);
+  }
+  if (n >= 2) {
+    fibonacciSequence.push(1);
+  }
+  for (let i = 2; i < n; i++) {
+    const nextNumber = fibonacciSequence[i - 1] + fibonacciSequence[i - 2];
+    fibonacciSequence.push(nextNumber);
+  }
+  return fibonacciSequence;
+}
+
+// Example usage:
+const fibonacciSequence = generateFibonacci(10);
+console.log("Fibonacci sequence up to " + numTerms + " terms: " + fibonacciSequence); // 0,1,1,2,3,5,8,13,21,34
+
+
+===================================================================================================
+10. Write a JavaScript program to convert a string to title case (capitalize the first letter of each word). 
+
+function toTitleCase(inputString) {
+  const words = inputString.split(' ');
+  const titleCaseWords = [];
+
+  for (const word of words) {
+    // Capitalize the first letter and add the rest of the word in lowercase
+    titleCaseWords.push(word.charAt(0).toUpperCase() + word.slice(1).toLowerCase());
+  }
+  return titleCaseWords.join(' ');
+}
+
+---------------------------------------------------------
+function toTitleCase1(str) { 
+  return str.replace(/\b\w/g, l => l.toUpperCase()); 
+} 
+
+console.log(toTitleCase1("hello manoj")); //Hello Manoj
+
+const inputString = "hello world";
+const titleCaseString = toTitleCase(inputString);  
+console.log("Original String: " + inputString);  //Original String: hello world
+console.log("Title Case String: " + titleCaseString);  //Title Case String: Hello World
+
+===================================================================================================
+1. Implement a debounce function in JavaScript that limits the frequency of a function’s execution when it’s called repeatedly within a specified time frame. 
+
+Sample answer: By delaying the execution of the debounce function until the specified time frame has passed, the frequency can be limited. 
+
+function debounce(func, delay) {
+  let timeoutId;
+  return function (...args) {
+    const context = this;
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => {
+      func.apply(context, args);
+    }, delay);
+  };
+}
+
+// Example usage:
+function saveToServer(value) {
+  console.log(`Saving "${value}" to the server...`);
+  // Simulate a server request (in real use, you would make an AJAX request)
+}
+
+const debouncedSave = debounce(saveToServer, 1000); // Limit to one call per second
+
+// Simulated user input
+debouncedSave("Data 1");
+debouncedSave("Data 2");
+debouncedSave("Data 3");
+
+// Only the last call will be executed after 1000ms (1 second)
+===================================================================================================
+2. Write a function that takes an array of objects and a key, and returns a new array sorted based on the values of that key in ascending order.
+Sample answer: The following function takes an array of objects and a key to sort the array based on the values in ascending order. 
+
+function sortByKey(arr, key) { 
+  return arr.sort((a, b) => a[key] - b[key]); 
+} 
+
+----------------------------------------------------------
+
+function sortByKeyAscending(arr, key) {
+  return arr.slice().sort((a, b) => {
+    const valueA = a[key];
+    const valueB = b[key];
+
+    if (valueA < valueB) {
+      return -1;
+    } else if (valueA > valueB) {
+      return 1;
+    } else {
+      return 0;
+    }
+  });
+}
+
+// Example usage:
+const people = [
+  { name: "Alice", age: 30 },
+  { name: "Bob", age: 25 },
+  { name: "Eve", age: 35 }
+];
+
+const sortedPeople = sortByKeyAscending(people, "age");
+console.log(sortedPeople);
+===================================================================================================
+3. Implement a deep clone function in JavaScript that creates a copy of a nested object or array without any reference to the original. 
+By using two methods together and creating a deep clone, I can serialize the object to a JSON string.
+I would then parse it back into a new object, thereby removing any reference to the original object. 
+
+function deepClone(obj) {
+  // Serialize the object to a JSON string and then parse it back into a new object
+  return JSON.parse(JSON.stringify(obj));
+}
+
+// Example usage:
+const originalObject = {
+  name: "John",
+  age: 30,
+  address: {
+    street: "123 Main St",
+    city: "Exampleville"
+  }
+};
+
+const clonedObject = deepClone(originalObject);
+
+console.log("Original Object:", originalObject);
+console.log("Cloned Object:", clonedObject);
+
+// Modify the cloned object to demonstrate independence from the original
+clonedObject.name = "Jane";
+clonedObject.address.city = "Clonetown";
+
+console.log("Modified Cloned Object:", clonedObject);
+console.log("Original Object (unchanged):", originalObject);
+
+---------------------------------------------------------------
+Original Object: {
+  name: 'John',
+  age: 30,
+  address: { street: '123 Main St', city: 'Exampleville' }
+}
+Cloned Object: {
+  name: 'John',
+  age: 30,
+  address: { street: '123 Main St', city: 'Exampleville' }
+}
+Modified Cloned Object: {
+  name: 'Jane',
+  age: 30,
+  address: { street: '123 Main St', city: 'Clonetown' }
+}
+Original Object (unchanged): {
+  name: 'John',
+  age: 30,
+  address: { street: '123 Main St', city: 'Exampleville' }
+}
+
+
+===================================================================================================
+4. Write a recursive function to calculate the factorial of a given number. 
+
+function factorial(n) {
+  if (n === 0 || n === 1) {
+    return 1; // Base case: 0! and 1! are both defined as 1
+  } else {
+    return n * factorial(n - 1); // Recursive call for n! = n * (n-1)!
+  }
+}
+
+// Example usage:
+const number = 5;
+const result = factorial(number);
+console.log(`The factorial of ${number} is: ${result}`);
+===================================================================================================
+5. Implement a function that takes two sorted arrays and merges them into a single sorted array without using any built-in sorting functions. 
+
+function mergeSortedArrays(arr1, arr2) { 
+  return [...arr1, ...arr2].sort((a, b) => a - b); 
+} 
+
+console.log(mergeSortedArrays(['3', '6', '0', '5'], ['8', '2', '6', '5']))  //['0', '2', '3','5', '5', '6','6', '8']
+-------------------------------------------------------------------------
+
+function mergeSortedArrays(arr1, arr2) {
+  const mergedArray = [];
+  let index1 = 0;
+  let index2 = 0;
+
+  while (index1 < arr1.length && index2 < arr2.length) {
+    if (arr1[index1] < arr2[index2]) {
+      mergedArray.push(arr1[index1]);
+      index1++;
+    } else {
+      mergedArray.push(arr2[index2]);
+      index2++;
+    }
+  }
+
+  // If there are remaining elements in arr1 or arr2, add them to the merged array
+  while (index1 < arr1.length) {
+    mergedArray.push(arr1[index1]);
+    index1++;
+  }
+
+  while (index2 < arr2.length) {
+    mergedArray.push(arr2[index2]);
+    index2++;
+  }
+
+  return mergedArray;
+}
+
+// Example usage:
+const sortedArray1 = [1, 3, 5, 7];
+const sortedArray2 = [2, 4, 6, 8];
+const mergedArray = mergeSortedArrays(sortedArray1, sortedArray2);
+console.log("Merged Sorted Array:", mergedArray);
+
+===================================================================================================
+8. Implement a function that flattens a nested array in JavaScript, converting it into a single-level array. 
+
+const flattenArray = (nestedArray) => { 
+  return nestedArray.flat(Infinity); 
+}; 
+------------------------------------------------------
+function flattenArray(arr) {
+  const flattened = [];
+
+  function recursiveFlatten(arr) {
+    for (const element of arr) {
+      if (Array.isArray(element)) {
+        recursiveFlatten(element); // Recurse into nested array
+      } else {
+        flattened.push(element); // Add non-array elements to the result
+      }
+    }
+  }
+
+  recursiveFlatten(arr);
+  return flattened;
+}
+
+// Example usage:
+const nestedArray = [1, [2, 3, [4, 5]], 6, [7, 8]];
+const flatArray = flattenArray(nestedArray);
+console.log("Flattened Array:", flatArray);
+
+===================================================================================================
+9. Write a function that determines if two strings are anagrams of each other  
+
+function areAnagrams(str1, str2) {
+  // Remove spaces and convert to lowercase
+  const cleanStr1 = str1.replace(/\s/g, '').toLowerCase();
+  const cleanStr2 = str2.replace(/\s/g, '').toLowerCase();
+
+  // Check if the sorted character arrays are the same
+  return cleanStr1.split('').sort().join('') === cleanStr2.split('').sort().join('');
+}
+
+// Example usage:
+const string1 = "listen";
+const string2 = "silent";
+console.log(`"${string1}" and "${string2}" are anagrams: ${areAnagrams(string1, string2)}`);
+
+-------------------------------------------------
+function areAnagrams(str1, str2) { 
+  return str1.split(“”).sort().join(“”) === str2.split(“”).sort().join(“”); 
+} 
+
+
+
+===================================================================================================
+10. Create a JavaScript function that returns the Fibonacci sequence up to a given number, utilizing memoization for optimized performance. 
+
+function fibonacciWithMemoization(n) { 
+  let memo = [0, 1]; 
+  for (let i = 2; i <= n; i++) { 
+    memo[i] = memo[i - 1] + memo[i - 2]; 
+  } 
+  return memo; 
+} 
+
+console.log(fibonacciWithMemoization(10))
+-----------------------------------------------------------------------------------------
+
+function generateFibonacciMemoized(n, memo = {}) {
+  if (n in memo) {
+    return memo[n]; // Return the cached value if available
+  }
+
+  if (n <= 2) {
+    return 1; // Base case for Fibonacci
+  }
+
+  // Calculate the Fibonacci number and store it in the memo cache
+  memo[n] = generateFibonacciMemoized(n - 1, memo) + generateFibonacciMemoized(n - 2, memo);
+
+  return memo[n];
+}
+
+// Example usage:
+const numTerms = 10;
+const fibonacciSequence = [];
+
+for (let i = 1; i <= numTerms; i++) {
+  fibonacciSequence.push(generateFibonacciMemoized(i));
+}
+
+console.log("Fibonacci sequence up to " + numTerms + " terms:", fibonacciSequence);
+
+===================================================================================================
+Given an array of numbers, write a function to find the largest and smallest numbers in the array. 
+
+function findMinMax(arr) { 
+  let min = Math.min(...arr); 
+  let max = Math.max(...arr); 
+  return [min, max]; 
+}
+-------------------------------------------------------
+function findLargestAndSmallestNumbers(arr) {
+  if (arr.length === 0) {
+    return "The array is empty.";
+  }
+
+  let largest = arr[0];
+  let smallest = arr[0];
+
+  for (let i = 1; i < arr.length; i++) {
+    if (arr[i] > largest) {
+      largest = arr[i];
+    } else if (arr[i] < smallest) {
+      smallest = arr[i];
+    }
+  }
+
+  return {
+    largest: largest,
+    smallest: smallest
+  };
+}
+
+// Example usage:
+const numbers = [10, 5, 8, 17, 3, 21, 12];
+const result = findLargestAndSmallestNumbers(numbers);
+console.log("Largest Number: " + result.largest);
+console.log("Smallest Number: " + result.smallest);
+===================================================================================================
+4. Write a function that takes an array of integers as input and returns a new array with only the unique elements. 
+
+function getUniqueElements(arr) { 
+  return Array.from(new Set(arr)); 
+} 
+console.log(getUniqueElements([2, 3, 5, 2, 8, 5, 9, 3, 10])) //[ 2, 3, 5, 8, 9, 10 ]
+-------------------------------------------------------------------------------------
+function getUniqueElements(arr) {
+  const uniqueArray = [];
+
+  for (const element of arr) {
+    if (!uniqueArray.includes(element)) {
+      uniqueArray.push(element);
+    }
+  }
+
+  return uniqueArray;
+}
+
+// Example usage:
+const numbers = [2, 3, 5, 2, 8, 5, 9, 3, 10];
+const uniqueNumbers = getUniqueElements(numbers);
+console.log("Original Array: " + numbers);  //Original Array: 2,3,5,2,8,5,9,3,10
+console.log("Unique Elements: " + uniqueNumbers);  //Unique Elements: 2,3,5,8,9,10
+
+===================================================================================================
+6. Write a function that determines if a given number is prime or not. 
+
+function isPrime(num) { 
+  if (num <= 1) return false; 
+  for (let i = 2; i <= Math.sqrt(num); i++) { 
+    if (num % i === 0) return false; 
+  } 
+  return true; 
+} 
+
+console.log(isPrime(5)); //true
+
+===================================================================================================
+7. Implement a function to find the sum of all the numbers in an array. 
+
+function findSum(arr) { 
+  return arr.reduce((sum, num) => sum + num, 0); 
+} 
+
+console.log(findSum([3, 7, 9, 5, 6]))
+--------------------------------------------------------------------
+function sumArray(arr) {
+  let sum = 0;
+  for (let i = 0; i < arr.length; i++) {
+    sum += arr[i];
+  }
+  return sum;
+}
+
+// Example usage:
+const numbers = [1, 2, 3, 4, 5];
+const totalSum = sumArray(numbers);
+console.log("Sum of the numbers in the array: " + totalSum);
+
+
+===================================================================================================
+8. Given a string, write a function to count the occurrences of each character in the string. 
+
+function countCharacterOccurrences(str) { 
+  const charCount = {}; 
+
+  for (let char of str) { 
+   if (charCount[char]) {
+      charCount[char]++;
+    } else {
+      charCount[char] = 1;
+    }
+  } 
+  return charCount; 
+} 
+
+console.log(countCharacterOccurrences("programming")) //{ p: 1, r: 2, o: 1, g: 2, a: 1, m: 2, i: 1, n: 1 }
+
+===================================================================================================
+9. Implement a function to remove duplicates from an array. 
+
+function removeDuplicates(arr) { 
+  return Array.from(new Set(arr)); 
+} 
+
+function removeDuplicates(arr) { 
+  return [...new Set(arr)]; 
+} 
+
+console.log(removeDuplicates([1, 2, 2, 3, 4, 4, 5])) //[ 1, 2, 3, 4, 5 ]
+
+===================================================================================================
+1. Write a function that reverses the order of words in a sentence without using the built-in reverse() method. 
+
+function reverseSentence(sentence) { 
+  const words = sentence.split(" "); 
+  const reversedWords = words.reverse(); 
+  return reversedWords.join(" "); 
+} 
+
+console.log(reverseSentence("Hello, world! How are you?"))  //you? are How world! Hello,
+
+===================================================================================================
+ Write a function that takes an array of integers and returns the largest difference between any two numbers in the array. 
+
+function largestDifference(arr) {
+  if (arr.length < 2) {
+    return 0; // No difference if there are fewer than 2 elements
+  }
+
+  let min = arr[0];
+  let maxDiff = arr[1] - arr[0];
+
+  for (let i = 1; i < arr.length; i++) {
+    const currentNum = arr[i];
+    maxDiff = Math.max(maxDiff, currentNum - min);
+    min = Math.min(min, currentNum);
+  }
+
+  return maxDiff;
+}
+
+// Example usage:
+const numbers = [7, 1, 5, 3, 6, 4];
+const difference = largestDifference(numbers);
+console.log("Largest Difference: " + difference);  //5
+
+===================================================================================================
+4. Implement a function that removes duplicates from an array, keeping only the unique elements. 
+
+function removeDuplicates(arr) { 
+  return arr.filter((item, index) => arr.indexOf(item) === index); 
+} 
+
+console.log(removeDuplicates([1, 2, 2, 3, 4, 4, 5]))
+
+===================================================================================================
+8. Implement a function that finds the second smallest element in an array of integers. 
+
+function secondSmallest(arr) { 
+  const sortedArr = arr.sort((a, b) => a – b); 
+  return sortedArr[1]; 
+} 
+console.log(secondSmallest([1, 2, 2, 3, 4, 4, 5])) //2
+
+===================================================================================================
+9. Write a function that generates a random alphanumeric string of a given length
+
+function generateRandomAlphanumericString(length) {
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  let randomString = '';
+
+  for (let i = 0; i < length; i++) {
+    const randomIndex = Math.floor(Math.random() * characters.length);
+    randomString += characters.charAt(randomIndex);
+  }
+
+  return randomString;
+}
+
+// Example usage:
+const randomString = generateRandomAlphanumericString(10);
+console.log("Random Alphanumeric String: " + randomString);
+
+
+===================================================================================================
+7. Write a function that removes all falsy values (false, null, 0, “”, undefined, and NaN) from an array. 
+
+function removeFalsyValues(arr) { 
+  return arr.filter(Boolean); 
+} 
+
+function removeFalsyValues(arr) {
+  return arr.filter(value => !!value);
+}
+
+// Example usage:
+const originalArray = [0, 1, false, true, '', 'Hello', null, undefined, NaN];
+const filteredArray = removeFalsyValues(originalArray);
+console.log("Original Array: " + JSON.stringify(originalArray));
+console.log("Array with Falsy Values Removed: " + JSON.stringify(filteredArray));
+===================================================================================================
+8. Implement a function that merges two arrays into a single array, alternating elements from each array. 
+
+function mergeArrays(array1, array2) { 
+  const mergedArray = []; 
+  const maxLength = Math.max(array1.length, array2.length); 
+  for (let i = 0; i < maxLength; i++) { 
+    if (i < array1.length) mergedArray.push(array1[i]); 
+    if (i < array2.length) mergedArray.push(array2[i]); 
+  } 
+  return mergedArray; 
+} 
+
+===================================================================================================
+9. Write a function that finds the second largest number in an array.
+
+
+function findSecondLargest(arr) { 
+  arr.sort((a, b) => b - a); 
+  return arr[1]; 
+} 
+
+
+const numbers = [5, 3, 9, 1, 2, 8]; 
+const secondLargest = findSecondLargest(numbers);
+console.log("Second Largest Element: " + secondLargest);  //8
+
+
+
+
+
+
+
+
+
+
+
+
+===================================================================================================
