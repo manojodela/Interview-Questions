@@ -1,3 +1,157 @@
+var keyword:
+'var' is used to declare variables with function scope. 
+It can be reassigned and redeclared within its scope.
+
+let keyword:
+let is used to declare variables with block scope.
+It can be reassigned but not redeclared within its scope, and is not hoisted
+
+const keyword:
+'const' is used to declare variables with block scope.
+It cannot be reassigned or redeclared once initialized, and is not hoisted.
+const does not make objects or arrays immutable, only their reference cannot be changed.
+
+================================================================================================================================================================================
+
+-----------let keyword-----------------------------
+for(let i=0; i<5; i++)
+{
+  setTimeout(function() {
+    console.log(i);
+  }, 0);
+}
+
+o/p :
+0
+1
+2
+3
+4
+
+With let, a new variable i is created for each iteration of the loop.
+This means that each setTimeout callback function will capture the value of i at that particular iteration,resulting in the expected output:
+Each callback function holds a reference to a separate i variable with its own value.
+
+---------var leyword----------------------------
+for(var i=0; i<5; i++)
+{
+  setTimeout(function() {
+    console.log(i);
+  }, 0);
+}
+
+o/p:
+5
+5
+5
+5
+5
+
+With var, there is only one variable i that is hoisted to the top of the function scope (or the global scope if this code is not within a function).
+As a result, by the time the setTimeout callbacks are executed, the i variable has already reached its final value (i.e., 5) due to the loop completing.
+This leads to a somewhat unexpected output:
+In this case, all the callback functions capture the same i variable, which has the value of 5 after the loop completes.
+================================================================================================================================================================================
+
+let arr = [{ name: 'y', age: 26 }, { name: 'x', age: 26 }, { name: 'z', age: 27 }];
+
+// Initialize an empty object to store the result
+let output = {};
+
+// Iterate through the array
+arr.forEach((item) => {
+  const { name, age } = item;
+
+  // Check if the age already exists as a key in the output object
+  if (output[age] === undefined) {
+    output[age] = [];
+  }
+
+  // Add the name to the corresponding age key in the output object
+  output[age].push(name);
+});
+
+console.log(output);
+{ 26: ['y', 'x'],  27: ['z'] }
+
+---------------------------------------------------------------for loop---------------------
+let output = {};
+for(let i=0 ; i <arr.length; i++) {
+  const { name, age } = arr[i];
+  if (output[age] === undefined) {
+    output[age] = [];
+  }
+  output[age].push(name);
+};
+
+console.log(output);
+{ 26: ['y', 'x'],  27: ['z'] }
+================================================================================================================================================================================
+create a promise useing settimeout with 3 milliseconds.
+
+const myPromise = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve("Promise resolved after 3 milliseconds");
+  }, 3); // 3 milliseconds
+});
+
+myPromise.then((result) => {
+  console.log(result);
+});
+
+================================================================================================================================================================================
+get the value which occured 2 times first occurance and print the value
+const ar = ["a", "b", "c", "b", "a", "a"];
+
+const result = ar.find((value, index, array) => array.indexOf(value) !== index);
+console.log(result);
+
+Output: b
+
+// Use filter to find elements that occur more than once
+const result = ar.filter((value, index, array) => array.indexOf(value) !== index);
+
+// Print the first value that occurs twice
+console.log(result[0]);
+
+Output: b
+================================================================================================================================================================================
+
+// Convert the number to a string, reverse it, and convert it back to a number
+function reverseNumber(num) {
+  const reversedStr = num.toString().split('').reverse().join('');
+  const reversedNum = parseInt(reversedStr, 10);
+  return reversedNum;
+}
+
+const reversed = reverseNumber(12345);
+console.log(reversed); // Output: 54321
+================================================================================================================================================================================
+check the value which occured first 2 times and print the value
+const ar = ["a", "b", "z", "b", "a", "a"];
+const frequency = {};
+
+// Count the frequency of each element in the array
+ar.forEach(item => {
+  if (frequency[item]) {
+    frequency[item]++;
+  } else {
+    frequency[item] = 1;
+  }
+});
+console.log(frequency) //{ a: 3, b: 2, z: 1 }
+
+// Find the value that occurs 2 times
+for (const item in frequency) {
+  if (frequency[item] === 2) {
+    console.log(item);
+    break; // Stop after finding the first value that occurs 2 times
+  }
+}
+
+Output: b
+
+================================================================================================================================================================================
 Advance Interview Concepts
 NPM:- npm is a package manager. npm is a repository where all the libraries, frameworks, and tools are available.
 
