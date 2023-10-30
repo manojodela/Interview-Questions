@@ -702,15 +702,106 @@ const numbers = [5, 3, 9, 1, 2, 8];
 const secondLargest = findSecondLargest(numbers);
 console.log("Second Largest Element: " + secondLargest);  //8
 
-
-
-
-
-
-
-
-
-
-
-
 ===================================================================================================
+Given a string, reverse each word in the sentence
+
+const reverseWord = (input) =>{
+  let splittedinput = input.split(" ");
+  let result = '';
+  
+  for(let word of splittedinput){
+     for(let i=word.length-1; i>=0; i--){
+       result += word[i];
+     }
+     result +=  ' ';
+  }
+  return result;
+}
+
+console.log(reverseWord("Commonly Asked Javascript Question")); 
+
+
+ ===================================================================================================
+Flatten an Array
+
+ let flattenArray = (arr) =>{
+   let result = [];
+    arr.forEach((item) =>{
+   if(Array.isArray(item)){
+     result.push(...flattenArray(item));
+   }
+   else{
+     result.push(item);
+   }
+ })
+ return result
+ }
+ 
+ console.log(flattenArray([1, 2, 3, [4, 5, [6, 7, [8]], 9], 10]))
+ 
+ let data = [1, 2, 3, [4, 5, [6, 7, [8]], 9], 10];
+ 
+console.log( data.flat(Infinity))
+===================================================================================================
+
+CURRYING
+
+function sum(x) {
+  return function(y){
+      return x+y;
+  }
+}
+console.log(sum(2)(3))  //5
+--------------------------
+ES6 arr functions
+
+const sum = x => y =>{
+    return x+y;
+}
+
+console.log(sum(2)(3))  //5
+
+----------------------------------
+INFINITE CURRYING
+
+function sum(x) {
+  return function(y){
+    if(y){
+      return sum(x+y);
+    }
+    return x;
+  }
+}
+
+console.log(sum(2)(3)(4)(5)())  //14
+----------------------------------------
+ES6 arr functions
+
+const sum = x => y =>{
+  if(y){
+    return sum(x+y);
+  }
+  return x;
+}
+console.log(sum(2)(3)(4)(5)())  //14
+===================================================================================================
+Given a string, return all possible distinct substrings
+Input: “Cat”
+Output: [ 'C', 'Ca', 'Cat', 'a', 'at', 't' ]
+
+const substring = (s) =>{
+  let result = new Set();
+  
+  for(let i= 0; i<s.length; i++){
+    let data = "";
+    for(let j= i; j<s.length; j++){
+      data += s[j];
+      result.add(data);
+    }
+  }
+  return Array.from(result);
+}
+
+console.log(substring("cat"))
+
+
