@@ -274,7 +274,7 @@ const outerFunction =(a)=>{
   innerFunction()
 }
 outerFunction(5)// 15
-
+--------------------------------
 const outerFunction =(a)=>{
   let b=10;
   const innerFunction =()=>{
@@ -288,7 +288,7 @@ outerFunction(5) //output :
     let sum = a+b;
     console.log(sum)
   }
-
+--------------------------------
 const outerFunction =(a)=>{
   let b=10;
   const innerFunction =()=>{
@@ -300,6 +300,27 @@ const outerFunction =(a)=>{
 let inner = outerFunction(5)
 console.log(inner)
 inner() //15
+------------------------------
+var globalVar = "xyz";
+
+function outerFunc(outerArg) {
+    var outerVar = 'a';
+
+    function innerFunc(innerArg) {
+    var innerVar = 'b';
+    
+    console.log(
+        "outerArg = " + outerArg + "\n" +  //outerArg = 123
+        "innerArg = " + innerArg + "\n" +  //innerArg = 456
+        "outerVar = " + outerVar + "\n" +  //outerVar = a
+        "innerVar = " + innerVar + "\n" +  //innerVar = b
+        "globalVar = " + globalVar);  //globalVar = xyz
+    };
+    innerFunc(456);
+}
+outerFunc(123);  
+
+
 ================================================================================================================================================================================
 Prototype: 
 Prototype allow to easily define methods to all the instances of object. It stored in the memory once but every object instances can access it.
