@@ -6,6 +6,12 @@ let keyword:
 let is used to declare variables with block scope.
 It can be reassigned but not redeclared within its scope, and is not hoisted
 
+let x = 5;
+let x = 10; // Redeclaration of the variable 'x'
+-------------------
+y = 5
+y = 10  # Reassignment of the variable 'y'
+
 const keyword:
 'const' is used to declare variables with block scope.
 It cannot be reassigned or redeclared once initialized, and is not hoisted.
