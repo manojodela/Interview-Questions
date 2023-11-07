@@ -57,6 +57,19 @@ With var, there is only one variable i that is hoisted to the top of the functio
 As a result, by the time the setTimeout callbacks are executed, the i variable has already reached its final value (i.e., 5) due to the loop completing.
 This leads to a somewhat unexpected output:
 In this case, all the callback functions capture the same i variable, which has the value of 5 after the loop completes.
+
+To get expected output need to implement IIFI's
+for(var i=0; i<5; i++){
+  (function(arg){
+    setTimeout(function() {
+      console.log(arg)
+    }, 1000);
+  })(i)
+}
+//0,1,2,3,4,
+
+
+
 ================================================================================================================================================================================
 
 let arr = [{ name: 'y', age: 26 }, { name: 'x', age: 26 }, { name: 'z', age: 27 }];
