@@ -1,1678 +1,868 @@
-## React.js
+## Front-end Development
 
-#### Q1. If you want to import just the Component from the React library, what syntax do you use?
+#### Q1. Which image matches the flex layout defined in this style rule?
 
-- [ ] `import React.Component from 'react'`
-- [ ] `import [ Component ] from 'react'`
-- [ ] `import Component from 'react'`
-- [x] `import { Component } from 'react'`
-
-#### Q2. If a function component should always render the same way given the same props, what is a simple performance optimization available for it?
-
-- [x] Wrap it in the `React.memo` higher-order component.
-- [ ] Implement the `useReducer` Hook.
-- [ ] Implement the `useMemo` Hook.
-- [ ] Implement the `shouldComponentUpdate` lifecycle method.
-
-#### Q3. How do you fix the syntax error that results from running this code?
-
-```javascript
-const person =(firstName, lastName) =>
-{
-  first: firstName,
-  last: lastName
-}
-console.log(person("Jill", "Wilson"))
-```
-
-- [x] Wrap the object in parentheses.
-- [ ] Call the function from another file.
-- [ ] Add a return statement before the first curly brace.
-- [ ] Replace the object with an array.
-
-#### Q4. If you see the following import in a file, what is being used for state management in the component?
-
-`import React, {useState} from 'react';`
-
-- [x] React Hooks
-- [ ] stateful components
-- [ ] math
-- [ ] class components
-
-#### Q5. Using object literal enhancement, you can put values back into an object. When you log person to the console, what is the output?
-
-```javascript
-const name = 'Rachel';
-const age = 31;
-const person = { name, age };
-console.log(person);
-```
-
-- [ ] `{{name: "Rachel", age: 31}}`
-- [x] `{name: "Rachel", age: 31}`
-- [ ] `{person: "Rachel", person: 31}}`
-- [ ] `{person: {name: "Rachel", age: 31}}`
-
-#### Q6. What is the testing library most often associated with React?
-
-- [ ] Mocha
-- [ ] Chai
-- [ ] Sinon
-- [x] Jest
-
-[Reference](https://jestjs.io)
-
-#### Q7. To get the first item from the array ("cooking") using array destructuring, how do you adjust this line?
-
-```javascript
-const topics = ['cooking', 'art', 'history'];
-```
-
-- [ ] `const first = ["cooking", "art", "history"]`
-- [ ] `const [] = ["cooking", "art", "history"]`
-- [ ] `const [, first]["cooking", "art", "history"]`
-- [x] `const [first] = ["cooking", "art", "history"]`
-
-#### Q8. How do you handle passing through the component tree without having to pass props down manually at every level?
-
-- [ ] React Send
-- [ ] React Pinpoint
-- [ ] React Router
-- [x] React Context
-
-[Reference](https://reactjs.org/docs/context.html)
-
-#### Q9. What should the console read when the following code is run?
-
-```javascript
-const [, , animal] = ['Horse', 'Mouse', 'Cat'];
-console.log(animal);
-```
-
-- [ ] Horse
-- [x] Cat
-- [ ] Mouse
-- [ ] undefined
-
-#### Q10. What is the name of the tool used to take JSX and turn it into createElement calls?
-
-- [ ] JSX Editor
-- [ ] ReactDOM
-- [ ] Browser Buddy
-- [x] Babel
-
-#### Q11. Why might you use useReducer over useState in a React component?
-
-- [ ] when you want to replace Redux
-- [x] when you need to manage more complex state in an app
-- [ ] when you want to improve performance
-- [ ] when you want to break your production app
-
-#### Q12. Which props from the props object is available to the component with the following syntax?
-
-```javascript
-<Message {...props} />
-```
-
-- [ ] any that have not changed
-- [x] all of them
-- [ ] child props
-- [ ] any that have changed
-
-#### Q13. Consider the following code from React Router. What do you call :id in the path prop?
-
-```javascript
-<Route path="/:id" />
-```
-
-- [ ] This is a route modal
-- [x] This is a route parameter
-- [ ] This is a route splitter
-- [ ] This is a route link
-
-#### Q14. If you created a component called Dish and rendered it to the DOM, what type of element would be rendered?
-
-```javascript
-function Dish() {
-  return <h1>Mac and Cheese</h1>;
+```css
+.container {
+  display: flex;
 }
 
-ReactDOM.render(<Dish />, document.getElementById('root'));
-```
-
-- [ ] `div`
-- [ ] section
-- [ ] component
-- [x] `h1`
-
-#### Q15. What does this React element look like given the following code? (Alternative: Given the following code, what does this React element look like?)
-
-```javascript
-React.createElement('h1', null, "What's happening?");
-```
-
-- [ ] `<h1 props={null}>What's happening?</h1>`
-- [x] `<h1>What's happening?</h1>`
-- [ ] `<h1 id="component">What's happening?</h1>`
-- [ ] `<h1 id="element">What's happening?</h1>`
-
-[Reference](https://www.geeksforgeeks.org/what-is-the-use-of-react-createelement/)
-
-#### Q16. What property do you need to add to the Suspense component in order to display a spinner or loading state?
-
-```javascript
-function MyComponent() {
-  return (
-    <Suspense>
-      <div>
-        <Message />
-      </div>
-    </Suspense>
-  );
+.container div:last-child {
+  margin-left: auto;
 }
 ```
 
-- [ ] lazy
-- [ ] loading
-- [x] fallback
-- [ ] spinner
+- [ ] ![A](images/Q1-A.jpg)
+- [x] ![B](images/Q1-B.jpg)
+- [ ] ![C](images/Q1-C.jpg)
+- [ ] ![D](images/Q1-D.jpg)
 
-[Reference](https://linguinecode.com/post/how-react-suspense-works)
+[Sample](https://jsfiddle.net/mrvahid/zohd8k2n/)
 
-#### Q17. How would you describe the message variable wrapped in curly braces below?
+#### Q2. Variables declared with the let keyword have what type of scope?
+
+- [ ] function scope
+- [x] block scope
+- [ ] inline scope
+- [ ] global scope
+
+#### Q3. Why would you surround a piece of text with `<h1></h1>` tags?
+
+- [x] to indicate that this text is the main heading on the page
+- [ ] to make the text bold
+- [ ] to ensure that search engines treat the keywords as being important for this page
+- [ ] to demonstrate to screen readers that this text is important
+
+#### Q4. When might an empty alt attribute be the correct value?
+
+- [ ] when you cannot think of useful alt text
+- [ ] when you don't think it would be interesting to someone who cannot see it
+- [ ] when the image has come from a CMS
+- [x] when the image is purely decorative
+
+#### Q5. Which attribute must have a unique value each time it is used in an HTML document?
+
+- [ ] title
+- [ ] class
+- [ ] style
+- [x] id
+
+#### Q6. Which CSS property will not trigger layout recalculation?
+
+- [ ] top
+- [x] opacity
+- [ ] width
+- [ ] height
+
+#### Q7. What will be the value of selected?
 
 ```javascript
-const message = 'Hi there';
-const element = <p>{message}</p>;
+let pocket = ['turnip', 'stone', 'log', 'apple'];
+let selected = pocket[1];
 ```
 
-- [ ] a JS function
-- [ ] a JS element
-- [x] a JS expression
-- [ ] a JSX wrapper
+- [ ] log
+- [ ] apple
+- [x] stone
+- [ ] turnip
 
-#### Q18. What can you use to handle code splitting?
+#### Q8. What does the `===` comparison operator do?
 
-- [ ] `React.memo`
-- [ ] `React.split`
-- [x] `React.lazy`
-- [ ] `React.fallback`
+- [ ] It sets one variable equal to another in both value and type
+- [ ] It tests for equality of type only
+- [ ] It tests for equality of value only
+- [x] It tests for equality of value and type
 
-[Reference]()
-
-#### Q19. When do you use `useLayoutEffect`?
-
-- [ ] to optimize for all devices
-- [ ] to complete the update
-- [x] to change the layout of the screen
-- [ ] when you need the browser to paint before the effect runs
-
-[Source] (https://react.dev/reference/react/useLayoutEffect)
-"useLayoutEffect is a version of useEffect that fires before the browser repaints the screen."
-
-[Explanation]The correct answer to the question "When do you use useLayoutEffect?" is:
-
-When you need to change the layout of the screen.
-
-useLayoutEffect is used when you need to perform DOM mutations that rely on the updated layout of the elements. It allows you to make changes to the DOM synchronously before the browser performs its painting step. This can be useful when you need to measure or manipulate the layout, such as accessing element dimensions or positions, calculating scroll offsets, or performing other operations that require up-to-date layout information.
-
-The other option provided as answer is not accurate:
-
-"When you need the browser to paint before the effect runs" is not correct. The purpose of useLayoutEffect is to run the effect synchronously after the DOM updates but before the browser paints, allowing you to make layout-related changes before the visual rendering occurs.
-
-**Explanation:**
-`useLayoutEffect` gets executed _before_ the `useEffect` hook without much concern for DOM mutation. Even though the React hook `useLayoutEffect` is set after the `useEffect` Hook, it gets triggered first!
-
-#### Q20. What is the difference between the click behaviors of these two buttons (assuming that this.handleClick is bound correctly)?
+#### Q9. In the following code, the variable `fruit` has been assigned a value of apple. How would you change the value to plum?
 
 ```javascript
-A. <button onClick={this.handleClick}>Click Me</button>
-B. <button onClick={event => this.handleClick(event)}>Click Me</button>
+let fruit = 'apple';
 ```
 
-- [ ] Button A will not have access to the event object on click of the button.
-- [ ] Button B will not fire the handler this.handleClick successfully.
-- [ ] Button A will not fire the handler this.handleClick successfully.
-- [x] There is no difference.
+- [ ] `let fruit = 'plum'`
+- [ ] `var fruit = 'plum'`
+- [ ] `const fruit = 'plum'`
+- [x] `fruit = 'plum'`
 
-#### Q21. How do you destructure the properties that are sent to the Dish component?
+#### Q10. What is the `<label>` element used for?
 
-```javascript
-function Dish(props) {
-  return (
-    <h1>
-      {props.name} {props.cookingTime}
-    </h1>
-  );
+- [ ] to identify the different parts of a figure
+- [x] to explain what needs to be entered into a form field
+- [ ] as a caption for images
+- [ ] as a heading for tables
+
+#### Q11. The browser finds some CSS that it does not understand. What is likely to happen?
+
+- [ ] The page will not display
+- [ ] An error message will be displayed
+- [ ] The browser will not load the stylesheet
+- [x] The browser will ignore the unknown CSS
+
+#### Q12. In this code, what is the term for the h1?
+
+```css
+h1 {
+  color: red;
+  font-size: 5em;
 }
 ```
 
-- [ ] `function Dish([name, cookingTime]) { return <h1>{name} {cookingTime}</h1>; }`
-- [x] `function Dish({name, cookingTime}) { return <h1>{name} {cookingTime}</h1>; }`
-- [ ] `function Dish(props) { return <h1>{name} {cookingTime}</h1>; }`
-- [ ] `function Dish(...props) { return <h1>{name} {cookingTime}</h1>; }`
+- [x] selector
+- [ ] combinator
+- [ ] declarator
+- [ ] markup
 
-#### Q22. When might you use `React.PureComponent`?
+#### Q13. Which HTML will result in text being highlighted in yellow?
 
-- [ ] when you do not want your component to have props
-- [ ] when you have sibling components that need to be compared
-- [x] when you want a default implementation of `shouldComponentUpdate()`
-- [ ] when you do not want your component to have state
-
-[Reference](https://reactjs.org/docs/react-api.html#reactpurecomponent)
-
-#### Q23. Why is it important to avoid copying the values of props into a component's state where possible?
-
-- [ ] because you should never mutate state
-- [ ] because `getDerivedStateFromProps()` is an unsafe method to use
-- [x] because you want to allow a component to update in response to changes in the props
-- [ ] because you want to allow data to flow back up to the parent
-
-#### Q24. What is the children prop?
-
-- [ ] a property that adds child components to state
-- [x] a special property that JSX creates on components that contain both an opening tag and a closing tag, referencing it's contents.
-- [ ] a property that lets you set an array as a property
-- [ ] a property that lets you pass data to child elements
-
-[Reference](https://reactjs.org/docs/jsx-in-depth.html#children-in-jsx)
-
-#### Q25. Which attribute is React's replacement for using innerHTML in the browser DOM?
-
-- [ ] injectHTML
-- [x] dangerouslySetInnerHTML
-- [ ] weirdSetInnerHTML
-- [ ] strangeHTML
-
-[Reference](https://reactjs.org/docs/dom-elements.html#dangerouslysetinnerhtml)
-
-#### Q26. Which of these terms commonly describe React applications?
-
-- [x] declarative
-- [ ] integrated
-- [ ] closed
-- [ ] imperative
-
-[Reference](https://levelup.gitconnected.com/why-react-is-declarative-a300d1e930b7)
-
-#### Q27. When using webpack, why would you need to use a loader?
-
-- [ ] to put together physical file folders
-- [x] to preprocess files
-- [ ] to load external data
-- [ ] to load the website into everyone's phone
-
-#### Q28. A representation of a user interface that is kept in memory and is synced with the "real" DOM is called what?
-
-- [x] virtual DOM
-- [ ] DOM
-- [ ] virtual elements
-- [ ] shadow DOM
-
-#### Q29. You have written the following code but nothing is rendering. How do you fix this problem?
-
-```javascript
-const Heading = () => {
-  <h1>Hello!</h1>;
-};
-```
-
-- [ ] Add a render function.
-- [x] Change the curly braces to parentheses or add a return statement before the `h1` tag.
-- [ ] Move the `h1` to another component.
-- [ ] Surround the `h1` in a `div`.
-
-#### Q30. To create a constant in JavaScript, which keyword do you use?
-
-- [x] const
-- [ ] let
-- [ ] constant
-- [ ] var
-
-#### Q31. What do you call a React component that catches JavaScript errors anywhere in the child component tree?
-
-- [ ] error bosses
-- [ ] error catchers
-- [ ] error helpers
-- [x] error boundaries
-
-[Reference](https://www.geeksforgeeks.org/react-js-error-boundaries/)
-
-#### Q32. In which lifecycle method do you make requests for data in a class component?
-
-- [ ] constructor
-- [x] componentDidMount
-- [ ] componentWillReceiveProps
-- [ ] componentWillMount
-
-[Reference](https://reactjs.org/docs/react-component.html#componentdidmount)
-
-#### Q33. React components are composed to create a user interface. How are components composed?
-
-- [ ] by putting them in the same file
-- [x] by nesting components
-- [ ] with webpack
-- [ ] with code splitting
-
-#### Q34. All React components must act like **\_** with respect to their props.
-
-- [ ] monads
-- [x] pure functions
-- [ ] recursive functions
-- [ ] higher-order functions
-
-#### Q35. What is `[e.target.id]` called in this code snippet?
-
-```javascript
-const handleChange = (e) => {
-  setState((prevState) => ({ ...prevState, [e.target.id]: e.target.value }));
-};
-```
-
-- [ ] a computed property name
-- [ ] a set value
-- [x] a dynamic key
-- [ ] a JSX code string
-
-[Reference](https://www.geeksforgeeks.org/how-to-set-state-with-a-dynamic-key-name-in-reactjs/)
-
-#### Q36. What is the name of this component?
-
-```javascript
-class Clock extends React.Component {
-  render() {
-    return <h1>Look at the time: {time}</h1>;
-  }
+```css
+.highlight {
+  background-color: yellow;
 }
 ```
 
-- [x] Clock
-- [ ] It does not have a name prop.
-- [ ] React.Component
-- [ ] Component
+- [x] `<span class="highlight">#BLM</span>`
+- [ ] `<span style="highlight">#BLM</span>`
+- [ ] `<highlight">#BLM</span>`
+- [ ] `<div id="highlight">#BLM</span>`
 
-#### Q37. What is sent to an `Array.map()` function?
+#### Q14. Which choice is not a value of the type attribute of the `<input>` element?
 
-- [x] a callback function that is called once for each element in the array
-- [ ] the name of another array to iterate over
-- [ ] the number of times you want to call the function
-- [ ] a string describing what the function should do
+- [ ] range
+- [x] address
+- [ ] date
+- [ ] password
 
-#### Q38. Why is it a good idea to pass a function to `setState` instead of an object?
+#### Q15. You have used `display: none` in your stylesheet. Which users will be able to see or hear this content?
 
-- [ ] It provides better encapsulation.
-- [ ] It makes sure that the object is not mutated.
-- [ ] It automatically updates a component.
-- [x] `setState` is asynchronous and might result in out of sync values.
+- [ ] all users
+- [ ] users who can see the content on the screen
+- [x] no users
+- [ ] screen reader users
 
-[Reference](https://medium.com/@wisecobbler/using-a-function-in-setstate-instead-of-an-object-1f5cfd6e55d1)
+#### Q16. Which choice is not part of CSS box model?
 
-**Explanation:** Because `this.props` and `this.state` may be updated asynchronously, you should not rely on their values for calculating the next state.
+- [ ] margin
+- [ ] border
+- [ ] padding
+- [x] paragraph
 
-#### Q39. What package contains the render() function that renders a React element tree to the DOM?
+#### Q17. Which part of the URL `https://app.uniswap.org/pool` specifies the domain name?
 
-- [ ] `React`
-- [x] `ReactDOM`
-- [ ] `Render`
-- [ ] `DOM`
+- [ ] https
+- [ ] org
+- [x] uniswap.org
+- [ ] app.uniswap
 
-#### Q40. How do you set a default value for an uncontrolled form field?
+#### Q18. Which HTML element is not considered a landmark element?
 
-- [ ] Use the `value` property.
-- [x] Use the `defaultValue` property.
-- [ ] Use the `default` property.
-- [ ] It assigns one automatically.
+- [ ] `<form>`
+- [x] `<ul>`
+- [ ] `<main>`
+- [ ] `<nav>`
 
-#### Q41. What do you need to change about this code to get this code to run?
+[Source: ARIA landmarks in HTML5](https://www.w3.org/TR/2017/NOTE-wai-aria-practices-1.1-20171214/examples/landmarks/HTML5.html)
 
-```js
-const clock = (props) => {
-  return <h1>Look at the time: {props.time}</h1>;
-};
-```
+#### Q19. Which statement is true when an HTML tag has been deprecated?
 
-- [ ] Add quotes around the return value
-- [ ] Remove `this`
-- [ ] Remove the render method
-- [x] Capitalize `clock`
+- [ ] It employs code that can be viewed only on a desktop computer
+- [x] It is obsolete and is not recommended for use in marking web content
+- [ ] It employs code that will require users to update their browsers
+- [ ] It employs incorrect syntax that will cause the browser to crash
 
-[Reference](https://reactjs.org/docs/jsx-in-depth.html#html-tags-vs.-react-components)
+#### Q20. How does the rem unit represent a font size?
 
-**Explanation:** In JSX, lower-case tag names are considered to be HTML tags.
+- [ ] Font sizes are expressed relative to the font size of the containing div element
+- [ ] Font sizes are expressed relative to the font size of the parent elements
+- [ ] Font sizes are relative to the base font size of the operating system.
+- [x] Font sizes are relative to the root em unit used in the HTML element.
 
-#### Q42. Which Hook could be used to update the document's title?
+[Source: CSS units](https://www.w3schools.com/cssref/css_units.asp)
 
-- [x] `useEffect(function updateTitle() { document.title = name + ' ' + lastname; });`
-- [ ] `useEffect(() => { title = name + ' ' + lastname; });`
-- [ ] `useEffect(function updateTitle() { name + ' ' + lastname; });`
-- [ ] `useEffect(function updateTitle() { title = name + ' ' + lastname; });`
+#### Q21. Which HTML element represents either a scalar value within a known range OR a fractional value?
 
-#### Q43. Which function from React can you use to wrap Component imports to load them lazily?
+- [x] `<meter>`
+- [ ] `<range>`
+- [ ] `<datalist>`
+- [ ] `<optgroup>`
 
-- [ ] `fallback`
-- [ ] `split`
-- [x] `lazy`
-- [ ] `memo`
+#### Q22. What is Webpack primarily used for?
 
-[Reference](https://blog.logrocket.com/lazy-loading-components-in-react-16-6-6cea535c0b52/)
+- [ ] sharing JavaScript code with other people
+- [ ] making JavaScript-reliant sites accessible to users who do not have JavaScript turned on
+- [x] bundling individual JavaScript files for use on your website
+- [ ] source control
 
-#### Q44. How do you invoke setDone only when component mounts, using hooks?
+#### Q23. How many columns will there be, given this code?
 
-```javascript
-function MyComponent(props) {
-  const [done, setDone] = useState(false);
-
-  return <h1>Done: {done}</h1>;
+```css
+.container {
+  width: 600px;
+  column-width: 200px;
+  column-gap: 50px;
 }
 ```
 
-- [ ] `useEffect(() => { setDone(true); });`
-- [x] `useEffect(() => { setDone(true); }, []);`
-- [ ] `useEffect(() => { setDone(true); }, [setDone]);`
-- [ ] `useEffect(() => { setDone(true); }, [done, setDone]);`
+- [ ] one
+- [ ] three
+- [ ] four
+- [x] two
 
-#### Q45. Currently, `handleClick` is being called instead of passed as a reference. How do you fix this?
+#### Q24. Which style will change the color of the text?
 
-```javascript
-<button onClick={this.handleClick()}>Click this</button>
-```
-
-- [ ] `<button onClick={this.handleClick.bind(handleClick)}>Click this</button>`
-- [ ] `<button onClick={handleClick()}>Click this</button>`
-- [x] `<button onClick={this.handleClick}>Click this</button>`
-- [ ] `<button onclick={this.handleClick}>Click this</button>`
-
-#### Q46. Which answer best describes a function component?
-
-- [ ] A function component is the same as a class component.
-- [x] A function component accepts a single props object and returns a React element.
-- [ ] A function component is the only way to create a component.
-- [ ] A function component is required to create a React component.
-
-#### Q47. Which library does the `fetch()` function come from?
-
-- [ ] FetchJS
-- [ ] ReactDOM
-- [x] No library. `fetch()` is supported by most browsers.
-- [ ] React
-
-#### Q48. What will happen when this useEffect Hook is executed, assuming name is not already equal to John?
-
-```javascript
-useEffect(() => {
-  setName('John');
-}, [name]);
-```
-
-- [ ] It will cause an error immediately.
-- [ ] It will execute the code inside the function, but only after waiting to ensure that no other component is accessing the name variable.
-- [x] It will update the value of name once and not run again until name is changed from the outside.
-- [ ] It will cause an infinite loop.
-
-#### Q49. Which choice will not cause a React component to rerender?
-
-- [ ] if the component calls `this.setState(...)`
-- [ ] the value of one of the component's props changes
-- [ ] if the component calls `this.forceUpdate()`
-- [x] one of the component's siblings rerenders
-
-#### Q50. You have created a new method in a class component called handleClick, but it is not working. Which code is missing?
-
-```javascript
-class Button extends React.Component{
-
-  constructor(props) {
-    super(props);
-    // Missing line
-  }
-
-  handleClick() {...}
-}
-```
-
-- [ ] `this.handleClick.bind(this);`
-- [ ] `props.bind(handleClick);`
-- [ ] `this.handleClick.bind();`
-- [x] `this.handleClick = this.handleClick.bind(this);`
-
-#### Q51. React does not render two sibling elements unless they are wrapped in a fragment. Below is one way to render a fragment. What is the shorthand for this?
-
-```javascript
-<React.Fragment>
-  <h1>Our Staff</h1>
-  <p>Our staff is available 9-5 to answer your questions</p>
-</React.Fragment>
+```html
+<cite>Noam Chomsky</cite>
 ```
 
 - [ ] A
 
-```javascript
-<...>
-  <h1>Our Staff</h1>
-  <p>Our staff is available 9-5 to answer your questions</p>
-</...>
+```css
+cite {
+  text-color: cyan;
+}
 ```
 
 - [ ] B
 
-```javascript
-<//>
-  <h1>Our Staff</h1>
-  <p>Our staff is available 9-5 to answer your questions</p>
-<///>
+```css
+cite {
+  font-color: cyan;
+}
 ```
 
 - [x] C
 
-```javascript
-<>
-  <h1>Our Staff</h1>
-  <p>Our staff is available 9-5 to answer your questions</p>
-</>
+```css
+cite {
+  color: cyan;
+}
 ```
 
 - [ ] D
 
-```javascript
-<Frag>
-  <h1>Our Staff</h1>
-  <p>Our staff is available 9-5 to answer your questions</p>
-</Frag>
-```
-
-#### Q52. If you wanted to display the count state value in the component, what do you need to add to the curly braces in the `h1`?
-
-```javascript
-class Ticker extends React.component {
-  constructor(props) {
-    super(props);
-    this.state = { count: 0 };
-  }
-  render() {
-    return <h1>{}</h1>;
-  }
+```css
+cite {
+  text: cyan;
 }
 ```
 
-- [x] this.state.count
-- [ ] count
-- [ ] state
-- [ ] state.count
+#### Q25. You find this code in a stylesheet. What is it being used for?
 
-#### Q53. Per the following code, when is the Hello component assigned to greeting?
-
-```javascript
-const greeting = isLoggedIn ? <Hello /> : null;
+```css
+.cf::after {
+  content: '';
+  display: block;
+  clear: both;
+}
 ```
 
-- [ ] never
-- [x] when `isLoggedIn` is true
-- [ ] when a user logs in
-- [ ] when the Hello function is called
+- [ ] inserting content that cannot be seen by screen readers
+- [ ] fixing an Internet Explorer 11 bug
+- [x] clearing floats in float-based layouts
+- [ ] creating a new block formatting context
 
-#### Q54. In the following code block, what type is orderNumber?
+#### Q26. What is the correct way to initialize an array of galaxies in JavaScript?
 
-```javascript
-ReactDOM.render(<Message orderNumber="16" />, document.getElementById('root'));
+- [ ] `String[] galaxies = new Array("Milky Way", "Whirlpool", "Andromeda");`
+- [ ] `let galaxies = {Milky Way, Whirlpool, Andromeda};`
+- [x] `galaxies = ["Milky Way", "Whirlpool", "Andromeda"];`
+- [ ] `var galaxies = {"Milky Way", "Whirlpool", "Andromeda"};`
+
+#### Q27. Which description correctly describes the initial values of flex items if you have applied `display: flex` to their parent?
+
+- [x] Items display in a row, lined up at the start, and do not stretch to fill the container
+- [ ] Items display in a column, lined up at the start, and do not stretch to fill the container
+- [ ] Items stay in a column until you add some flex properties.
+- [ ] Items displayed in a row, lined up at the start and stretched to fill the container
+
+#### Q28. Which line of code, if applied to all flex items in a flex container, would cause each flex item to take up an equal share of the total width of the container? For example, if there are four items, they would get 25% of each.
+
+- [ ] `flex: 1 0 0;`
+- [ ] `flex: initial;`
+- [x] `flex: 1 1 auto;`
+- [ ] `flex: 1 0 auto;`
+
+#### Q29. A video on your webpage does not display and the console shows an error about mixed content. What is happening?
+
+- [ ] The webpage is using a DOCTYPE, which renders it incapable of displayed video in addition to other web content.
+- [ ] Your browser does not support HTML5 video.
+- [ ] The video is from a source that cannot be displayed in your location for legal reasons.
+- [x] The page is loaded via HTTPS, but the video is being served insecurely as HTTP and the browser is blocking it.
+
+#### Q30. What will this loop print?
+
+```
+let max = 3;
+for (i = 0; i > max; i++) {
+  document.write("skrt ");
+}
 ```
 
-- [x] string
-- [ ] boolean
-- [ ] object
-- [ ] number
+- [ ] skrt skrt skrt
+- [ ] skrt skrt
+- [ ] skrt skrt skrt skrt
+- [x] nothing
 
-#### Q55. You have added a style property to the `h1` but there is an unexpected token error when it runs. How do you fix this?
+#### Q31. You have placed an image in a directory named images and want to reference it from a page located at the root of your site. Which choice would correctly display the image on the page?
 
-```javascript
-const element = <h1 style={ backgroundColor: "blue" }>Hi</h1>;
+- [ ] `<img src="image.jpg">`
+- [ ] `<a href="images/image.jpg"></a>`
+- [x] `<img src="images/image.jpg">`
+- [ ] `<img href="image.jpg">`
+
+#### Q32. Which choice is a correct use of the parseInt() function in Javascript that parses a string and returns an integer?
+
+- [ ] parseInt("six");
+- [ ] parse_int('6');
+- [x] parseInt("6");
+- [ ] parseint("6");
+
+#### Q33. How can you rewrite this function using arrow function syntax?
+
+- [ ] `let product => (x,y) { <br /> x \* y; <br />}`
+- [x] `let product = (x,y) => x\*y;`
+- [ ] `let product => x\*y;`
+- [ ] `let product = (x,y) -> x\*y;`
+
+#### Q34. Lighthouse is a tool for auditing your website. Which choice is not a category of report offered by Lighthouse?
+
+- [ ] performance
+- [x] UX design
+- [ ] accessibility
+- [ ] SEO
+
+#### Q35. In the context of this code, how would you describe user?
+
+```
+const user = {
+  given_name: 'Joe',
+  family_name: 'Bloggs',
+  age: 40,
+}
 ```
 
-- [ ] `const element = <h1 style="backgroundColor: "blue""}>Hi</h1>;`
-- [x] `const element = <h1 style={{backgroundColor: "blue"}}>Hi</h1>;`
-- [ ] `const element = <h1 style={blue}>Hi</h1>;`
-- [ ] `const element = <h1 style="blue">Hi</h1>;`
+- [ ] function
+- [ ] array
+- [ ] variable
+- [x] object
 
-#### Q56. Which function is used to update state variables in a React class component?
+#### Q36. A webpage has `rel="preconnect"` added to a link resource. What will this do?
 
-- [ ] `replaceState`
-- [ ] `refreshState`
-- [ ] `updateState`
-- [x] `setState`
+```html
+<link rel="preconnect" href="https://example.com" />
+```
 
-#### Q57. Consider the following component. What is the default color for the star?
+- [ ] It will tell the browser that this link is a site belonging to the current domain.
+- [ ] It will do nothing because this is a deprecated attribute that browsers do not support.
+- [x] It will tell the browser that a connection will be made to another origin and to start getting ready as soon as possible.
+- [ ] It will tell the browser that a resource is needed, and that it should start getting fetched as soon as possible.
+
+[Source: web.dev](https://web.dev/preconnect-and-dns-prefetch/)
+
+#### Q37. Which choice is _not_ a render blocking resource?
+
+- [x] images
+- [ ] HTML
+- [ ] CSS
+- [ ] JavaScript
+
+[blog.logrocket](https://blog.logrocket.com/5-tricks-to-eliminate-render-blocking-resources/)
+
+#### Q38. Which choice does _not_ provide information on browser support for a particular CSS property?
+
+- [ ] the "Can I Use" website
+- [x] the Web Platform Tests Suite
+- [ ] the CSS specification
+- [ ] MDN property pages
+
+[Source: Web platform tests site](https://web-platform-tests.org/)
+
+#### Q39. You have a set of images that are slightly different sizes and aspect ratios. You don't mind if you crop off some of the image, but you want each image to completely fill a square box without being distorted. Which property and value would achieve this?
+
+- [ ] object-fit: contain
+- [ ] object-fit: stretch
+- [ ] object-fit: all
+- [x] object-fit: cover
+
+#### Q40. what does the CSS selector a[href$="org"] select?
+
+- [ ] all \<a> tags whose href attribute begins with "org"
+- [ ] all \<a> tags whose href attribute equals "org"
+- [x] all \<a> tags whose href attribute ends with "org"
+- [ ] all \<a> tags whose href attribute contains "org"
+
+#### Q41. Which choice <em>is not a result</em> of invoking strict mode in JavaScript?
+
+- [ ] It eliminates some JavaScript silent errors by changing them to throw errors.
+- [ ] It prohibits some syntax likely to be defined in future versions of ECMAScript.
+- [x] It forces the writing of valid HTML and CSS.
+- [ ] It fixes mistakes that make it difficult for JavaScript engines to perform optimizations.
+
+[Source: MDN docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode)
+
+#### Q42. In normal flow, some elements display as block elements default and others inline. which choice contains only block-level by default elements?\*\*
+
+- [ ] ul, li, a
+- [ ] p, b, h3
+- [ ] div, p, em
+- [x] div, main, h1
+
+#### Q43. Which line would you add to this code to add "Cosmos" to the list of currencies using JavaScript?
 
 ```javascript
-const Star = ({ selected = false }) => <Icon color={selected ? 'red' : 'grey'} />;
+var currencies = ['Bitcoin', 'Ethereum'];
+
+/* Missing line */
+console.log(currencies);
+```
+
+- [x] `currencies.push("Cosmos");`
+- [ ] `Array.append("Cosmos", currencies);`
+- [ ] `currencies.add("Cosmos");`
+- [ ] `currencies(2) = "Cosmos";`
+
+#### Q44. How would you change this code to make Vanilla selected by default?
+
+```javascript
+<input type="radio" value="strawberry">Strawberry
+<input type="radio" value="vanilla">Vanilla
+<input type="radio" value="chocolate">Chocolate
+```
+
+- [x] `<input type="radio" value="vanilla" checked>`
+- [ ] `<input type="radio" value="vanilla" check>`
+- [ ] `<input type="radio" value="vanilla" selected>`
+- [ ] `<input type="radio" value="vanilla" on>`
+
+#### Q45. **\_** moves an element completely out of the page's normal layout flow like it is sitting on its own separate layer. From there, you can fix it in a position relative to the edges of the page's `<html>` element (or its nearest positioned ancestor element).
+
+- [ ] Sticky positioning
+- [x] Absolute positioning
+- [ ] Relative positioning
+- [ ] Fixed positioning
+
+[Source: W3Schools](https://www.w3schools.com/css/css_positioning.asp)
+
+**position: absolute;**
+`An element with position: absolute; is positioned relative to the nearest positioned ancestor (instead of positioned relative to the viewport, like fixed). However; if an absolute positioned element has no positioned ancestors, it uses the document body, and moves along with page scrolling.`
+
+#### Q46. You have created a box that has a height set with CSS. Which line of CSS would add scroll bars if the content is taller than the box, but leave no visible scroll bars if the content fits into the box?
+
+- [ ] .box { overflow: scroll; }
+- [ ] .box { overflow: scroll-x; }
+- [x] .box { overflow: auto; }
+- [ ] .box { overflow: none; }
+
+#### Q47. Which array method should you apply to run a function for every item within an array, returning an array of all items for which the function is true?
+
+- [ ] every()
+- [ ] map()
+- [ ] forEach()
+- [x] filter()
+
+#### Q48. The image below has float: left applied. Text wraps the float on the right and bottom. How would you force the second paragraph to start underneath the float, leaving a gap after the preceding paragraph?
+
+![CSS clear](images/Q48.png?raw=true)
+
+- [ ] Apply `float: left` to the second paragraph.
+- [ ] Apply `clear: right` to the floated item.
+- [x] Apply `clear: left` to the second paragraph.
+- [ ] Apply `clear: left` to the floated item.
+
+[Source: W3Schools](https://www.w3schools.com/css/css_float_clear.asp)
+
+**clear: left;**
+`When we use the float property, and we want the next element below (not on the right or left), we will have to use the clear property. When clearing floats, you should match the clear to the float: If an element is floated to the left, then you should clear to the left. Your floated element will continue to float, but the cleared element will appear below it on the web page.`
+
+#### Q49. You want to create striped table rows using CSS without adding a class to any element. Which CSS would correctly apply the background color to every odd row in your table?
+
+- [ ] `tr:nth-child(2) { background-color: #ccc; }`
+- [x] `tr:nth-child(2n+1) { background-color: #ccc; }`
+- [ ] `tr:nth-child(2+1) { background-color: #ccc; }`
+- [ ] `tr:nth-child(2n) { background-color: #ccc; }`
+
+[Source: W3Schools](https://www.w3schools.com/cssref/sel_nth-child.asp)
+
+#### Q50. You are designing a site and creating a navigation bar linking to the main sections. Which HTML element should you use to indicate that this is the main navigation?
+
+- [x] `<nav>`
+- [ ] `<navigation>`
+- [ ] `<main>`
+- [ ] `<ul>`
+
+[Source: W3Schools](https://www.w3schools.com/tags/tag_nav.asp)
+
+#### Q51. You discover that CSS is being loaded on a website using the following code. Why might a web developer have done this?
+
+`<link rel="preload" href="styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="style.css"></noscript>`
+
+- [x] The CSS is being loaded asynchronously in order to prevent render blocking.
+- [ ] This will stop the CSS from being loaded for old browsers that do not support the techniques in use.
+- [ ] This is part of a stylesheet-switching script to load different themes for the site.
+- [ ] This will stop the CCS from being loaded on slow data connections.
+
+[Source: StackOverflow](https://stackoverflow.com/a/46750893)
+
+#### Q52. The flex property is often applied to flex items with a value of 1. Using flex: 1 is a shorthand - what does it unpack to?
+
+- [ ] flex: 0 0 100;
+- [ ] flex: 1 0 0;
+- [ ] flex: 0 0 auto;
+- [x] flex: 1 1 auto;
+
+[Source: stackoverflow](https://stackoverflow.com/questions/37386244/what-does-flex-1-mean)
+
+#### Q53. What is the meaning of "tree shaking" in relation to JavaScript performance?
+
+- [ ] only using code that is supported by the newest browsers, and serving the site without JavaScript to old browsers
+- [x] removing unused code from the JavaScript files
+- [ ] splitting code into various bundles so that decisions can be made on loading priority
+- [ ] allowing the browser to ignore code it believes will perform badly
+
+[Source: MDN Docs](https://developer.mozilla.org/en-US/docs/Glossary/Tree_shaking)
+
+#### Q54. What is WebP?
+
+- [ ] a method of auditing performance that gives your site a score, which is then used for Google ranking
+- [x] a next-generation image format offering a smaller file size than equivalent PNG or JPEG images
+- [ ] a new font format that allows a single font to display at different styles and weights
+- [ ] a next-generation PDF format that offers a smaller file size and better accessibility than standard PDF documents
+
+[Source: Google Developers](https://developers.google.com/speed/webp)
+
+#### Q55. Your website uses CSS Grid Layout extensively, and a visitor who navigates using the keyboard tells you that they seem to jump erratically all over the screen when navigating. What is the most likely problem?
+
+- [ ] The visitor's browser does not have full support for CSS Grid Layout.
+- [x] Items have been positioned in such a way that they are in a different order to the source.
+- [ ] The browser has a keyboard navigation bug.
+- [ ] You need to add the tabindex attribute to elements.?
+
+[Source: MDN Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout/CSS_Grid_Layout_and_Accessibility)
+
+#### Q56. What is the definition of the phrase "Time to Interactive"?
+
+- [ ] when the browser displays the first bit of content from the DOM
+- [x] when the user can consistently interact with all of the page elements
+- [ ] when HTML has loaded, but not necessarily JavaScript, CSS, or images
+- [ ] when the user can see the webpage on the screen
+
+[Source: Web.dev](https://web.dev/interactive/)
+
+#### Q57. What is yarn?
+
+- [ ] a JavaScript framework that is leaner than React
+- [ ] a JavaScript bundler
+- [ ] a testing framework
+- [x] a JavaScript package manager
+
+[Source: Yarn Docs](https://yarnpkg.com/)
+
+#### Q58. What is the name of the event that occurs when the mouse pointer hovers over an element?
+
+- [ ] load
+- [x] mouseover
+- [ ] hover
+- [ ] focus
+
+[Source: MDN Docs](https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseover_event)
+
+#### Q59. What is meant by the term "polyfill" when used in web development?
+
+- [x] It is a piece of code that provides modern functionality in browsers that do not support it.
+- [ ] It is a piece of code that hides broken content from old browsers.
+- [ ] It is a term for languages such as Saas that compile to CSS.
+- [ ] It is a script that runs to add vendor prefixes to modern CSS.
+
+[Source: Polyfill](https://developer.mozilla.org/en-US/docs/Glossary/Polyfill)
+
+#### Q60. Which choice is _not_ a JavaScript framework?
+
+- [ ] Angular
+- [x] Laravel
+- [ ] Vue
+- [ ] React
+
+[Source: Laravel](https://laravel.com/)
+
+#### Q61. What does setting `aria-live=polite` on a live region achieve?
+
+- [ ] The screen reader will not notify the user of changes to live regions.
+- [x] The screen reader will wait until there is a pause to announce changes.
+- [ ] The screen reader will announce all changes immediately.
+- [ ] The screen reader will use a polite voice when announcing changes.
+
+[Source: MDN Docs](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-live)
+
+#### Q62. Review the CSS below. What color would you expect the background color of the element with a class of .box to be?
+
+```css
+.box {
+  background-color: blue;
+  background: url(images/star.png?raw=png) no-repeat left top;
+}
 ```
 
 - [ ] black
-- [ ] red
-- [x] grey
+- [ ] blue
+- [x] transparent
 - [ ] white
 
-#### Q58. What is the difference between the click behaviors of these two buttons(assuming that this.handleClick is not bound correctly)
+#### Q63. Which CSS property and value would correctly remove the bullets from a list item?
 
-```javascript
-  A. <button onClick=this.handleClick>Click Me</button>
-  B. <button onClick={event => this.handleClick(event)}>Click Me</button>
-```
+- [ ] `list-tem: none`
+- [ ] `bullets: hidden`
+- [x] `list-style-type: none`
+- [ ] `list-bullet: none`
 
-- [ ] `Button A will not have access to the event object on click of the button`
-- [x] `Button A will not fire the handler this.handleClick successfully`
-- [ ] `There is no difference`
-- [ ] `Button B will not fire the handler this.handleClick successfully`
+#### Q64. Which code example would center `.box` inside `.container`?
 
-#### Q59. How would you add to this code, from React Router, to display a component called About?
-
-- [x] A
-
-```javascript
-<Route path="/:id">
-  {' '}
-  <About />
-</Route>
-```
-
-- [ ] B
-
-```javascript
-<Route path="/tid" about={Component} />
-```
-
-- [ ] C
-
-```javascript
-<Route path="/:id" route={About} />
-```
-
-- [ ] D
-
-```javascript
-<Route>
-  <About path="/:id" />
-</Route>
-```
-
-[Reference](https://reactrouter.com/en/main/components/route)
-
-#### Q60. Which class-based component is equivalent to this function component?
-
-```javascript
-const Greeting = ({ name }) => <h1>Hello {name}!</h1>;
+```html
+<div class="container">
+  <div class="box">what a lovely box, very centered</div>
+</div>
 ```
 
 - [ ] A
 
-```javascript
-class Greeting extends React.Component {
-  constructor() {
-    return <h1>Hello {this.props.name}!</h1>;
-  }
+```css
+.container {
+  display: flex;
+  align-items: center;
 }
 ```
 
-- [ ] B
+- [x] B
 
-```javascript
-class Greeting extends React.Component {
-  <h1>Hello {this.props.name}!</h1>;
+```css
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-```
-
-- [x] C
-
-```javascript
-class Greeting extends React.Component {
-  render() {
-    return <h1>Hello {this.props.name}!</h1>;
-  }
-}
-```
-
-- [ ] D
-
-```javascript
-class Greeting extends React.Component {
-  render({ name }) {
-    return <h1>Hello {name}!</h1>;
-  }
-}
-```
-
-#### Q61. Give the code below, what does the second argument that is sent to the render function describe?
-
-```javascript
-ReactDOM.render(
-  <h1>Hi<h1>,
-    document.getElementById('root')
-)
-```
-
-- [x] where the React element should be added to the DOM
-- [ ] where to call the function
-- [ ] where the root component is
-- [ ] where to create a new JavaScript file
-
-#### Q62. Why should you use React Router's Link component instead of a basic `<a>` tag in React?
-
-- [ ] The link component allows the user to use the browser's `Back` button.
-- [ ] There is no difference--the `Link` component is just another name for the `<a>` tag.
-- [ ] The `<a>` tag will cause an error when used in React.
-- [x] The `<a>` tag triggers a full page reload, while the `Link` component does not.
-
-#### Q63. What is the first argument, `x`, that is sent to the `createElement` function?
-
-```javascript
-React.createElement(x, y, z);
-```
-
-- [x] the element that should be created
-- [ ] the order in which this element should be placed on the page
-- [ ] the properties of the element
-- [ ] data that should be displayed in the element
-
-#### Q64. Which class-based lifecycle method would be called at the same time as this effect Hook?
-
-```javascript
-useEffect(() => {
-  // do things
-}, []);
-```
-
-- [ ] componentWillUnmount
-- [x] componentDidMount
-- [ ] render
-- [ ] componentDidUpdate
-
-[Reference](https://reactjs.org/docs/react-component.html#componentdidmount)
-
-#### Q65. What is the name of the base component of this component?
-
-```javascript
-class Comp extends React.Component {
-  render() {
-    return <h1>Look at the time: {time}</h1>;
-  }
-}
-```
-
-- [ ] Comp
-- [ ] h1
-- [ ] React.Component
-- [x] Component
-
-#### Q66. When using a portal, what is the first argument?
-
-```javascript
-ReactDOM.createPortal(x, y);
-```
-
-- [ ] the current state
-- [x] the element to render
-- [ ] the App component
-- [ ] the page
-
-[Reference](https://reactjs.org/docs/portals.html)
-
-#### Q67. What is `setCount`?
-
-```javascript
-const [count, setCount] = useState(0);
-```
-
-- [ ] the initial state value
-- [ ] a variable
-- [ ] a state object
-- [x] a function to update the state
-
-[Reference](https://reactjs.org/docs/hooks-state.html#:~:text=If%20we%20want%20to%20update%20the%20current)
-
-#### Q68. What is the use of map function below?
-
-```javascript
-const database = [{ data: 1 }, { data: 2 }, { data: 3 }];
-database.map((user) => <h1>{user.data}</h1>);
-```
-
-- [ ] gives a map of all the entries in database
-- [x] returns a heading tag for every entry in the database containing it's data
-- [ ] returns one heading tag for all the entries in database
-- [ ] checks which entry in the database is suitable for heading tag
-
-#### Q69. Describe what is happening in this code?
-
-```javascript
-const { name: firstName } = props;
-```
-
-- [ ] It is creating a new object that contains the same name property as the props object.
-- [ ] It is assigning the value of the props object's firstName property to a constant called name.
-- [ ] It is retrieving the value of props.name.firstName.
-- [x] It is assigning the value of the props object's name property to a constant called firstName.
-
-#### Q70. What is wrong with this code?
-
-```javascript
-const MyComponent = ({ names }) => (
-  <h1>Hello</h1>
-  <p>Hello again</p>
-);
-```
-
-- [ ] React components cannot be defined using functions.
-- [x] React does not allow components to return more than one element.
-- [ ] The component needs to use the return keyword.
-- [ ] String literals must be surrounded by quotes.
-
-#### Q71. When using a portal, what is the second argument?
-
-```javascript
-ReactDOM.createPortal(x, y);
-```
-
-- [ ] the App component
-- [ ] the page
-- [ ] the current state
-- [x] the DOM element that exists outside of the parent component
-
-#### Q72. Given this code, what will be printed in the `<div>` tag?
-
-```javascript
-const MyComponent = ({ children }) => (
-  <div>{children.length}</div>
-);
-...
-<MyComponent>
-<p>
-  Hello <span>World!</span>
-</p>
-<p>Goodbye</p>
-</MyComponent>
-```
-
-- [ ] It will produce an error saying "cannot read property "length" of undefined."
-- [ ] 1
-- [ ] undefined
-- [x] 2
-
-#### Q73. What is this pattern called?
-
-```javascript
-const [count, setCount] = useState(0);
-```
-
-- [ ] object destructuring
-- [x] array destructuring
-- [ ] spread operating
-- [ ] code pushing
-
-#### Q74. What is the first file loaded by the browser in a basic React project?
-
-- [ ] src/App.js
-- [ ] src/index.js
-- [ ] public/manifest.json
-- [x] public/index.html
-
-#### Q75. The code below is rendering nothing and generates this error: "ReactDOM is not defined." How do you fix this issue?
-
-```javascript
-import React from 'react';
-import { createRoot } from 'reactjs-dom';
-
-const element = <h1>Hi</h1>;
-// Note: error on the line below
-const root = ReactDOM.createRoot(document.getElementById('root'));
-
-root.render(element);
-```
-
-- [x] `createRoot(document.getElementById("root"));`
-- [ ] `ReactDOM(element, document.getElementById("root"));`
-- [ ] `renderDOM(element, document.getElementById("root"));`
-- [ ] `DOM(element, document.getElementById("root"));`
-
-#### Q76. In this component, how do you display whether the user was logged in or not?
-
-```javascript
-render() {
-  const isLoggedIn = this.state.isLoggedIn;
-  return (
-    <div>
-      The user is:
-    </div>
-  );
-}
-```
-
-- [ ] `The user is loggedIn ? logged in : not logged in.`
-- [ ] Write a function to check the login status.
-- [ ] `The user is {isLoggedIn = "no"}.`
-- [x] `The user is {isLoggedIn ? "logged in." : "not logged in"}.`
-
-#### Q77. You are rendering a list with React when this warning appears in the console: "Warning: Each child in a list should have a unique 'key' prop." How do you fix this issue?
-
-- [ ] Add a key prop with the same value to each item in the list
-- [ ] Clear the console warnings
-- [ ] Use the UseId hook to generate a unique key for each element in the list
-- [x] When iterating over the list items, add a unique property to each list item.
-
-#### Q78. How would you generate the boilerplate code for a new app that you are building to collect underpants?
-
-- [ ] npm create-react-app collect-underpants
-- [ ] npx start-app collect-underpants
-- [ ] react new collect-underpants
-- [x] npx create-react-app collect-underpants
-
-[Source: React Docs](https://reactjs.org/docs/create-a-new-react-app.html#create-react-app)
-
-#### Q79. Add the code that will fire the photon torpedoes when the button is clicked.
-
-```javascript
-class StarTrekkin extends React.Component {
-  firePhotonTorpedoes(e) {
-    console.log('pew pew');
-  }
-  render() {
-    return; // Missing code
-  }
-}
-```
-
-- [ ] `<button onClick={firePhotonTorpedoes()}>Pew Pew</button>`
-- [ ] `<button onClick={firePhotonTorpedoes}>Pew Pew</button>`
-- [ ] `<button onClick={this.firePhotonTorpedoes()}>Pew Pew</button>`
-- [x] `<button onClick={this.firePhotonTorpedoes}>Pew Pew</button>`
-
-[Source: React Docs](https://reactjs.org/docs/handling-events.html)
-
-#### Q80. What is the process of deciding whether an update is necessary?
-
-- [ ] shadow DOM
-- [ ] fiber
-- [x] reconciliation
-- [ ] setting state
-
-#### Q81. React is an open-source project but is maintained by which company?
-
-- [ ] Intuit
-- [ ] Twitter
-- [x] Facebook
-- [ ] Snapchat
-
-#### Q82. What command can you use to generate a React project?
-
-- [ ] react-starter
-- [x] create-react-app
-- [ ] react-gen
-- [ ] react-start
-
-[hint](https://create-react-app.dev/)
-
-#### Q83. What is the browser extension called that React developers use to debug applications?
-
-- [x] React Developer Tools
-- [ ] React Tooling Add-on
-- [ ] React Codewatch
-- [ ] React Debug
-
-#### Q84. Which tool is not part of Create React App?
-
-- [ ] React
-- [x] jQuery
-- [ ] webpack
-- [ ] ReactDOM
-
-#### Q85. What is the JavaScript syntax extension that is commonly used to create React elements?
-
-- [ ] HTML
-- [ ] JavaScriptX
-- [x] JSX
-- [ ] React JavaScript
-
-#### Q86. How might you check property types without using Flow or TypeScript?
-
-- [ ] Check Manually.
-- [ ] Use `prop-helper`.
-- [x] use `prop-types`.
-- [ ] user `checker-types`.
-
-#### Q87. How do you add an id of heading to the following h1 element?
-
-```javascript
-let dish = <h1>Mac and Cheese</h1>;
-```
-
-- [ ] `let dish = <h1 id={heading}>Mac and Cheese</h1>;`
-- [x] `let dish = <h1 id="heading">Mac and Cheese</h1>;`
-- [ ] `let dish = <h1 id:"heading">Mac and Cheese</h1>;`
-- [ ] `let dish = <h1 class="heading">Mac and Cheese</h1>;`
-
-#### Q88. What value of button will allow you to pass the name of the person to be hugged?
-
-```javascript
-class Huggable extends React.Component {
-  hug(id) {
-    console.log("hugging " + id);
-  }
-  render() {
-    let name = "kitten";
-    let button = // Missing code
-    return button;
-  }
-}
-```
-
-- [ ] `<button onClick={(name) => this.hug(name)}>Hug Button</button>;`
-- [ ] `<button onClick={this.hug(e, name)}>Hug Button</button>;`
-- [ ] `<button onClick={(e) => hug(name, e)}>Hug Button</button>;`
-- [x] `<button onClick={(e) => this.hug(name, e)}>Hug Button</button>;`
-
-**Explanation:**
-This question test knowledge of react class components. You need to use `this` in order to call methods declared inside class components.
-
-#### Q89. What syntax do you use to create a component in React?
-
-- [ ] a generator
-- [x] a function or a class
-- [ ] a service worker
-- [ ] a tag
-
-[Reference](https://reactjs.org/docs/components-and-props.html)
-
-**Explanation:**
-React Components are like functions that return HTML elements. Components are independent and reusable bits of code. They serve the same purpose as JavaScript functions, but work in isolation and return HTML. Components come in two types, Class components and Function components.
-
-#### Q90. You want to disable a button so that it does not emit any events onClick. Which prop do you use to acomplish this?
-
-- [ ] onBlur
-- [ ] onPress
-- [ ] defaultValue
-- [x] disabled
-
-#### Q91. In this function, which is the best way to describe the Dish component?
-
-```javascript
-function Dish() {
-  return (
-    <>
-      <Ingredient />
-      <Ingredient />
-    </>
-  );
-}
-```
-
-- [ ] child component
-- [x] parent component
-- [ ] nested component
-- [ ] sibling component
-
-#### Q92. When does the componentDidMount function fire?
-
-- [x] right after the component is added to the DOM
-- [ ] before the component is added to the DOM
-- [ ] right after the component is updated
-- [ ] right after an API call
-
-[Reference](https://reactjs.org/docs/react-component.html#componentdidmount)
-
-#### Q93. What might you use webpack for in React development?
-
-- [ ] to fetch remote dependencies used by your app
-- [x] to split your app into smaller chunks that can be more easily loaded by the browser
-- [ ] to format your code so that it is more readable
-- [ ] to ensure your app is not vulnerable to code injection
-
-#### Q94. When using the React Developer Tools Chrome extension, what does it mean if the React icon is red?
-
-- [x] You are using the development build of React.
-- [ ] You are using the production build of React.
-- [ ] You are using webpack.
-- [ ] You are using Create React App.
-
-[Reference](https://teamtreehouse.com/community/hey-why-the-logo-of-react-developer-tools-appears-in-red)
-
-#### Q95. How would you modify the constructor to fix this error: "ReferenceError: Must call super constructor in derived class before accessing 'this'..."?
-
-```javascript
-class TransIsBeautiful extends React.Component {
-  constructor(props){
-  // Missing line
-  console.log(this) ;
-  }
-  ...
-}
-```
-
-- [ ] render(props);
-- [x] super(props);
-- [ ] super(this);
-- [ ] this.super();
-
-#### Q96. Which language can you not use with React?
-
-- [x] Swift.
-- [ ] JSX.
-- [ ] Javascipt.
-- [ ] TypeScript.
-
-#### Q97. This code is part of an app that collects Pokemon. How would you print the list of the ones collected so far?
-
-```javascript
-constructor(props) {
-    super(props);
-    this.state = {
-        pokeDex: []
-    };
-}
-```
-
-- [ ] console.log(props.pokeDex);
-- [ ] console.log(this.props.pokeDex);
-- [ ] console.log(pokeDex);
-- [x] console.log(this.state.pokeDex);
-
-[Reference](https://www.digitalocean.com/community/tutorials/how-to-manage-state-on-react-class-components#step-3-setting-state-from-a-static-value)
-
-#### Q98. What would be the result of running this code?
-
-```javascript
-function add(x = 1, y = 2) {
-  return x + y;
-}
-
-add();
-```
-
-- [ ] null
-- [x] 3
-- [ ] 0
-- [ ] undefined
-
-![image](https://user-images.githubusercontent.com/62549240/160531605-bf8790d5-5eb9-4291-a9bd-4232f2fd7b6e.png?raw=png)
-
-Explanation: function that called without parameter will use its param default value, thus x will always be default to 1 and y will always be default to 2.
-
-#### Q99. Why might you use a React.ref?
-
-- [ ] to refer to another JS file
-- [ ] to bind the function
-- [ ] to call a function
-- [x] to directly access the DOM node
-
-[Reference](https://reactjs.org/docs/refs-and-the-dom.html)
-
-#### Q100. What pattern is being used in this code block?
-
-```javascript
-const { tree, lake } = nature;
-```
-
-- [ ] function defaults
-- [ ] array destructuring
-- [ ] PRPL pattern
-- [x] destructuring assignment
-
-[Reference](https://javascript.info/destructuring-assignment)
-
-#### Q101. How would you correct this code block to make sure that the sent property is set to the Boolean value false?
-
-```javascript
-ReactDom.render(
-  <Message sent=false />,
-  document.getElementById("root")
-);
-```
-
-- [x] A
-
-```javascript
-<Message sent={false} />,
-```
-
-- [ ] B
-
-```javascript
-ReactDom.render(<Message sent="false" />, document.getElementById('root'));
 ```
 
 - [ ] C
 
-```javascript
-<Message sent="false" />,
+```css
+.box {
+  align-items: center;
+  justify-content: center;
+}
 ```
 
 - [ ] D
 
-```javascript
-ReactDom.render(<Message sent="false" />, document.getElementById('root'));
-```
-
-[Passing Props to a Component](https://react.dev/learn/passing-props-to-a-component)
-
-#### Q102. This code is part of an app that collects Pokemon. The useState hook below is a piece of state holding onto the names of the Pokemon collected so far. How would you access the collected Pokemon in state?
-
-```javascript
-const PokeDex = (props) => {
-  const [pokeDex, setPokeDex] = useState([]);
-  /// ...
-};
-```
-
-- [ ] props.pokeDex
-- [ ] this.props.pokeDex
-- [ ] setPokeDex()
-- [x] pokeDex
-
-Explanation: useState always return an array with two values, the state itself (on first value) and the set function that lets you update the state (on second value)
-[useState Reference](https://legacy.reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html)
-
-#### Q103. What would you pass to the onClick prop that will allow you to pass the initName prop into the greet handler?
-
-```javascript
-const Greeting = ({ initName }) => {
-  const greet = (name) => console.log("Hello, " + name + "!");
-  return <button onClick={ ... }>Greeting Button </button>
+```css
+.container {
+  display: flex;
+  align: center;
 }
 ```
 
-- [ ] hug
-- [ ] this.hug(initName)
-- [ ] (name) => this.hug(name)
-- [x] () => hug(initName)
+#### Q65. CSS Logical Properties and Values now have wide-ranging support in browsers. If you wanted to use the logical version of `width`, which property name would you choose?
 
-Explanation: Apparently the question misstyped `greet` as `hug`. Putting this aside, we can still learn from this question.
+- [ ] `block-width`
+- [x] `inline-size`
+- [ ] `inline-width`
+- [ ] `block-size`
 
-- In a function, the global object is the default binding for `this`. In a browser window the global object is [object Window].
-  This is a functional Component, so `this` from `this.hug` actually refers to browser window.
-  Since it is a functional component, we can directly refer to hug without using `this`.
-- To pass a handler to onClick, we should always pass a function rather than execute a function. So we need to use callback here.
-  `initName` is available in Greeting's function scope, so we can directly supply as an argument to hug().
+[Source: MDN Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Logical_Properties/Sizing)
 
-#### Q104. What is the name of the compiler used to transform JSX into JavaScript?
+#### Q66. Which color value will create a background color that is semitransparent?
 
-- [x] Babel
-- [ ] JSX Editor
-- [ ] Browser Buddy
-- [ ] ReactDOM
+- [ ] `rgb(18, 138, 125)`
+- [ ] `#128a7d`
+- [x] `rgba(18, 138, 125,.5)`
+- [ ] `hsl(174, 77%, 31%)`
 
-[JSX Transform with Babel](https://legacy.reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html)
+#### Q67. In a grid layout, which property will create gaps between the rows in the grid?
 
-#### Q105. Which hook is used to prevent a function from being recreated on every component render?
+- [x] `row-gap`
+- [ ] `rowgap`
+- [ ] `gutter`
+- [ ] `row-gutter`
 
-- [x] useCallback
-- [ ] useMemo
-- [ ] useRef
-- [ ] useTransition
+#### Q68. You are creating a responsive design, but when you view your site on a smaller screen, you notice that images are causing a horizontal scroll bar. How can you solve this problem without stretching any images out of shape?
 
-[React Hooks useCallback docuementation](https://react.dev/reference/react/useCallback)
+- [ ] Set `object-fit: contain` on the images.
+- [x] Set `max-width: 100%` on the images.
+- [ ] Set `width: 100%` on the images.
+- [ ] Set `resize: true` on the images.
 
-#### Q106. Why might you use the `useRef` hook?
+#### Q69. The CSS box model describes how the parts of a CSS box fit together and the size of the box. What is the actual width of the following box's visible part under the standard box model?
 
-- [ ] To bind the function
-- [ ] To call a function
-- [x] To directly access a DOM
-- [ ] To refer to another JS file
+```css
+box {
+  width: 200px;
+  padding: 10px;
+  margin: 0 15px;
+  border: 2px 5px;
+}
+```
 
-[Reference](https://www.smashingmagazine.com/2020/11/react-useref-hook/)
+- [ ] 230px
+- [x] 220px
+- [ ] 200px
+- [ ] 260px
 
-#### Q107. Which of the following is required to use React?
+#### Q70. How would you round the value 11.354 to the nearest full integer?
 
-- [x] JavaScript
-- [ ] React Router
-- [ ] Redux
-- [ ] Prop-Types
+- [ ] round(11.354);
+- [x] Math.round(11.354);
+- [ ] Math.rnd(11.354);
+- [ ] Maths.round(11.354);
 
-[Reference](https://reactjs.org/tutorial/tutorial.html#:~:text=What%20Is%20React%3F,of%20code%20called%20%E2%80%9Ccomponents%E2%80%9D.&text=We'll%20get%20to%20the%20funny%20XML%2Dlike%20tags%20soon.)
+#### Q70. What is the JavaScript compiler Babel used for?
 
-#### Q108. What is the correct way to get a value from context?
+- [x] converts ECMAScript 2015+ code into backward compatible version of JS to support older browsers
+- [ ] used to bundle individual JS files for use in your website
+- [ ] convert older JS code into modern ECMAScript 2015+ code
+- [ ] it is a SSR library that can enhance SEO and accessibility of your site
 
-- [ ] const value = useContext(MyContext.Consumer)
-- [ ] const value = useContext(MyContext.Provider)
-- [x] const value = useContext(MyContext)
-- [ ] const value = useContext({value: "intiial value"})
+#### Q71. What is the correct way to link to an external stylesheet from the head of an HTML document?
 
-[Reference](https://reactjs.org/docs/hooks-reference.html#usecontext)
+- [x] `<link rel="stylesheet" href="styles.css">`
+- [ ] `<script type="text/css" href="styles.css"></script>`
+- [ ] `<script type="text/css" src="styles.css">`
+- [ ] `<link rel="css" href="styles.css">`
 
-#### Q109. Why is ref used?
+#### Q72. Which href attribute creates a link to the telephone number 1-(704) 555-1151?
 
-- [ ] to bind function
-- [ ] to call function
-- [x] to directly access DOM node
-- [ ] to refer to another JS file
+- [x] href = "tel:+17045551151"
+- [ ] href="17045551151"
+- [ ] href="phone:+1704551151"
+- [ ] href="call:+17045551151"
 
-[Reference](https://reactjs.org/docs/refs-and-the-dom.html#when-to-use-refs)
+#### Q73. In the color value hsl(38, 90%, 60%), what does 38 represent?
 
-#### Q110. Choose the method which should be overridden to stop the component from updating?
+- [x] the tint of the color matching 38 degrade on the color wheel
+- [ ] the opacity of the color indicating 38% of fully opacity
+- [ ] the brightness of the color matching a brightness of 38%
+- [ ] the intensity of the color matching an intensity of 38%
 
-- [ ] componentDidMount
-- [ ] componentDidUpdate
-- [ ] willComponentUpdate
-- [x] shouldComponentUpdate
+[Source: W3 Schools](<[https://www.w3schools.com/accessibility/accessibility_skip_links.php](https://www.w3schools.com/colors/colors_hsl.asp)>)
 
-[Reference](https://reactjs.org/docs/react-component.html#shouldcomponentupdate)
+#### Q74. What is a skiplink?
 
-#### Q111. What is the functionality of a “webpack” command?
+- [ ] a replacement for inaccessible navigation
+- [ ] a method of allowing a screen-reader user to skip between headings
+- [x] a link placed early in the <body> to allow the user to skip to the main content
+- [ ] a link to allow users to skip video that automatically plays on a website
 
-- [ ] Runs react local development server
-- [ ] Transfers all JS files to down into one file
-- [ ] A module builder
-- [x] All of the above
+[Source: W3 Schools](https://www.w3schools.com/accessibility/accessibility_skip_links.php)
 
-#### Q112. Choose the method which is not a part of ReactDOM?
+#### Q75. On a page with many images, what would be the effect of adding loading="lazy" to the <img> tag?
 
-- [ ] ReactDOM.createPortal()
-- [ ] ReactDOM.hydrate()
-- [x] ReactDOM.destroy()
-- [ ] ReactDOM.findDOMnode()
+- [ ] It will speed up the loading of the image when used with a JavaScript library
+- [ ] In supporting browsers, images will be highly compressed, therefore loading more quickly
+- [x] In supporting browsers, images will load only when they are in or near the visible viewport
+- [ ] In supporting browsers, images will not load unless the user explicitly requests image loading
 
-#### Q113. In react, the key should be?
+#### Q76. What is GraphQL?
 
-- [x] Unique among his siblings
-- [ ] Unique in DOM
-- [ ] Does not requires to be unique
-- [ ] all of the above
+- [ ] a React library for storing data
+- [ ] a Vue.js library for storing and manipulating data
+- [x] a query language for fetching data from APIs
+- [ ] a new database format designed to replace MySQL
 
-[Reference](https://reactjs.org/docs/lists-and-keys.html#keys)
+[Source: GraphQL official website](https://graphql.org/)
 
-#### Q114. Which company developed ReactJS?
+#### Q77. Which choice will place a multiline text input field on the page?
 
-- [ ] Google
-- [x] Meta (ex Facebook)
-- [ ] Apple
-- [ ] Twitter
+- [ ] `<multiline></multiline>`
+- [x] `<textarea></textarea>`
+- [ ] `<input type="multiline">`
+- [ ] `<input type="textarea">`
 
-[Reference](https://github.com/facebook/react)
+#### Q78. Which browser is not based on Chromium?
 
-#### Q115. Choose the library which is most often associated with react?
+- [x] Firefox
+- [ ] Opera
+- [ ] Chrome
+- [ ] Edge
 
-- [ ] Chai
-- [ ] Sinon
-- [x] Jest
-- [ ] Mocha
+#### Q79. In supporting browsers, what would be the effect of using font-display: swap, as in the example?
 
-[Reference](https://reactjs.org/docs/testing-recipes.html)
+```css
+@font-face {
+  font-family: Helvetica;
+  font-display: swap;
+}
+```
 
-#### Q116. What of the following is used in React.js to increase performance?
+- [ ] The browser will show no content until the web font loads.
+- [ ] The browser will ignore the web font.
+- [ ] The browser will ignore the web font in a situation where the user has indicated they are saving data.
+- [x] The browser will load a system font while waiting for the web font to load.
 
-- [ ] Original DOM
-- [x] Virtual DOM
-- [ ] Both of the above
+#### Q80. What does the term "code splitting" mean with regard to JavasScript performance?
+
+- [ ] allowing the browser to ignore code that it believes will perform badly
+- [x] splitting code into various bundles so that decisions can be made on loading priority
+- [ ] removing unused code from JavaScript files
+- [ ] only using code that is supported by the newest browsers, and serving the site without JavaScript to old browsers
+
+#### Q81. The vertical-align property works only on certain elements, or on those that have a certain CSS applied. Which element by default will allow vertical-align to be used?
+
+- [ ] div
+- [x] td
+- [ ] figure
+- [ ] p
+
+#### Q82. Which attribute is used to add text to an image that will be displayed if the image does not load and read out to screen reader users?
+
+- [ ] title
+- [ ] data
+- [ ] src
+- [x] alt
+
+#### Q83.Which pseudo-class allows you to selectively show a focus ring on elements only if keyboard navigation is detected?
+
+- [ ] focus-show
+- [x] :focus-visible
+- [ ] :focus-ring
+- [ ] focus-keyboard
+
+[Reference](https://www.freecodecamp.org/news/focus-rings-for-keyboard-interactions-only/)
+
+#### Q84. To create a collection of radio buttons associated with the same field, each <input> tag must \_\_\_\_.
+
+- [ ] have the same value as the id attribute
+- [x] have the same value of the name attribute
+- [ ] belong to the same field set
+- [ ] have the same value as the class attribute
+
+#### Q85. Which statement about HTML syntax is _false_?
+
+- [x] The value of a class attribute should be unique in an HTML document.
+- [ ] The `<img>` element does not have a closing `</img>` tag.
+- [ ] The `<h1>` element is the most important heading on the page.
+- [ ] The value of an id attribute should be unique in an HTML document.
+
+#### Q86. Which command has no Syntax error in CSS?
+
+- [ ] `p {font-size: 16em;}`
+- [ ] `h2 {colour: yellow;}`
+- [ ] `div {border-radius: 5px}`
+- [x] `#my-div {background-color: blue;}`
+
+#### Q87. What type of CSS is the following snippet?
+
+```
+<h1 style="color:blue;">
+  A Blue Heading
+</h1>
+```
+
+- [x] Inline
+- [ ] Internal
+- [ ] External
 - [ ] None of the above
 
-[Reference](https://reactjs.org/docs/optimizing-performance.html)
+#### Q88. How would you set the value of a property—in this example,—back to the default value, as listed in the specification?
 
-#### Q117. Among The following options, choose the one which helps react for keeping their data uni-directional?
+- [x] color: initial
+- [ ] color: default
+- [ ] color: reset
+- [ ] color: inherit
 
-- [ ] DOM
-- [x] flux
-- [ ] JSX
-- [ ] Props
-
-[Reference](https://reactjs.org/blog/2014/05/06/flux.html)
-
-#### Q118. Which choice is a correct refactor of the Greeting class component into a function component?
-
-```javascript
-class Greeting extends React.Component {
-  render() {
-    return <h1>Hello {this.props.name}!<h1>;
-  }
-}
-```
-
-- [ ] `const Greeting = (name) => <h1>{name}</h1>`
-- [ ] `function Greeting(name){return <h1>{name}</h1>;}`
-- [ ] `const Greeting = props => { <h1>{props.name}</h1> }`
-- [x] `const Greeting = ({ name }) => <h1>Hello {name}</h1>;`
-
-#### Q119. Why is the `waitlist` not updating correctly?
-
-```javascript
-const Waitlist = () => {
-  const [name, setName] = useState('');
-  const [waitlist, setWaitlist] = useState([]);
-  const onSubmit = (e) => {
-    e.preventDefault();
-    waitlist.push(name);
-  };
-  return (
-    <div>
-      <form onSubmit={onSubmit}>
-        <label>
-          Name: <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
-        </label>
-        <button type="submit">Add to waitlist</button>
-      </form>
-
-      <ol>
-        {waitlist.map((name) => (
-          <li key={name}>{name}</li>
-        ))}
-      </ol>
-    </div>
-  );
-};
-```
-
-- [x] `waitlist` is being mutated directly. Use the `setWaitlist` function instead to update the waitlist state.
-- [ ] The form is reloading the page each time `Add to waitlist` is clicked.
-- [ ] The `Add to waitlist` button is missing a click handler.
-- [ ] There are likely repeated names inside of the `waitlist` array.
-
-[Reference](https://reactjs.org/docs/react-component.html#setstate)
-
-#### Q120. What is the pattern that is used in the Context.Consumer below?
-
-<Context.Consumer>
-{(isLoggedIn)=><b>{isLoggedIn ? "Online" : "Offline"}</b>}
-</Context.Consumer>
-
-- [ ] higher-order component
-- [ ] wish component
-- [x] Render Props
-- [ ] setup Componet
-
-#### Q121. In React.js which one of the following is used to create a class for Inheritance ?
-
-- [ ] Create
-- [x] Extends
-- [ ] Inherits
-- [ ] Delete
-
-[Reference](https://www.geeksforgeeks.org/react-js-quiz-set-1/)
-
-#### Q122. What is the purpose of render() in React.js?
-
-- [ ] To replace the existing markup
-- [ ] To update the existing markup
-- [x] Both of the above
-- [ ] None of the above
-
-[Reference](https://www.geeksforgeeks.org/explain-the-purpose-of-render-in-reactjs/)
-
-#### Q123. What is the use of super(props) in React.js?
-
-- [ ] To call the constructor of the parent class
-- [ ] To initialize this.props in the constructor
-- [x] Both of the above
-- [ ] None of the above
-
-[Reference](https://www.geeksforgeeks.org/what-is-the-use-of-superprops/)
-
-#### Q124. What is Redux in React.js?
-
-- [x] A state container for JavaScript apps
-- [ ] A tool for building UI components
-- [ ] Both of the above
-- [ ] None of the above
-
-[Reference](https://www.freecodecamp.org/news/what-is-redux-store-actions-reducers-explained/)
-
-#### Q125. What is the purpose of the virtual DOM in React.js, and how does it improve performance in web applications??
-
-- [ ] The virtual DOM is used to store user authentication data securely.
-- [ ] The virtual DOM is a backup copy of the actual DOM, created for debugging purposes.
-- [x] The virtual DOM is a lightweight representation of the actual DOM, and it helps improve performance by minimizing direct manipulation of the real DOM.
-- [ ] The virtual DOM is a database used to store component states.
-
-[Reference](https://medium.com/@vinaynkokate/demystifying-dynamic-web-applications-understanding-the-dom-and-web-browser-interactions-cc1b113adfa)
-
-#### Q126. You run the following code and get this error message: "invalid hook call." what is wrong with the code?
-
-```javascript
-import React from 'react';
-
-const [poked, setPoked] = React.useState(false);
-
-function PokeButton() {
-  return <button onClick={() => setPoked(true)}>{poked ? 'You have left a poke.' : 'Poke'}</button>;
-}
-```
-
-- [x] The useState call needs to be called inside of the PokeButton component.
-- [ ] The react package is likely not installed correctly.
-- [ ] useState is not imported correctly. Import useState directly instead of importing react.
-- [ ] PokeButton is a pure function and therefore cannot have any local state.
-
-#### Q127. A colleague comes to you for help on a react component. They say that the poke button renders correctly, however when the button is clicked, this error is shown: "setPoked is not defined". What is wrong with their code?
-
-```javascript
-function PokeButton() {
-  const { poked, setPoked } = useState(false);
-  return <button onclick={() => setPoked(true)}>{poked ? 'You have left a poke.' : 'Poke'}</button>;
-}
-```
-
-- [ ] onClick prop should be onclick.
-- [ ] The click handler passed to the onClick prop is inlined. Move this handler into a variable outside of JSX.
-- [x] They use object destructructing instead of array destructructing. Wrap the poked and setPoked values in an array.
-- [ ] poked and setPoked are not destructured in the correct order.
-
-#### Q128. This component is loaded dynamically. What should you replace XXXX with to complete the code?
-
-```javascript
-const OtherComponent = React.lazy(() => import('./OtherComponent.js'));
-
-function MyComponent() {
-  return (
-    <XXXX fallback={<spinner />}>
-      <OtherComponent />
-    </XXXX>
-  );
-}
-```
-
-- [ ] Component
-- [ ] Fragment
-- [x] Suspense
-- [ ] Lazy
-
-#### Q129. Elements in lists in React should have \_**\_ that are \_\_\_** .
-
-- [x] keys ; unique
-- [ ] keys ; indexes
-- [ ] style ; inline
-- [ ] values ; not-null
-      [Source: React Docs](https://legacy.reactjs.org/docs/lists-and-keys.html)
-
-#### Q130. You want to memorize a callback function so you ensure that React does not recreate the function at each render. Which hook would you use to accomplish this?
-
-- [ ] useRef
-- [ ] useMemo
-- [ ] memo
-- [x] useCallback
-
-[Source: CodeDamn](https://codedamn.com/news/reactjs/usememo-and-usecallback-hooks)
-
-#### Q131. You want to perform a network operation as the result of a change to a component's state named userInput. what would you replace XXXX with?
-
-```javascript
-useEffect(callNetworkFunc, XXXX);
-```
-
-- [x] [userInput]
-- [ ] userInput
-- [ ] undefined
-- [ ] []
-
-#### Q132. When is the Hello component displayed?
-
-```javascript
-<div>{isLoggedIn ? <Hello /> : null}</div>
-```
-
-- [ ] when isLoggedIn is false
-- [x] when isLoggedIn is true
-- [ ] when isLoggedIn is false and the Hello function is invoked
-- [ ] never
-
-#### Q133. When do you use `useLayoutEffect`?
-
-- [ ] to optimize for all devices
-- [ ] to complete the update
-- [x] to change the layout of the screen
-- [ ] when you need the browser to paint before the effect runs
-
-#### Q134. What is the difference between state and props in React?
-
-- [ ] Props are set by the parent component, state is set by the child component
-- [x] Props are passed to a component, state is managed within the component
-- [ ] Props can be updated, state cannot be updated
-- [ ] There is no difference - props and state are the same
-
-#### Q135. Which language can you not use with React?
-
-- [x] Swift.
-- [ ] JSX.
-- [ ] Javascipt.
-- [ ] TypeScript.
-
-#### Q136. Which answer best describes a function component?
-
-- [ ] A function component is the same as a class component.
-- [x] A function component accepts a single props object and returns a React element.
-- [ ] A function component is the only way to create a component.
-- [ ] A function component is required to create a React component.
-
-#### Q137. Which library does the `fetch()` function come from?
-
-- [ ] FetchJS
-- [ ] ReactDOM
-- [x] No library. `fetch()` is supported by most browsers.
-- [ ] React
-
-### Q138. In React, what is the purpose of the `key` prop when rendering a list of components
-
-- [ ] The `key` prop is used to provide a unique identifier for the component.
-- [ ] The `key` prop is used to define the color of the component.
-- [ ] The `key` prop is required to render a list of components.
-- [x] The `key` prop is used by React to optimize updates and identify which items have changed or been added/removed in the list.
-
-#### Q139. What is the primary function of React Router?
-
-- [ ] React Router is used for fetching data from APIs.
-- [ ] React Router is used to create animations in React applications.
-- [ ] React Router is used for managing state in React components.
-- [x] React Router is used for adding navigation and routing to React applications, allowing users to navigate between different views or pages.
-
-#### Q140. When should you use Redux in a React application?
-
-- [ ] Redux is always required in React applications.
-- [ ] Redux should be used when you need to fetch data from APIs.
-- [ ] Redux is used for creating user interfaces but not for state management.
-- [x] Redux is typically used when you have complex state management needs, such as sharing state between multiple components or handling deeply nested state.
-
-#### Q141. What is the use of React hooks?
-
-- [ ] To optimize React apps for mobile devices
-- [ ] To add visual effects to React components.
-- [x] To allow using state and lifecycle methods in function components
-- [ ] To integrate with external UI libraries like Bootstrap
-
-#### Q142. How can you pass data through a React component tree without having to pass props down manually at every level?
-
-- [x] By using React context
-- [ ] By using redux
-- [ ] By using react router
-- [ ] By using react lifecycle methods
+[Reference: W3 Schools](https://www.w3schools.com/cssref/css_initial.php#:~:text=The%20initial%20keyword%20is%20used,property%20to%20its%20default%20value.)
