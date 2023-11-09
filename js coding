@@ -1,3 +1,48 @@
+get result as 13 by adding array index 0,1 or 1,2 or 2,3
+array = [1, 3, 10, 11, 14];
+goal = 13;
+
+let arr = [];
+let obj = {};
+for(let i =0; i<array.length; i++){
+  let temp = goal - array[i];
+  if(obj[temp]){
+    console.log(obj[temp], i);
+    break;
+  }
+  obj[array[i]] = i;
+}
+
+-------------------------------------------
+
+for(let i=0; i<array.length;i++){
+  let flag = false;
+  for(let j=0; j<array.length;j++){
+    if(array[i]+array[j] == goal){
+      console.log([i, j]);
+      flag = true;
+      break;
+    }
+  }
+  if(flag) break;
+  //[ 1, 2 ]
+
+==================================================================================================================
+get sum for quantity*price
+
+const array = [
+  {product: "milk", quantity: 3, price: 1.50},
+  {product: "Burger", quantity: 2, price: 2.50}
+  ];
+  
+  let sum =0;
+  for(let i =0; i<array.length; i++){
+    sum += array[i].quantity*array[i].price;
+  }
+  console.log(sum);
+
+==================================================================================================================
+
 console.log(1 +  "2" + "2");  //122
 console.log(1 +  +"2" + "2");  //32
 console.log(1 +  -"1" + "2");  //02
