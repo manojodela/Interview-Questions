@@ -513,6 +513,10 @@ Throttling-
 Throttling is a technique in which, no matter how many times the user fires the event, the attached function will be executed only once in a given time interval.
                                                                         or
 Throttling limits the execution of a function to a specified interval, ensuring that it is not called more frequently than the defined delay.
+	
+usage:
+Scroll Events: Throttling can be applied to the scroll event to limit the frequency of a callback function responsible for updating elements as the user scrolls.
+Button Clicks: When dealing with button clicks, throttling can prevent users from triggering a particular action too frequently.
 
 import React, { useState, useEffect } from 'react';
 function ThrottleExample() {
@@ -553,6 +557,11 @@ The Debounce technique allow us to “group” multiple sequential calls in a si
                                                         or
 Debouncing postpones the execution of a function until a specified amount of time has passed since the last invocation.
 It is typically used in scenarios where the function should only be triggered once a certain event has stopped occurring.
+
+usage:
+Input Fields:- Debouncing can be used when handling user input in search boxes.It prevents making API calls on every keystroke but instead waits for a short delay after the user stops typing.
+Resizing Windows:- When handling the window resize event, debouncing can be used to ensure that a function (e.g., repositioning elements) is only called after the user has finished resizing the window.
+
 
 import React, { useState, useEffect } from 'react';
 
