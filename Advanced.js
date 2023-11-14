@@ -110,6 +110,8 @@ for(var i=0; i<5; i++){
 
 Here, IIFE (Immediately Invoked Function Expression) is used to create a new scope for each iteration of the loop,
 capturing the current value of i for each timeout function. This way, you'll get the output 0, 1, 2, 3, 4.
+	or
+IIFE is used to create a closure by capturing the current value of the loop variable.
 
 
 ================================================================================================================================================================================
@@ -301,6 +303,9 @@ It helps maintain the responsiveness of web applications and ensures predictable
 ================================================================================================================================================================================
 
 Closures- 
+A closure is a function that has access to variables from its outer (enclosing) scope, even after the outer function has finished executing.
+they retain a reference to those variables even if the outer function has completed.
+OR
 A closure is the combination of a function and the lexical environment within which that function was declared.
 OR
 When inner function can have access to the outer function variables and parameter.
@@ -309,6 +314,7 @@ The return statement does not execute the inner function - function is only exec
 body of the function.
 
 Uses/advantages of closures:
+Closures enable data encapsulation and help create private variables in JavaScript.
 -event handlers
 -callback functions
 -Encapsulation: can store data in separate store
@@ -361,7 +367,7 @@ const outerFunction =(a)=>{
 let inner = outerFunction(5)
 console.log(inner)
 inner() //15
-------------------------------
+------------------------------ Standard
 var globalVar = "xyz";
 
 function outerFunc(outerArg) {
@@ -1030,7 +1036,9 @@ function somemethod() {
 ====================================================================================================================================================================
 
 What is an IIFE (Immediately Invoked Function Expression) 
-IIFE (Immediately Invoked Function Expression) is a JavaScript function that runs as soon as it is defined. The signature of it would be as below, 
+IIFE (Immediately Invoked Function Expression) is a JavaScript function that is executed as soon as it is defined.
+It is often used to create a new scope to avoid polluting the global scope and to encapsulate variables.
+IIFE syntax involves wrapping a function expression in parentheses and immediately invoking it.
 
 (function () { 
   // logic here 
@@ -1045,6 +1053,8 @@ i.e, If you try to access variables from the IIFE then it throws an error as bel
 })(); 
 console.log(message); //Error: message is not defined 
 
+However, IIFE can be used to create closures when it captures variables from its surrounding scope.
+In the previous example with the loop and setTimeout,, the IIFE is used to create a closure by capturing the current value of the loop variable.
 ====================================================================================================================================================================
 What is the purpose of the array slice method 
 
