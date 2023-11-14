@@ -155,11 +155,14 @@ create a promise useing settimeout with 3 milliseconds.
 const myPromise = new Promise((resolve, reject) => {
   setTimeout(() => {
     resolve("Promise resolved after 3 milliseconds");
+    // reject("rejected after 3 milliseconds")
   }, 3); // 3 milliseconds
 });
 
 myPromise.then((result) => {
   console.log(result);
+}).then((err) => {
+  console.log(err)
 });
 
 ================================================================================================================================================================================
