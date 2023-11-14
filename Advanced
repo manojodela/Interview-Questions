@@ -1,3 +1,43 @@
+In JavaScript, there are two main types of scopes: global scope and local scope. 
+
+Global Scope:
+Variables declared outside any function or block have a global scope. They can be accessed from any part of the code, including other functions.
+
+var globalVariable = "I am global";
+
+function exampleFunction() {
+    console.log(globalVariable);  // Accessing the global variable
+}
+
+exampleFunction();  // Output: I am global
+
+-------------------------------------------------------------------------
+Local Scope:
+Variables declared within a function have a local scope. They are only accessible within that function.
+
+function exampleFunction() {
+    var localVariable = "I am local";
+    console.log(localVariable);  // Accessing the local variable
+}
+
+exampleFunction();  // Output: I am local
+
+// Trying to access the local variable outside the function will result in an error
+// console.log(localVariable);  // This will throw an error
+
+--------------------------------------------------------------------------------
+It's worth noting that starting from ES6 (ECMAScript 2015), the let and const keywords also introduce block scope,
+meaning they are scoped to the nearest enclosing curly braces {} rather than the entire function.
+
+function exampleFunction() {
+    if (true) {
+        let blockScopedVariable = "I am block-scoped";
+        console.log(blockScopedVariable);
+    }
+    // console.log(blockScopedVariable);  // This will throw an error
+}
+
+================================================================================================================================================================================
 var keyword:
 'var' is used to declare variables with function scope. 
 It can be reassigned and redeclared within its scope.
