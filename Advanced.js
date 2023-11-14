@@ -98,7 +98,7 @@ As a result, by the time the setTimeout callbacks are executed, the i variable h
 This leads to a somewhat unexpected output:
 In this case, all the callback functions capture the same i variable, which has the value of 5 after the loop completes.
 
-To get expected output need to implement IIFI's
+To get expected output need to implement IIFE's
 for(var i=0; i<5; i++){
   (function(arg){
     setTimeout(function() {
@@ -108,6 +108,8 @@ for(var i=0; i<5; i++){
 }
 //0,1,2,3,4,
 
+Here, IIFE (Immediately Invoked Function Expression) is used to create a new scope for each iteration of the loop,
+capturing the current value of i for each timeout function. This way, you'll get the output 0, 1, 2, 3, 4.
 
 
 ================================================================================================================================================================================
