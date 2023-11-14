@@ -1303,6 +1303,173 @@ shallow copies are a lot faster than deep copies.
 If the depth of your object is equal to one, use a shallow copy.
 If the depth of your object is bigger than one, use a deep copy.
 
+====================================================================================================================================================================
+map:
+Use map when we want to create a new array by transforming each element of an existing array.
+Use map() when we need to return a new array.
+
+forEach loop
+Use forEach when we want to iterate over elements and perform some action without creating a new array.
+Use forEach() when we want to change the original array
+
+for loop
+use for loop for iterating over a range of values, including arrays. and it requires manual handling for array transformations.
+Use for loop when we need more control over the iteration or when working with non-array iterations.
+	Involves three parts: initialization, condition, and increment/decrement.
+	Requires explicit indexing and manual array traversal.
+	eg: you want to iterate every three elements (i + 3)
+
+find:
+find is used to locate the first element in an array that satisfies a given condition.
+find is designed for finding a single item,
+It returns the first matching element or undefined if no match is found.
+Return Type: Element from the array or undefined.
+
+filter:
+filter is used to create a new array containing all elements that satisfies a specific condition.
+filter is designed for collecting multiple items that meet a specified condition.
+It retains elements that satisfy the provided condition and discards the rest.
+Return Type: Array containing elements meeting the condition.
+
+reduce:
+reduce is used to accumulate values of an array into a single result by applying a function to each element in a sequential manner.
+It takes an accumulator and iterates through the array, updating the accumulator with each element.
+Return Type: Single value, often the result of the accumulation.
+
+In summary, map and filter both return new arrays, find returns an element or undefined,and reduce returns a single value.
+These functions serve different purposes in manipulating and processing data in programming.
+
+====================================================================================================================================================================
+Currying :
+Currying breaks a function with multiple arguments into a series of unary (single-argument) functions.
+Each curried function takes one argument and returns a new function that can be called with the next argument.
+This process continues until all the original arguments have been provided, at which point the final function returns the result.
+Currying is used to create more reusable and flexible functions, especially in functional programming and when dealing with partial application.
+
+	// Currying example
+	function add(a) {
+	  return function (b) {
+	    return a + b;
+	  };
+	}
+	
+	const add5 = add(5);
+	const result = add5(3); // Result is 8
+
+Infinite Currying:
+Infinite currying is an extension of currying that allows a function to accept an indefinite number of arguments.
+A curried function can keep accepting and returning new functions indefinitely.
+This enables the function to be used with any number of arguments, making it highly adaptable.
+Infinite currying can be useful for creating generic, versatile functions in functional programming.
+
+	// Infinite Currying example
+	function infiniteCurry(x) {
+	  return function(y){
+	    if(y){
+	      return sum(x+y);
+	    }
+	    return x;
+	  }
+	}
+	
+	console.log(infiniteCurry(5)(3)(2)(1)(4)());  //15
+
+====================================================================================================================================================================
+HOC:
+Higher-order components (HOCs) are functions that take a component as input and return an enhanced version of that component.
+HOCs allow you to add additional functionalities or modify the behavior of components.
+They enable code reuse and abstraction by separating common logic from the component itself.
+HOCs are typically used for tasks like authentication, logging, API calls, or providing context to components.
+
+withDataFetch.js
+import React, { useState, useEffect } from "react";
+
+function withDataFetch(WrappedComponent, url) {
+  return function (props) {
+    const [data, setData] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+      const fetchWrapper = async () => {
+        try {
+          const response = await fetch(url);
+          const data = await response.json();
+          setData(data);
+          setIsLoading(false);
+        } catch (error) {
+          setError(error);
+          setIsLoading(false);
+        }
+      };
+      fetchWrapper();
+    }, [props]);
+
+    return (
+      <WrappedComponent
+        {...props}
+        data={data}
+        isLoading={isLoading}
+        error={error}
+      />
+    );
+  };
+}
+
+export default withDataFetch;
+---------------------------------------------------------
+postComponent.js
+
+import React from "react";
+import withDataFetch from "./DataFetch";
+
+const PostComponent = ({ data, isLoading, error }) => {
+  if (isLoading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message}</p>;
+
+  return (
+    <ul>
+      {data.map((item) => (
+        <li key={item.id}>{item.title}</li>
+      ))}
+    </ul>
+  );
+};
+
+export const PostComponentWithData = withDataFetch(PostComponent, "https://jsonplaceholder.typicode.com/posts");
+----------------------------------------------------------------------------
+App.js
+import { PostComponentWithData } from "./PostComponentData";
+
+const App = () => {
+  return (
+    <div className="App">
+      <PostComponentWithData />
+    </div>
+  );
+};
+export default App;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
