@@ -1,25 +1,25 @@
-In JavaScript, there are two main types of scopes: global scope and local scope. 
+ECMAScript
+ECMAScript is a standardized scripting language specification that JavaScript follows.
+It defines the features, syntax, and behavior of JavaScript. JavaScript is an implementation of ECMAScript.
 
-Global Scope:
-Variables declared outside any function or block have a global scope. They can be accessed from any part of the code, including other functions.
+================================================================================================================================================================================
+Scopes: In JavaScript, there are two main types of scopes: global scope and local scope. 
+
+Global Scope: Variables declared outside any function or block have a global scope. They can be accessed from any part of the code, including other functions.
 
 var globalVariable = "I am global";
-
 function exampleFunction() {
     console.log(globalVariable);  // Accessing the global variable
 }
-
 exampleFunction();  // Output: I am global
 
 -------------------------------------------------------------------------
-Local Scope:
-Variables declared within a function have a local scope. They are only accessible within that function.
+Local Scope: Variables declared within a function have a local scope. They are only accessible within that function.
 
 function exampleFunction() {
     var localVariable = "I am local";
     console.log(localVariable);  // Accessing the local variable
 }
-
 exampleFunction();  // Output: I am local
 
 // Trying to access the local variable outside the function will result in an error
@@ -58,55 +58,80 @@ It cannot be reassigned or redeclared once initialized, and is not hoisted.
 const does not make objects or arrays immutable, only their reference cannot be changed.
 
 ================================================================================================================================================================================
+Named functions: 
+These are functions that have a specified name and can be invoked using that name.
+They are defined with the 'function' keyword followed by the function name and parameters.
+	function add(x, y) {
+	  return x + y;
+	}
+	
+	// Using the named function
+	const resultNamed = add(3, 5);
+	console.log(resultNamed); // Output: 8
+
+Anonymous functions: 
+These are functions that do not have a specified name.
+They are usually defined inline as function expressions or as arrow functions.
+
+	const addArrow = (x, y) => {
+	  return x + y;
+	};
+	
+	// Using the arrow function
+	const resultArrow = addArrow(3, 5);
+	console.log(resultArrow); // Output: 8
+
+================================================================================================================================================================================
 
 -----------let keyword-----------------------------
-for(let i=0; i<5; i++)
-{
-  setTimeout(function() {
-    console.log(i);
-  }, 0);
-}
-
-o/p :
-0
-1
-2
-3
-4
+	for(let i=0; i<5; i++)
+	{
+	  setTimeout(function() {
+	    console.log(i);
+	  }, 0);
+	}
+	
+	o/p :
+	0
+	1
+	2
+	3
+	4
 
 With let, a new variable i is created for each iteration of the loop.
 This means that each setTimeout callback function will capture the value of i at that particular iteration,resulting in the expected output:
 Each callback function holds a reference to a separate i variable with its own value.
 
 ---------var leyword----------------------------
-for(var i=0; i<5; i++)
-{
-  setTimeout(function() {
-    console.log(i);
-  }, 0);
-}
-
-o/p:
-5
-5
-5
-5
-5
+	for(var i=0; i<5; i++)
+	{
+	  setTimeout(function() {
+	    console.log(i);
+	  }, 0);
+	}
+	
+	o/p:
+	5
+	5
+	5
+	5
+	5
 
 With var, there is only one variable i that is hoisted to the top of the function scope (or the global scope if this code is not within a function).
 As a result, by the time the setTimeout callbacks are executed, the i variable has already reached its final value (i.e., 5) due to the loop completing.
 This leads to a somewhat unexpected output:
 In this case, all the callback functions capture the same i variable, which has the value of 5 after the loop completes.
-
+	
+----------------------------------------------------------
 To get expected output need to implement IIFE's
-for(var i=0; i<5; i++){
-  (function(arg){
-    setTimeout(function() {
-      console.log(arg)
-    }, 1000);
-  })(i)
-}
-//0,1,2,3,4,
+	for(var i=0; i<5; i++){
+	  (function(arg){
+	    setTimeout(function() {
+	      console.log(arg)
+	    }, 1000);
+	  })(i)
+	}
+	//0,1,2,3,4,
 
 Here, IIFE (Immediately Invoked Function Expression) is used to create a new scope for each iteration of the loop,
 capturing the current value of i for each timeout function. This way, you'll get the output 0, 1, 2, 3, 4.
@@ -241,9 +266,7 @@ Types of Dependency:- There are two types of dependency.
 Parcel simplifies the development workflow by providing a fast, easy-to-use, and zero-configuration bundling solution.
 It reduces the initial setup time, improves development productivity with features like HMR, and automatically optimizes the performance of the bundled output.
 
-◽Superpower of Parcel:- 
-HMR - Hot Module Replacement
-File watching algorithm => written in C++
+◽Superpower of Parcel:-
 Caching => Faster Builds
 Image Optimization
 Minification
@@ -394,7 +417,7 @@ outerFunc(123);
 ================================================================================================================================================================================
 Prototype: 
 Prototype allow to easily define methods to all the instances of object. It stored in the memory once but every object instances can access it.
-
+	
 1. Javascript is a prototype based language, so, whenever we are creating a function using javascript, javascript engine adds a prototype property inside a function,
 Prototype property is basically an object (also known as Prototype object), where we can attach methods and properties in a prototype object, which enables all the
 other objects to inherit these methods and properties.
@@ -1379,7 +1402,7 @@ HOC:
 Higher-order components (HOCs) are functions that take a component as input and return an enhanced version of that component.
 HOCs allow you to add additional functionalities or modify the behavior of components.
 They enable code reuse and abstraction by separating common logic from the component itself.
-HOCs are typically used for tasks like authentication, logging, API calls, or providing context to components.
+HOCs are typically used for tasks like authentication, logging, handling data fetching,, or providing context to components.
 
 withDataFetch.js
 import React, { useState, useEffect } from "react";
@@ -1451,22 +1474,271 @@ const App = () => {
 export default App;
 
 
+====================================================================================================================================================================
+Higher-Order Functions:
+Higher-order functions are functions that can take other functions as arguments or return functions as their results.
+In JavaScript,we use higher-order functions to create more generic and reusable code by passing functions as parameters
+or returning functions from other functions.
+
+// A higher-order function that takes a function as an argument and applies it to each element of an array
+function mapArray(arr, fn) {
+  const result = [];
+  for (let i = 0; i < arr.length; i++) {
+    result.push(fn(arr[i]));
+  }
+  return result;
+}
+
+// A function to square a number
+function square(x) {
+  return x * x;
+}
+
+// Using the higher-order function with the square function
+const numbers = [1, 2, 3, 4, 5];
+const squaredNumbers = mapArray(numbers, square);
+console.log(squaredNumbers); // Output: [1, 4, 9, 16, 25]
+
+====================================================================================================================================================================
+Prototype inheritance:
+Prototype inheritance is a mechanism in JavaScript where objects can inherit properties and methods from other objects.
+Each object has an internal link to another object called its prototype.
+If a property or method is not found in an object, JavaScript looks for it in the object's prototype chain until it reaches the top-level Object.prototype.
+
+// Parent constructor function
+function Animal(name) {
+  this.name = name;
+}
+
+// Adding a method to the prototype of the Animal constructor
+Animal.prototype.sayHello = function() {
+  console.log(`Hello, I'm ${this.name}!`);
+};
+
+// Child constructor function inheriting from Animal
+function Dog(name, breed) {
+  // Call the parent constructor with the current instance as the context
+  Animal.call(this, name);
+  this.breed = breed;
+}
+
+// Set up prototype chain to inherit from Animal
+Dog.prototype = Object.create(Animal.prototype);
+
+// Adding a method specific to Dog to the Dog prototype
+Dog.prototype.bark = function() {
+  console.log("Woof! Woof!");
+};
+
+// Create instances of Animal and Dog
+const animal = new Animal("Generic Animal");
+const dog = new Dog("Buddy", "Golden Retriever");
+
+// Test the methods
+animal.sayHello();  // Output: Hello, I'm Generic Animal!
+dog.sayHello();     // Output: Hello, I'm Buddy!
+dog.bark();         // Output: Woof! Woof!
+
+====================================================================================================================================================================
+Null: Null represents the intentional absence of any object value. It is a special value that indicates the absence of an object or a non-existent value.
+	
+	// Assigning null to a variable
+	let nullVariable = null;
+	
+	// Checking if the variable is null
+	if (nullVariable === null) {
+	  console.log("The variable is null.");
+	} else {
+	  console.log("The variable is not null.");
+	}
+
+	
+Undefined: Undefined is a primitive value that is automatically assigned to variables that have been declared but not assigned a value.
+It also represents the value returned by functions that do not explicitly return anything.
+	
+	// Declaring a variable without assigning a value
+	let undefinedVariable;
+	
+	// Checking if the variable is undefined
+	if (typeof undefinedVariable === "undefined") {
+	  console.log("The variable is undefined.");
+	} else {
+	  console.log("The variable is defined.");
+	}
+
+====================================================================================================================================================================
+falsy values in JavaScript
+Falsy values are values that are considered false when encountered in a Boolean context. The falsy values in JavaScript are:
+	false
+	0
+	empty string ('')
+	null
+	undefined
+	NaN (Not-a-Number)
+
+====================================================================================================================================================================
+Object.seal is a method that seals an object, preventing new properties from being added and making existing properties non-configurable.
+However, the values of the existing properties can still be changed.
+
+	const sealedObject = {
+	  prop1: 42,
+	  prop2: "Hello"
+	};
+	
+	Object.seal(sealedObject);
+	
+	// Attempting to add a new property
+	sealedObject.newProp = "This will not work"; // Ignored in strict mode, TypeError in non-strict mode
+	
+	// Modifying an existing property
+	sealedObject.prop1 = 99;
+	
+	// Deleting an existing property
+	delete sealedObject.prop2; // Ignored in strict mode, TypeError in non-strict mode
+	
+	console.log(sealedObject); 
+	// Output: { prop1: 99, prop2: "Hello" }
 
 
+====================================================================================================================================================================
+Object.freeze is a method that freezes an object, making it read-only and preventing any changes to its properties or their values.
+It also makes existing properties non-configurable.
+	
+	const frozenObject = {
+	  prop1: 42,
+	  prop2: "Hello"
+	};
+	
+	Object.freeze(frozenObject);
+	
+	// Attempting to add a new property
+	frozenObject.newProp = "This will not work"; // Ignored in strict mode, TypeError in non-strict mode
+	
+	// Modifying an existing property
+	frozenObject.prop1 = 99; // Ignored in strict mode, TypeError in non-strict mode
+	
+	// Deleting an existing property
+	delete frozenObject.prop2; // Ignored in strict mode, TypeError in non-strict mode
+	
+	console.log(frozenObject); 
+	// Output: { prop1: 42, prop2: "Hello" }
 
+====================================================================================================================================================================
+Map is a collection of key-value pairs where each key and value can be of any type.
+It allows duplicate keys and provides an iterable interface to access, iterate, and modify the elements.
 
+	// Creating a Map
+	const myMap = new Map();
+	
+	// Adding key-value pairs to the Map
+	myMap.set("name", "John");
+	myMap.set("age", 30);
+	myMap.set("isStudent", false);
+	
+	// Getting values from the Map
+	console.log(myMap.get("name")); // Output: John
+	console.log(myMap.get("age"));  // Output: 30
+	
+	// Checking if a key exists in the Map
+	console.log(myMap.has("isStudent")); // Output: true
+	
+	// Deleting a key-value pair from the Map
+	myMap.delete("age");
+	
+	// Iterating over key-value pairs in the Map
+	for (const [key, value] of myMap) {
+	  console.log(`${key}: ${value}`);
+	}
+	// Output:
+	// name: John
+	// isStudent: false
 
+Set is a collection of unique values of any type.
+It does not allow duplicate values and provides an iterable interface to access, iterate, and modify the elements.
 
+	// Creating a Set
+	const mySet = new Set();
+	
+	// Adding values to the Set
+	mySet.add(10);
+	mySet.add("apple");
+	mySet.add(true);
+	mySet.add(10); // Duplicate entry, ignored
+	
+	// Checking if a value exists in the Set
+	console.log(mySet.has("apple")); // Output: true
+	
+	// Deleting a value from the Set
+	mySet.delete(true);
+	
+	// Checking the size of the Set
+	console.log(mySet.size); // Output: 2
+	
+	// Iterating over values in the Set
+	mySet.forEach(value => {
+	  console.log(value);
+	});
+	// Output:
+	// 10
+	// apple
 
+====================================================================================================================================================================
+WeakMap is a collection of key-value pairs where the keys must be objects and the values can be any type.
+Unlike Map, WeakMap allows garbage collection of its keys if there are no other references to them, making it useful in scenarios where memory management is a concern.
+	
+WeakSet is a collection of unique objects. It also allows garbage collection of its objects if there are no other references to them.
 
+====================================================================================================================================================================
+Cookies:
+Cookies are small pieces of data stored in the browser. 
+They are commonly used for maintaining user sessions, storing user preferences, and tracking user behavior on websites.
 
-
-
-
-
-
-
-
+	<!DOCTYPE html>
+	<html lang="en">
+	<head>
+	  <meta charset="UTF-8">
+	  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	  <title>Cookie Example</title>
+	</head>
+	<body>
+	
+	<script>
+	  // Function to set a cookie
+	  function setCookie(name, value, days) {
+	    const expires = new Date();
+	    expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
+	    document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/`;
+	  }
+	
+	  // Function to get a cookie value by name
+	  function getCookie(name) {
+	    const cookies = document.cookie.split(';');
+	    for (const cookie of cookies) {
+	      const [cookieName, cookieValue] = cookie.split('=');
+	      if (cookieName.trim() === name) {
+	        return cookieValue;
+	      }
+	    }
+	    return null;
+	  }
+	
+	  // Function to delete a cookie by name
+	  function deleteCookie(name) {
+	    document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/;`;
+	  }
+	
+	  // Example usage
+	  setCookie('username', 'john_doe', 7);
+	
+	  const storedUsername = getCookie('username');
+	  console.log('Stored Username:', storedUsername);
+	
+	  // Uncomment the line below to delete the 'username' cookie
+	  // deleteCookie('username');
+	</script>
+	
+	</body>
+	</html>
 
 
 
