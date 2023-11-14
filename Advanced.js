@@ -1741,8 +1741,191 @@ They are commonly used for maintaining user sessions, storing user preferences, 
 	</html>
 
 
+====================================================================================================================================================================
+Generator function:
+A generator function is a special type of function that can be paused and resumed, allowing for the generation of a sequence of values over time.
+It is defined using the function* syntax and uses the yield keyword to yield values.
+Generator functions are useful when dealing with asynchronous operations, iteration, and lazy evaluation.
+
+
+	function* countGenerator() {
+	  let count = 0;
+	
+	  while (true) {
+	    yield count++;
+	  }
+	}
+	
+	// Creating an instance of the generator
+	const counter = countGenerator();
+	
+	// Using the generator to get the next values
+	console.log(counter.next().value); // 0
+	console.log(counter.next().value); // 1
+	console.log(counter.next().value); // 2
+	// ... and so on
+
+In this example, the countGenerator function is a generator function denoted by the function* syntax.
+Inside the function, there's an infinite loop (while (true)) that increments the count variable and yields its value using the yield keyword.
+When you call counter.next(), the generator function is executed until it encounters a yield statement,
+at which point it pauses and returns the value. The next time you call counter.next(),
+the function resumes execution from where it was paused until the next yield statement or until it reaches the end of the function.
+
+Generators are often used in combination with the for...of loop to iterate over a sequence of values produced by the generator.
+
+====================================================================================================================================================================
+Modules:
+Modules are a way to organize and encapsulate JavaScript code. They allow you to split your code into separate files,
+with each file being a module that exports certain values or functions.
+Modules can import and use values from other modules, promoting modularity, reusability, and maintainability.
+
+	// math.js
+	export function add(a, b) {
+	    return a + b;
+	}
+	
+	// app.js
+	import { add } from './math.js';
+	console.log(add(3, 4)); // Output: 7
+
+====================================================================================================================================================================
+Exports:
+Named Exports:
+You can export specific functions, variables, or objects using the export keyword followed by the names you want to export.
+
+	// module.js
+	export const myVar = 42;
+	export function myFunction() {
+	  // function implementation
+	}
+
+Importing named exports is done using the import keyword followed by the name in curly braces.
+	// anotherModule.js
+	import { myVar, myFunction } from './module';
+
+---------------------------------------------------------
+Default Exports:
+You can export a single "default" value from a module using the export default syntax.
+	// module.js
+	const myVar = 42;
+	export default myVar;
+
+
+Importing the default export is done without curly braces.
+	// anotherModule.js
+	import myVar from './module';
+
+--------------------------------------------------------------
+Combining Named and Default Exports:
+You can also combine named and default exports in a single module.
+	// module.js
+	const myVar = 42;
+	export { myVar as default, myVar };
+
+Importing both named and default exports is done in a similar way.
+	// anotherModule.js
+	import myVar, { myVar as namedVar } from './module';
+
+--------------------------------------------------------------------
+You can use dynamic imports to load modules asynchronously.
+	
+	// dynamicImport.js
+	const myModule = await import('./module');
+
+====================================================================================================================================================================
+Memoization:
+Memoization is a technique used in programming to optimize functions by caching the results of expensive function calls
+and returning the cached result when the same inputs occur again. This can be particularly useful for recursive or computationally expensive functions.
+Here's a simple example of memoization in JavaScript:
+
+	// Function to memoize the result of a function
+	function memoize(func) {
+	  const cache = {};
+	  return function (...args) {
+	    const key = JSON.stringify(args);
+	    if (cache[key]) {
+	      return cache[key];
+	    } else {
+	      const result = func(...args);
+	      cache[key] = result;
+	      return result;
+	    }
+	  };
+	}
+	
+	// Original Fibonacci function
+	function fibonacci(n) {
+	  if (n <= 1) {
+	    return n;
+	  } else {
+	    return fibonacci(n - 1) + fibonacci(n - 2);
+	  }
+	}
+	
+	// Memoized Fibonacci function
+	const memoizedFibonacci = memoize(fibonacci);
+	
+	console.log(memoizedFibonacci(5)); // Output: 5
+	console.log(memoizedFibonacci(10)); // Output: 55
+	console.log(memoizedFibonacci(15)); // Output: 610
+
+
+====================================================================================================================================================================
+MutationObserver:
+	A MutationObserver in JavaScript is an interface that provides a way to asynchronously observe changes to the DOM (Document Object Model) and react to those changes.
+It allows developers to register a callback function that is notified when specific types of mutations,
+such as the addition or removal of elements or changes to attributes,occur within a specified target element or its descendants.
+This provides a powerful mechanism for building dynamic and responsive web applications by enabling developers to respond to changes in the structure or content of the document.
+
+// Target element to observe
+const targetElement = document.getElementById('target');
+
+// Callback function to handle mutations
+const mutationCallback = function (mutationsList, observer) {
+  for (const mutation of mutationsList) {
+    if (mutation.type === 'childList') {
+      console.log('A child node has been added or removed!');
+    } else if (mutation.type === 'attributes') {
+      console.log('Attributes of the observed element have changed!');
+    }
+  }
+};
+
+// Options for the observer (optional)
+const observerOptions = {
+  childList: true, // Watch for changes in child elements
+  attributes: true, // Watch for changes in attributes
+  subtree: true, // Watch for changes in the subtree (descendants)
+  // other options can be added as needed
+};
+
+// Create a new instance of MutationObserver with the callback function
+const observer = new MutationObserver(mutationCallback);
+
+// Start observing the target element with the specified options
+observer.observe(targetElement, observerOptions);
+
+// Later, you can disconnect the observer when you no longer need it
+// observer.disconnect();
+
+====================================================================================================================================================================
 
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	====================================================================================================================================================================
