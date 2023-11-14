@@ -956,60 +956,90 @@ JWT Token:
 Rest operator:
 1. The rest operator is used in function parameters to collect multiple arguments into a single array.
 2. It's especially useful when you want to work with a variable number of arguments.
-
 Syntax: It is denoted by three dots (...) followed by a parameter name that will hold the rest of the arguments.
 
-// Rest Parameter in Array : 
-function addSum(a,b,c, ...rest){ // ...rest indicating combination of those arguments which are left(rest).
-  console.log(...rest) //6,7
-  console.log(rest) //[6,7]
-  console.log(arguments) //ES5 //{"0":2, "1":3, "2":4, "3":6, "4":7}
-  return a+b+c+rest[0]+rest[1];
-}
-console.log(addSum(2,3,4,6,7)) //22
+uses:
+Collecting Function Arguments:
+	function calculateTotal(...items) {
+	  return items.reduce((total, item) => total + item, 0);
+	}
+	const total = calculateTotal(10, 20, 30);
 
-// Rest Spread in object: 
-var student ={
-  name: "priya",
-  age : 100,
-  hobbies : ["cooking", "dancing"]
-}
+Destructuring:
+	const [first, ...rest] = [1, 2, 3, 4, 5];
+	// first is 1, rest is [2, 3, 4, 5]
 
-//const age = student.age; //earlier we like this
-//console.log(age) //10
+Function Parameters with Variable Arity:
+	function multiply(multiplier, ...numbers) {
+	  return numbers.map((number) => multiplier * number);
+	}
+	const result = multiply(2, 3, 4, 5); // [6, 8, 10]
 
-//const {age, ...rest} = student; //using destructuring
-//console.log(age, rest) //100 {"name": "priya", "hobbies":["cooking", "dancing"]}
+Rest Parameter in Array : 
+	function addSum(a,b,c, ...rest){ // ...rest indicating combination of those arguments which are left(rest).
+	  console.log(...rest) //6,7
+	  console.log(rest) //[6,7]
+	  console.log(arguments) //ES5 //{"0":2, "1":3, "2":4, "3":6, "4":7}
+	  return a+b+c+rest[0]+rest[1];
+	}
+	console.log(addSum(2,3,4,6,7)) //22
 
-const {...rest} = student;
-console.log(rest) //{"name": "priya", "age": 100, "hobbies":["cooking", "dancing"]}
+Rest Parameter in object: 
+	var student ={
+	  name: "priya",
+	  age : 100,
+	  hobbies : ["cooking", "dancing"]
+	}
+	
+	//const {age, ...rest} = student; //using destructuring
+	//console.log(age, rest) //100 {"name": "priya", "hobbies":["cooking", "dancing"]}
+
+	const {...rest} = student;
+	console.log(rest) //{"name": "priya", "age": 100, "hobbies":["cooking", "dancing"]}
 ======================================================================================================================================================================
+	
 Spread Operator: 
 1. The spread operator allows you to expand an iterable (like an array or a string) into individual elements.
 2. It's used for various tasks, such as creating shallow copies of arrays, merging arrays, and passing multiple arguments to functions.
 Syntax: It is denoted by three dots (...) followed by the iterable you want to spread.
 
-//Spread Operator  in Array:
-function getNames(name1, name2, name3){
-  console.log(name1,name2, name3);
-}
-var names =["priya", "riya", "supriya"]
-getNames(names[0], names[1], names[2]); //"priya" "riya" "supriya"
-getNames(...names) //spread operator here used to spread the individual arguments //best approach because here we are passing all the arguments but we can use some of the arguments inside function without an error. Other approaches will gives an error to pass those arguments which are used in function.
-getNames(names)
+uses:
+Copying Arrays and Objects:
+	const originalArray = [1, 2, 3];
+	const copyArray = [...originalArray];
 
-//spread operator in object: (Change the value of age)
-var student ={
-  name: "priya",
-  age : 100,
-  hobbies : ["cooking", "dancing"]
-}
+Concatenating Arrays:
+	const array1 = [1, 2];
+	const array2 = [3, 4];
+	const combinedArray = [...array1, ...array2];
 
-var newStudent ={
-  ...student, //coping one object to another object
-  age : 101
-}
-console.log(newStudent)
+Passing Function Arguments:
+	function add(a, b, c) {
+	  return a + b + c;
+	}
+	const numbers = [1, 2, 3];
+	const sum = add(...numbers);
+
+
+Spread Operator  in Array:
+	function getNames(name1, name2, name3){
+	  console.log(name1,name2, name3);
+	}
+	var names =["priya", "riya", "supriya"]
+	getNames(...names) //spread operator here used to spread the individual arguments 
+
+spread operator in object: (Change the value of age)
+	var student ={
+	  name: "priya",
+	  age : 100,
+	  hobbies : ["cooking", "dancing"]
+	}
+	
+	var newStudent ={
+	  ...student, //coping one object to another object
+	  age : 101
+	}
+	console.log(newStudent)
 ====================================================================================================================================================================
 
 Default Parameter:
@@ -1018,10 +1048,10 @@ Default Parameter:
 
 Syntax: Default parameters are assigned within the function's parameter list using the assignment operator (=).
 
-function greet(name = "Guest") {
-  return `Hello, ${name}!`;
-}
-const greeting = greet(); // "Hello, Guest!"
+	function greet(name = "Guest") {
+	  return `Hello, ${name}!`;
+	}
+	const greeting = greet(); // "Hello, Guest!"
 
 ====================================================================================================================================================================
 In summary:
@@ -1196,4 +1226,84 @@ try {
 } catch (error) {
   console.log("Error parsing JSON string:", error);
 }
+
+====================================================================================================================================================================
+Deep Copy:
+Deep copy: means that all levels of the object are copied. This is a true copy of the object.
+	or
+Deep copy creates a completely independent copy of an object or array, including all nested objects and arrays. ensuring that changes in the copy do not affect the original.
+To achieve a deep copy, we can use libraries like Lodash's cloneDeep or  we can achieve by using JSON.parse() + JSON.stringify():
+
+
+import _ from 'lodash'; // Import Lodash
+
+const originalObject ={ data: [1, 2, 3] };
+
+const deepCopyObject = _.cloneDeep(originalObject); // Create a deep copy
+deepCopyObject.data.push(4); // Modify the deep copy
+console.log('Original Object:', originalObject);
+console.log('Deep Copy Object:', deepCopyObject);
+
+In this example, modifying the deepCopyObject won't affect the originalObject or its nested arrays, as it's a deep copy.
+
+--------------------------------------------------------
+const person = {
+  name: "John",
+  address: { city: "New York" },
+};
+
+const deepCopy = JSON.parse(JSON.stringify(person));
+deepCopy.name = "Jane";
+deepCopy.address.city = "Los Angeles";
+
+console.log(person); // { name: "John", address: { city: "New York" } }
+
+In this example, the deep copy remains entirely separate from the original object, so changes in the copy do not affect the original object.
+====================================================================================================================================================================
+	
+Shallow Copy:
+Shallow copy: means that only the first level of the object is copied. Deeper levels are referenced.
+	or
+Shallow copy creates a new object or array, but the nested objects and arrays are still references to the original ones.
+Modifying the original will affect the copy and vice versa.
+A shallow copy can be achieved using the spread operator (…) or using Object.assign():
+
+
+const person = {
+  name: "John",
+  address: { city: "New York" },
+};
+
+const shallowCopy = { ...person };
+shallowCopy.name = "Jane";
+shallowCopy.address.city = "Los Angeles";
+
+console.log(person); // { name: "John", address: { city: "Los Angeles" } }
+------------------------------------------------------------------------------
+	
+const obj = { name: 'Version 1', additionalInfo: { version: 1 } };
+
+const shallowCopy1 = { ...obj };
+const shallowCopy2 = Object.assign({}, obj);
+
+shallowCopy1.name = 'Version 2';
+shallowCopy1.additionalInfo.version = 2;
+
+shallowCopy2.name = 'Version 2';
+shallowCopy2.additionalInfo.version = 2;
+
+console.log(obj); // { name: 'Version 1', additionalInfo: { version: 2 } }
+console.log(shallowCopy1); // { name: 'Version 2', additionalInfo: { version: 2 } }
+console.log(shallowCopy2); // { name: 'Version 2', additionalInfo: { version: 2 } }
+
+In this example, both the original person and the shallowCopy share the same address object, so changing the city in one affects the other.
+====================================================================================================================================================================
+
+shallow copies are a lot faster than deep copies.
+If the depth of your object is equal to one, use a shallow copy.
+If the depth of your object is bigger than one, use a deep copy.
+
+
+
+
 
