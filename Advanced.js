@@ -186,7 +186,7 @@ const myPromise = new Promise((resolve, reject) => {
 
 myPromise.then((result) => {
   console.log(result);
-}).then((err) => {
+}).catch((err) => {
   console.log(err)
 });
 
