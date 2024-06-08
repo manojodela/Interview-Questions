@@ -693,3 +693,148 @@ const Demo = () => {
 
 export default Demo;
 
+Debounce concept with input field value
+
+// src/App.js
+import React, { useEffect, useRef, useState } from 'react';
+const Demo = () => {
+    const [inputValue, setInputValue] = useState('');
+    const [debouncedValue, setDebouncedValue] = useState('');
+  
+    // Debounce function
+    useEffect(() => {
+      const handler = setTimeout(() => {
+        setDebouncedValue(inputValue);
+      }, 500); // Adjust the delay as needed
+  
+      // Cleanup function
+      return () => {
+        clearTimeout(handler);
+      };
+    }, [inputValue]);
+  
+    return (
+      <div>
+        <input
+          type="text"
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+          placeholder="Type something..."
+        />
+        <p>Debounced Value: {debouncedValue}</p>
+      </div>
+    );
+  };
+    
+    
+
+export default Demo;
+
+
+lazy loading 
+
+// src/App.js
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+const Demo = () => {
+    const [posts, setPosts] = useState([]);
+    const [page, setPage] = useState(1);
+    const [loading, setLoading] = useState(false);
+    const [hasMore, setHasMore] = useState(true);
+  
+    useEffect(() => {
+      const fetchPosts = async () => {
+        setLoading(true);
+        const response = await fetch(`https://jsonplaceholder.typicode.com/posts?_page=${page}&_limit=10`);
+        const data = await response.json();
+        setPosts(prevPosts => [...prevPosts, ...data]);
+        setLoading(false);
+        if (data.length < 10) {
+          setHasMore(false);
+        }
+      };
+  
+      fetchPosts();
+    }, [page]);
+  
+    const loadMorePosts = () => {
+      setPage(prevPage => prevPage + 1);
+    };
+  
+    return (
+      <div>
+        <h1>Posts</h1>
+        <ul>
+          {posts.map(post => (
+            <li key={post.id}>
+              <h3>{post.title}</h3>
+              <p>{post.body}</p>
+            </li>
+          ))}
+        </ul>
+        {loading && <p>Loading more posts...</p>}
+        {hasMore && !loading && <button onClick={loadMorePosts}>Load More</button>}
+      </div>
+    );
+  };
+  
+export default Demo;
+ -------------------
+
+     // src/App.js
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+const Demo = () => {
+    const [posts, setPosts] = useState([]);
+    const [page, setPage] = useState(1);
+    const [loading, setLoading] = useState(false);
+    const observer = useRef();
+  
+    useEffect(() => {
+      const fetchPosts = async () => {
+        setLoading(true);
+        const response = await fetch(`https://jsonplaceholder.typicode.com/posts?_page=${page}&_limit=10`);
+        const data = await response.json();
+        setPosts(prevPosts => [...prevPosts, ...data]);
+        setLoading(false);
+      };
+  
+      fetchPosts();
+    }, [page]);
+  
+    const lastPostElementRef = useCallback(node => {
+      if (observer.current) observer.current.disconnect();
+      observer.current = new IntersectionObserver(entries => {
+        if (entries[0].isIntersecting) {
+          setPage(prevPage => prevPage + 1);
+        }
+      });
+      if (node) observer.current.observe(node);
+    }, []);
+  
+    return (
+      <div>
+        <h1>Posts</h1>
+        <ul>
+          {posts.map((post, index) => {
+            if (posts.length === index + 1) {
+              return (
+                <li ref={lastPostElementRef} key={post.id}>
+                  <h3>{post.title}</h3>
+                  <p>{post.body}</p>
+                </li>
+              );
+            } else {
+              return (
+                <li key={post.id}>
+                  <h3>{post.title}</h3>
+                  <p>{post.body}</p>
+                </li>
+              );
+            }
+          })}
+        </ul>
+        {loading && <p>Loading more posts...</p>}
+      </div>
+    );
+  };    
+  
+export default Demo;
