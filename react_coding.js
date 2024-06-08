@@ -125,3 +125,92 @@ const Demo = () => {
 
 export default Demo;
 
+Notes manager add, edit and delete note
+
+import { useState } from "react";
+
+const Demo = () => {
+    const [notes, setNotes] = useState([]);
+    const [text, setText] = useState("");
+    const [editId, setEditId] = useState(null);
+    const [editText, setEditText] = useState("");
+
+    const addNotes = () => {
+        if (editId) {
+            setNotes((prev) => prev.map(note => note.id === editId ? { ...note, text: editText } : note));
+            setEditId(null);
+            setEditText("");
+        } else {
+            setNotes((prev) => [
+                ...prev,
+                { id: Date.now(), text }
+            ]);
+        }
+        setText("");
+    }
+
+    const handleDelete = (id) => {
+        setNotes((prev) => prev.filter(note => note.id !== id));
+    }
+
+    const handleEdit = (id, text) => {
+        setEditId(id);
+        setEditText(text);
+    }
+
+    return (
+        <>
+            <div className="w-50 margin-auto">
+                <h2>Notes Manager</h2>
+                <div className="row">
+                    <div className="column-4">
+                        <input 
+                            type="text" 
+                            value={editId ? editText : text} 
+                            onChange={(e) => editId ? setEditText(e.target.value) : setText(e.target.value)} 
+                            placeholder="Add Note" 
+                            style={{ width: "220px" }}
+                        />
+                    </div><br></br>
+                    <div className="column-4">
+                        <button 
+                            style={{ backgroundColor: "black", color: "white", padding: "10px" }} 
+                            onClick={addNotes}
+                        >
+                            {editId ? "Update Note" : "Add Note"}
+                        </button><br />
+                    </div>
+                </div>
+                <ul>
+                    {notes.map(note => (
+                        <div key={note.id} className="flex flex-direction-row">
+                            <li>
+                                <strong>{note.text} &nbsp;</strong><br />
+                            </li>
+                            <li>
+                                <button 
+                                    type="button" 
+                                    className="btn btn-primary bg-dark" 
+                                    onClick={() => handleDelete(note.id)}
+                                >
+                                    Delete
+                                </button>&nbsp;
+                            </li>
+                            <li>
+                                <button 
+                                    type="button" 
+                                    className="btn btn-secondary bg-dark" 
+                                    onClick={() => handleEdit(note.id, note.text)}
+                                >
+                                    Edit
+                                </button>&nbsp;
+                            </li>
+                        </div>
+                    ))}
+                </ul>
+            </div>
+        </>
+    );
+}
+
+export default Demo;
