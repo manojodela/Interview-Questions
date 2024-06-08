@@ -436,3 +436,157 @@ const Demo = () => {
 
 export default Demo;
 
+
+how to use the caching concept in react.js. Handle large amounts of images with ease and optimise your ui accordingly.
+Solve this coding question by using the caching concept for optimising performance and managing image loading for slower internet.
+
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+
+
+const fetchImage = async (url) => {
+    try {
+        // Check if the image is already cached
+        const cachedImage = localStorage.getItem(url);
+        if (cachedImage) {
+            return cachedImage;
+        }
+
+        // Fetch the image if not cached
+        const response = await axios.get(url, { responseType: 'blob' });
+        const imageBlob = response.data;
+
+        // Convert the Blob to a Data URL
+        const reader = new FileReader();
+        reader.readAsDataURL(imageBlob);
+        const dataURL = await new Promise((resolve) => {
+            reader.onloadend = () => {
+                resolve(reader.result);
+            };
+        });
+
+        // Cache the image
+        localStorage.setItem(url, dataURL);
+
+        return dataURL;
+    } catch (error) {
+        console.error('Error fetching image:', error);
+        throw error;
+    }
+};
+
+const CachedImage = ({ src, alt, ...props }) => {
+    const [imageSrc, setImageSrc] = useState(null);
+
+    useEffect(() => {
+        const loadImage = async () => {
+            try {
+                const cachedSrc = await fetchImage(src);
+                setImageSrc(cachedSrc);
+            } catch (error) {
+                setImageSrc(src); // Fallback to the original source on error
+            }
+        };
+
+        loadImage();
+    }, [src]);
+
+    return <img src={imageSrc} alt={alt} {...props} />;
+};
+
+
+const Demo = () => {
+    const imageUrls = [
+        'https://images.unsplash.com/photo-1717457781929-2c19fed97617?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHw2fHx8ZW58MHx8fHx8',
+        'https://plus.unsplash.com/premium_photo-1663050697110-5a587ae85177?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw3fHx8ZW58MHx8fHx8',
+        'https://images.unsplash.com/photo-1715484620057-1145dba8ac76?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxMHx8fGVufDB8fHx8fA%3D%3D',
+        'https://plus.unsplash.com/premium_photo-1683141237355-d966b653f414?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxMnx8fGVufDB8fHx8fA%3D%3D',
+        'https://images.unsplash.com/photo-1716506479875-70a866214c71?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxNHx8fGVufDB8fHx8fA%3D%3D',
+        'https://plus.unsplash.com/premium_photo-1664367173375-ec4c917f7d55?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyMnx8fGVufDB8fHx8fA%3D%3D',
+        'https://images.unsplash.com/photo-1717707736683-d62692e1e2c2?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyNHx8fGVufDB8fHx8fA%3D%3D'
+    ];
+
+    return (
+        <div>
+            <h1>Image Caching Example</h1>
+            <div>
+                {imageUrls.map((url, index) => (
+                    <CachedImage key={index} src={url} alt={`Image ${index + 1}`} />
+                ))}
+            </div>
+        </div>
+    );
+};
+
+export default Demo;
+
+
+theme changer
+
+// src/App.js
+import React from 'react';
+import { ThemeProvider, useTheme } from './ThemeContext';
+import ThemeToggleButton from './ThemeToggleButton';
+import '../App.css';
+
+const AppContent = () => {
+  const { theme } = useTheme();
+
+  return (
+    <div className={`app ${theme}`}>
+      <h1>{theme.charAt(0).toUpperCase() + theme.slice(1)} Theme</h1>
+      <ThemeToggleButton />
+    </div>
+  );
+};
+
+const Demo = () => {
+  return (
+    <ThemeProvider>
+      <AppContent />
+    </ThemeProvider>
+  );
+};
+
+export default Demo;
+
+
+// src/ThemeContext.js
+import React, { createContext, useContext, useState } from 'react';
+
+const ThemeContext = createContext();
+
+export const ThemeProvider = ({ children }) => {
+  const [theme, setTheme] = useState('light');
+
+  const toggleTheme = () => {
+    setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
+  };
+
+  return (
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+      {children}
+    </ThemeContext.Provider>
+  );
+};
+
+export const useTheme = () => useContext(ThemeContext);
+
+ThemeToggleButton.js
+
+// src/ThemeToggleButton.js
+import React from 'react';
+import { useTheme } from './ThemeContext';
+
+const ThemeToggleButton = () => {
+  const { theme, toggleTheme } = useTheme();
+
+  return (
+    <button onClick={toggleTheme}>
+      Switch to {theme === 'light' ? 'dark' : 'light'} theme
+    </button>
+  );
+};
+
+export default ThemeToggleButton;
+
