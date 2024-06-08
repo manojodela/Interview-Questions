@@ -911,3 +911,67 @@ const Demo = () => {
 
 
     export default Demo;
+
+To throttle search input with placeholder data using JSONPlaceholder in a ReactJS application, you can follow these steps:
+
+// src/App.js
+import React, { useState, useEffect, useCallback } from 'react';
+import axios from 'axios';
+import _ from 'lodash';
+
+
+const Demo = () => {
+    const [query, setQuery] = useState('');
+    const [results, setResults] = useState([]);
+    const [loading, setLoading] = useState(false);
+  
+    // Function to fetch data from JSONPlaceholder
+    const fetchData = async (query) => {
+      setLoading(true);
+      try {
+        const response = await axios.get(`https://jsonplaceholder.typicode.com/posts?title_like=${query}`);
+        setResults(response.data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+      setLoading(false);
+    };
+  
+    // Throttle the fetchData function
+    const throttledFetchData = useCallback(_.throttle(fetchData, 1000), []);
+  
+    useEffect(() => {
+      if (query.length > 0) {
+        throttledFetchData(query);
+      } else {
+        setResults([]);
+      }
+    }, [query, throttledFetchData]);
+  
+    const handleInputChange = (e) => {
+      setQuery(e.target.value);
+    };
+  
+    return (
+      <div>
+        <input
+          type="text"
+          value={query}
+          onChange={handleInputChange}
+          placeholder="Search posts..."
+        />
+        {loading ? (
+          <p>Loading...</p>
+        ) : (
+          <ul>
+            {results.map((post) => (
+              <li key={post.id}>{post.title}</li>
+            ))}
+          </ul>
+        )}
+      </div>
+    );
+  };
+  
+    export default Demo;
+
