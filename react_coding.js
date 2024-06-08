@@ -214,3 +214,72 @@ const Demo = () => {
 }
 
 export default Demo;
+
+How to cancel the api request when called multiple times. 
+
+import axios from "axios";
+import { useEffect, useRef, useState } from "react";
+
+const Demo = () => {
+    const [posts, setPosts] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+    const controllerRef = useRef(null);
+
+    const fetchPosts = async () => {
+        if (controllerRef.current) {
+            controllerRef.current.abort();
+        }
+        const newController = new AbortController();
+        controllerRef.current = newController;
+        setLoading(true);
+        setError(null);
+
+        setTimeout(async () => {
+            try {
+                const response = await axios.get("https://jsonplaceholder.typicode.com/posts", { signal: newController.signal });
+                if (response.data.length) {
+                    const data = response.data;
+                    setPosts(data);
+                } else {
+                    throw new Error("Network response was not ok");
+                }
+            } catch (error) {
+                if (error.name !== "AbortError") {
+                    setError(error.message)
+                }
+            } finally {
+                setLoading(false);
+            }
+        }, 1000);
+    }
+
+    return (
+        <>
+            <button onClick={fetchPosts}>Fetch posts</button>
+            {loading && <p>loading....</p>}
+            {error && <p>{error}</p>}
+
+            <ul>
+                {posts.map(post => (
+                    <li key={post.id}>
+                        <strong>{post.title}</strong><br />
+                    </li>
+                ))}
+            </ul>
+        </>
+    );
+}
+
+export default Demo;
+
+controllerRef: Reference to store the AbortController instance, which allows aborting an ongoing fetch request.
+AbortController: Used to cancel ongoing fetch requests, ensuring only the latest request's result is used.
+Abort Existing Request: If there's an ongoing request (controller exists), it aborts it.
+Create New AbortController: A new controller is created for the new request.
+Loading and Error States: Sets loading to true and resets the error state.
+Delayed Fetch: Simulates a network delay using setTimeout. This delay can be removed for a real-world application.
+Axios GET Request: Makes a GET request to the API with the abort signal.
+Handle Response: On success, updates the posts state with the fetched data.
+Error Handling: If an error occurs (excluding abort errors), updates the error state.
+Finally Block: Sets loading to false once the request is complete.
