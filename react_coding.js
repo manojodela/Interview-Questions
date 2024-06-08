@@ -590,3 +590,106 @@ const ThemeToggleButton = () => {
 
 export default ThemeToggleButton;
 
+Login form with validation alert
+
+// src/App.js
+import React, { useState } from 'react';
+const Demo = () => {
+
+      const [email, setEmail] = useState('');
+      const [password, setPassword] = useState('');
+    
+      const handleSubmit = (event) => {
+        event.preventDefault();
+    
+        if (!email) {
+          alert('Email is required');
+          return;
+        }
+    
+        if (!password) {
+          alert('Password is required');
+          return;
+        }
+    
+        alert('Success!');
+      };
+    
+      return (
+        <div>
+          <form onSubmit={handleSubmit}>
+            <div>
+              <label>Email:</label>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+            <div>
+              <label>Password:</label>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+      );
+    }
+    
+    
+
+export default Demo;
+
+
+Timer start, pause, reset
+
+// src/App.js
+import React, { useRef, useState } from 'react';
+const Demo = () => {
+
+    const [time, setTime] = useState(0);
+    const [isRunning, setIsRunning] = useState(false);
+    const timerRef = useRef(null);
+  
+    const startTimer = () => {
+      if (!isRunning) {
+        setIsRunning(true);
+        timerRef.current = setInterval(() => {
+          setTime(prevTime => prevTime + 1);
+        }, 1000);
+      }
+    };
+  
+    const pauseTimer = () => {
+      if (isRunning) {
+        setIsRunning(false);
+        clearInterval(timerRef.current);
+      }
+    };
+  
+    const resetTimer = () => {
+      setIsRunning(false);
+      clearInterval(timerRef.current);
+      setTime(0);
+    };
+  
+    return (
+      <div className="timer">
+        <h1>{time} s</h1>
+        <div className="buttons">
+          <button onClick={startTimer}>Start</button>
+          <button onClick={pauseTimer}>Pause</button>
+          <button onClick={resetTimer}>Reset</button>
+        </div>
+      </div>
+    );
+  };
+    
+    
+
+export default Demo;
+
