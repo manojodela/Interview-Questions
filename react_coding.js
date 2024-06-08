@@ -348,3 +348,91 @@ const Demo = () => {
 
 export default Demo;
 
+
+ how to use react memo hook to optimise the ui. Watch till the end to learn how to memoise the ui
+ which won't affect your component whenever other components are re-rendering in turn optimising your website and making it smooth and fast.
+
+
+import axios from "axios";
+import { memo, useEffect, useMemo, useState } from "react";
+
+const Demo = () => {
+
+    const Post = memo(({ post }) => {
+        return (<>
+            <div>
+                <strog>{post?.title}</strog>
+                <p>{post?.content}</p>
+                {post?.comment?.map((comment) => (
+                    <Comment comment={comment} /> 
+                ))}
+            </div>
+        </>)
+    });
+
+
+    const Comment =  memo(({ comment }) => {
+        return (<>
+            <div>
+                <>
+                    <p>{comment.text}</p>
+                    <p>{comment.author}</p><br/>
+                </>
+            </div>
+        </>)
+    });
+
+
+    const [posts, setPosts] = useState([
+        {
+            id: 0,
+            title: "react post ",
+            content: "hiring reactjs with 3 years",
+            description: "description",
+            comment: [{ id: 1, text: "nice job offer with 12 lakh ctc", author: "manoj" }]
+        },
+        {
+            id: 1,
+            title: "react Nodejs ",
+            content: "hiring Nodejs with 3 years",
+            description: "description",
+            comment: [{ id: 3, text: "nice job offer with 15 lakh ctc", author: "manoj" }]
+
+        }
+    ]);
+
+    const addComment = (postId, comment) => {
+        setPosts((prevPost) => {
+
+            return prevPost.map(post => {
+                if(post.id == postId){
+                    return {...post, comment: [...post.comment, comment]}
+                }
+                return post;
+            })
+        })
+    }
+
+
+
+
+    return (
+        <>
+            <ul>
+                {posts.map((post) => (
+                    <Post post={post} />
+                ))}
+            </ul>
+            <button onClick={() => {
+                addComment(Math.floor(Math.random() * posts.length), {
+                    id: 2,
+                    text: "new comment added",
+                    author: "Test added"
+                })
+            }}>Add Comment to post</button>
+        </>
+    );
+};
+
+export default Demo;
+
