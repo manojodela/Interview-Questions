@@ -838,3 +838,76 @@ const Demo = () => {
   };    
   
 export default Demo;
+
+
+Throttling
+
+// src/App.js
+import React, { useState, useEffect, useCallback } from 'react';
+import axios from 'axios';
+// Throttle function
+function throttle(fn, wait) {
+    let lastTime = 0;
+    return function (...args) {
+        const now = new Date().getTime();
+        if (now - lastTime >= wait) {
+            fn(...args);
+            lastTime = now;
+        }
+    };
+}
+const Demo = () => {
+        const [data, setData] = useState([]);
+        const [loading, setLoading] = useState(false);
+        const [error, setError] = useState(null);
+        const [visibleCount, setVisibleCount] = useState(20);
+    
+        const fetchData = useCallback(
+            throttle(async () => {
+                setLoading(true);
+                try {
+                    const response = await axios.get('https://jsonplaceholder.typicode.com/posts');
+                    setData(response.data);
+                } catch (err) {
+                    setError(err);
+                } finally {
+                    setLoading(false);
+                }
+            }, 3000),
+            []
+        );
+    
+        useEffect(() => {
+            fetchData();
+        }, [fetchData]);
+    
+        const loadMore = () => {
+            setVisibleCount((prevCount) => prevCount + 20);
+        };
+    
+        if (loading) return <p>Loading...</p>;
+        if (error) return <p>Error: {error.message}</p>;
+    
+        return (
+            <div>
+                <button onClick={fetchData}>Refetch Data</button>
+                <div>
+                    {data.slice(0, visibleCount).map((item) => (
+                        <div key={item.id} style={{ padding: '10px', borderBottom: '1px solid #ccc' }}>
+                            <strong>{item.title}</strong>
+                            <p>{item.body}</p>
+                        </div>
+                    ))}
+                </div>
+                {visibleCount < data.length && (
+                    <button onClick={loadMore} style={{ margin: '20px 0' }}>
+                        Load More
+                    </button>
+                )}
+            </div>
+        );
+    };
+    
+
+
+    export default Demo;
