@@ -283,3 +283,68 @@ Axios GET Request: Makes a GET request to the API with the abort signal.
 Handle Response: On success, updates the posts state with the fetched data.
 Error Handling: If an error occurs (excluding abort errors), updates the error state.
 Finally Block: Sets loading to false once the request is complete.
+
+
+
+how to memoise the ui which won't affect your component whenever other components are re-rendering in turn optimising your website and making it smooth and fast.
+render products by rating 
+    import axios from "axios";
+import { useEffect, useMemo, useState } from "react";
+
+const Demo = () => {
+    const [posts, setPosts] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const [sortOrder, setSortOrder] = useState(5);
+
+    const fetchPosts = async () => {
+        setLoading(true);
+        try {
+            const response = await axios.get("https://fakestoreapi.com/products");
+            setPosts(response.data);
+        } catch (error) {
+            setError(error.message);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        fetchPosts();
+    }, []);
+
+    const handleChange = (e) => {
+        setSortOrder(Number(e.target.value));
+    };
+
+    const sortedPosts = useMemo(() => {
+        return posts.filter(post => post?.rating?.rate <= sortOrder);
+    }, [posts, sortOrder]);
+
+    return (
+        <>
+            <h3>Filter by Rating</h3>
+            <input
+                type="range"
+                onChange={handleChange}
+                min={2}
+                max={5}
+                value={sortOrder}
+                style={{ width: '1000px' }}
+            />
+            <h3>Selected Order: {sortOrder}</h3>
+            {loading && <p>Loading...</p>}
+            {error && <p>Error: {error}</p>}
+            <ul>
+                {sortedPosts.map(post => (
+                    <li key={post.id}>
+                        <strong>{post.title} - {post?.rating?.rate}</strong><br />
+                    </li>
+                ))}
+            </ul>
+        </>
+    );
+};
+
+export default Demo;
+
