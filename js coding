@@ -142,6 +142,17 @@ for (var i = 0; i < 5; i++) {
 
 The code sample shown will not display the values 0, 1, 2, 3, and 4 as might be expected; rather, it will display 5, 5, 5, 5, and 5.
 
+Explanation:
+Variable i in the Loop:
+var declares i with function scope. This means that the same i is used throughout the iterations and within the setTimeout callbacks.
+
+Execution of setTimeout:
+setTimeout schedules the callback to execute after the specified delay, but by the time the callbacks are executed, the loop has already completed and i is 5.
+
+What Actually Happens
+The setTimeout function creates a closure that captures the reference to i, not its value at the time setTimeout was called.
+So when the setTimeout callbacks are executed, they all refer to the same i, which has a final value of 5.
+
 The reason for this is that each function executed within the loop will be executed after the entire loop has completed and all will therefore reference the last value stored in i, which was 5.
 
 Closures can be used to prevent this problem by creating a unique scope for each iteration, storing each unique value of the variable within its scope, as follows:
