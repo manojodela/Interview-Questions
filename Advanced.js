@@ -593,7 +593,7 @@ Input Fields:- Debouncing can be used when handling user input in search boxes.I
 Resizing Windows:- When handling the window resize event, debouncing can be used to ensure that a function (e.g., repositioning elements) is only called after the user has finished resizing the window.
 
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
 function DebounceExample() {
   const [input, setInput] = useState('');
@@ -601,7 +601,6 @@ function DebounceExample() {
 
   const debounce = (func, delay) => {
     let timer;
-
     return function () {
       clearTimeout(timer);
       timer = setTimeout(() => {
@@ -610,14 +609,17 @@ function DebounceExample() {
     };
   };
 
+  const updateOutput = useCallback(
+    debounce((inputValue) => {
+      setOutput(inputValue);
+    }, 1000),
+    []
+  );
+
   const handleChangeDebounce = (event) => {
     const inputValue = event.target.value;
-
-    const updateOutput = debounce(() => {
-      setOutput(inputValue);
-    }, 1000);
-
-    updateOutput();
+    setInput(inputValue);
+    updateOutput(inputValue);
   };
 
   return (
@@ -625,6 +627,7 @@ function DebounceExample() {
       <input
         type="text"
         placeholder="Type something..."
+        value={input}
         onChange={handleChangeDebounce}
       />
       <p>Debounced Output: {output}</p>
@@ -633,6 +636,7 @@ function DebounceExample() {
 }
 
 export default DebounceExample;
+
 
 In this example, the handleChangeDebounce function is debounced, so it only updates the output state after a 1000ms (1 second) pause in typing.
 This is particularly useful for search bars and filtering in real-time.
