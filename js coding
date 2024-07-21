@@ -331,6 +331,26 @@ function isPrime(num) {
   return true; 
 } 
 
+======================================================================================================
+function isPrime(num) {
+  if (num <= 1) return false;
+  for (let i = 2; i < num; i++) {
+    if (num % i === 0) return false;
+  }
+  return true;
+}
+
+function printPrimeNumbers(n) {
+  for (let i = 2; i <= n; i++) {
+    if (isPrime(i)) {
+      console.log(i);
+    }
+  }
+}
+
+// Example usage:
+printPrimeNumbers(50); // This will print all prime numbers less than or equal to 50
+
 ===================================================================================================
 
 8. Write a JavaScript program to find the largest element in a nested array. 
