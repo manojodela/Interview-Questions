@@ -1,3 +1,49 @@
+// Function to flatten a nested array
+function flattenArray(arr) {
+  const flattened = [];
+
+  function recursiveFlatten(arr) {
+    arr.forEach(element => {
+      if (Array.isArray(element)) {
+        recursiveFlatten(element); // Recurse into nested array
+      } else {
+        flattened.push(element); // Add non-array elements to the result
+      }
+    });
+  }
+
+  recursiveFlatten(arr);
+  return flattened;
+}
+
+// Function to sort an array
+function sortArray(arr) {
+  return arr.sort((a, b) => a - b); // Sort in ascending order
+}
+
+// Example usage
+const nestedArray = [1, [2, -3, [4, -5]], 6, [-7, 8]];
+const flattenedArray = flattenArray(nestedArray);
+const sortedArray = sortArray(flattenedArray);
+
+console.log("Sorted Array:", sortedArray); // Output: [-7, -5, -3, 1, 2, 4, 6, 8]
+
+
+
+// Function to flatten and sort an array in one go
+function flattenAndSortArray(arr) {
+  return arr.flat(Infinity).sort((a, b) => a - b);
+}
+
+// Example usage
+const nestedArray = [1, [2, -3, [4, -5]], 6, [-7, 8]];
+const sortedArray = flattenAndSortArray(nestedArray);
+
+console.log("Sorted Array:", sortedArray); // Output: [-7, -5, -3, 1, 2, 4, 6, 8]
+
+
+
+
 If you want to sort an array of numbers without using built-in methods, you can implement a simple sorting algorithm like Bubble Sort. Here’s a straightforward implementation using a for loop:
 
 Bubble Sort Implementation
