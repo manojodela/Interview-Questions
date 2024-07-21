@@ -541,25 +541,31 @@ usage:
 Scroll Events: Throttling can be applied to the scroll event to limit the frequency of a callback function responsible for updating elements as the user scrolls.
 Button Clicks: When dealing with button clicks, throttling can prevent users from triggering a particular action too frequently.
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+
 function ThrottleExample() {
   const [count, setCount] = useState(0);
+  const countRef = useRef(count); // useRef to store the latest value of count
+
+  useEffect(() => {
+    countRef.current = count; // Update countRef with the latest count value after each render
+  }, [count]);
 
   const throttle = (func, delay) => {
-    let timeout;  //  
+    let timeout;
 
     return function () {
       if (!timeout) {
-        func.apply(this, arguments);    // this represents - capture the current context    //argumenst represents - capture the arguments passed to the throttle
+        func.apply(this, arguments); // `this` and `arguments` context captured
         timeout = setTimeout(() => {
-        timeout = null;
-      }, delay);
+          timeout = null;
+        }, delay);
       }
-    };                                   
-  };                                    
+    };
+  };
 
   const handleClickThrottle = throttle(() => {
-    setCount(count + 1);
+    setCount(countRef.current + 1); // Use countRef.current to get the latest count value
   }, 1000);
 
   return (
@@ -571,6 +577,7 @@ function ThrottleExample() {
 }
 
 export default ThrottleExample;
+
 In this example, the throttle function ensures that the handleClickThrottle function can only be called once every 1000 milliseconds (1 second), preventing rapid clicking.
 ================================================================================================================================================================================
 
