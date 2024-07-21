@@ -930,6 +930,27 @@ console.log(removeDuplicates([1, 2, 2, 3, 4, 4, 5])) //[ 1, 2, 3, 4, 5 ]
 ===================================================================================================
 1. Write a function that reverses the order of words in a sentence without using the built-in reverse() method. 
 
+function reverseWords(sentence) {
+  // Step 1: Split the sentence into an array of words
+  const words = sentence.split(' ');
+  
+  // Step 2: Reverse the array using a for loop
+  const reversedWords = [];
+  for (let i = words.length - 1; i >= 0; i--) {
+    reversedWords.push(words[i]);
+  }
+  
+  // Step 3: Join the reversed array into a sentence
+  return reversedWords.join(' ');
+}
+
+// Example usage
+const sentence = "Hello world this is a test";
+const reversedSentence = reverseWords(sentence);
+console.log(reversedSentence); // Output: "test a is this world Hello"
+
+--------------------------------------------------------------------------------------------------
+
 function reverseSentence(sentence) { 
   const words = sentence.split(" "); 
   const reversedWords = words.reverse(); 
