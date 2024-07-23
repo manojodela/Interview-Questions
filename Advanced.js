@@ -206,6 +206,32 @@ const result = ar.filter((value, index, array) => array.indexOf(value) !== index
 console.log(result[0]);
 
 Output: b
+
+--------------------------------------------------------------------------------------------------------
+
+const ar = ["a", "b", "c", "b", "a", "a"];
+
+// Step 1: Count occurrences of each element
+const countMap = {};
+ar.forEach((value) => {
+  if (countMap[value]) {
+    countMap[value]++;
+  } else {
+    countMap[value] = 1;
+  }
+});
+
+// Step 2: Find the first element with exactly two occurrences
+let result = null;
+for (const key in countMap) {
+  if (countMap[key] === 2) {
+    result = key;
+    break;
+  }
+}
+
+// Step 3: Print the result
+console.log(result); //b
 ================================================================================================================================================================================
 
 // Convert the number to a string, reverse it, and convert it back to a number
