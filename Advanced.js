@@ -243,6 +243,26 @@ function reverseNumber(num) {
 
 const reversed = reverseNumber(12345);
 console.log(reversed); // Output: 54321
+--------------------------------------------------------------------------------
+function reverseNumber(num) {
+    // Convert number to string and split into array of characters
+    const data = num.toString().split('');
+
+    // Initialize an empty array to store reversed characters
+    let result = [];
+
+    // Loop through the characters array in reverse order
+    for (let i = data.length - 1; i >= 0; i--) {
+        result.push(data[i]); // Push each character to the result array
+    }
+
+    // Join the result array into a string and convert it back to a number
+    // Use parseFloat to handle cases where the reversed number might start with '0'
+    // Example: reverseNumber(120) should return 21, not 021
+    return parseFloat(result.join(''));
+}
+const reversed = reverseNumber(12345);
+console.log(reversed); // Output: 54321
 ================================================================================================================================================================================
 check the value which occured first 2 times and print the value
 const ar = ["a", "b", "z", "b", "a", "a"];
