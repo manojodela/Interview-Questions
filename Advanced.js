@@ -938,8 +938,20 @@ Function.prototype.mybind= function(...args){ //printName arguments
    obj.apply(args[0], [...params, ...args2])
   }
 }
+-> mybind is added to Function.prototype, so it's available on all functions.
+-> It takes any number of arguments using the rest parameter (...args).
+-> obj refers to the function (printName in this case) to which mybind is applied.
+-> params holds the arguments passed after the first one (which is expected to be the context object).
+-> It returns a new function (printNameFinal) that, when called, will invoke the 
+   original function (printName) with the specified context (args[0]), followed by concatenated parameters (params and args2).
+	
 let printNameFinal= printName.mybind(name, "chhindwara")
 printNameFinal("MadyaPradesh")
+
+printName.mybind(name, "chhindwara") creates a new function printNameFinal
+that binds name as this context and sets "chhindwara" as the first parameter (town) when printNameFinal is called.
+
+printNameFinal("Madhya Pradesh") then calls printName with this set to name, "chhindwara" as town, and "Madhya Pradesh" as state.
 ================================================================================================================================================================================
 Promises:-
 
