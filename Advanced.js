@@ -963,6 +963,7 @@ Promises:-
 	pending: initial state, neither fulfilled nor rejected.
 	fulfilled: meaning that the operation completed successfully.
 	rejected: meaning that the operation failed. In this case an error value will be thrown.
+	settled: operation has fulfilled either fulfilled nor rejected.
 
 👉What is promise chaining ?
 ✌🏼The process of executing a sequence of asynchronous tasks one after another using promises is known as Promise chaining.
