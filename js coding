@@ -1,22 +1,36 @@
-function findDuplicates(arr) {
-  const duplicates = [];
-  for (let i = 0; i < arr.length; i++) {
-    for (let j = i + 1; j < arr.length; j++) {
-      if (arr[i] === arr[j] && !duplicates.includes(arr[i])) {
-        duplicates.push(arr[i]);
+function removeDuplicates(arr){
+   let unique = [];
+   for(let i=0; i<arr.length;i++){
+     if(unique.indexOf(arr[i]) == -1){
+       unique.push(arr[i]);
+     }
+   }
+   return unique;
+ }
+
+console.log("unique: ",removeDuplicates([1, 2, 1, 3, 4, 2, 2, 1, 5, 6]))
+
+-------------------------------------------------------------------------------
+function findDuplicates(arr){
+  let uniqueArr = [];
+  
+  for(let i=0;i<arr.length;i++){
+    for(let j= i+1; j<arr.length;j++){
+      if(arr[i] == arr[j] && !uniqueArr.includes(arr[i])){
+        uniqueArr.push(arr[i])
       }
     }
   }
-  return duplicates;
+  return uniqueArr;
 }
 
-// Example usage:
+
 const numbers = [1, 2, 3, 2, 4, 5, 3];
 const result = findDuplicates(numbers);
 console.log("Duplicates:", result);
 
 
-
+--------------------------------------------------------------------------------------
 
 // Function to flatten a nested array
 function flattenArray(arr) {
