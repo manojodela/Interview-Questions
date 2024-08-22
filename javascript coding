@@ -1,0 +1,115 @@
+1. *Program to find the longest word in a given sentence.*
+
+const findLongestWord = (sentence) => {
+    const words = sentence.split(" ");
+    let maxword = ""; // Initialize as an empty string
+    for(let i = 0; i < words.length; i++){
+        if(words[i].length > maxword.length){
+            maxword = words[i];
+        }
+    }
+    return { word: maxword, length: maxword.length };
+}
+
+const response = findLongestWord("Hi Iam Manojodela Iam a UI Developer"); 
+console.log(response); // Output: { word: 'Manojodela', length: 10 }
+-------------------------------------------------------------------------------------------------------------------
+
+2. *How to check if a string is a palindrome or not?*
+
+const isPalindrome = (str) => {
+    const cleanedStr = str.toLowerCase().replace(/[^a-z0-9]/g, ''); // Clean and normalize the string
+    const reversedStr = cleanedStr.split('').reverse().join(''); // Reverse the string
+    return cleanedStr === reversedStr; // Check if the original string is the same as the reversed one
+}
+
+
+const isPalindrome = (str) => { 
+    let cleanedStr = '';
+    let reversedStr = '';
+
+    // Clean the string: remove non-alphanumeric characters and convert to lowercase
+    for (let i = 0; i < str.length; i++) {
+        const char = str[i].toLowerCase();
+        if ((char >= 'a' && char <= 'z') || (char >= '0' && char <= '9')) {
+            cleanedStr += char;
+        }
+    }
+
+    // Reverse the cleaned string using the existing logic
+    for(let i = cleanedStr.length - 1; i >= 0; i--){
+        reversedStr += cleanedStr[i];  
+    }
+
+    // Compare the cleaned string with its reversed version
+    return reversedStr === cleanedStr;
+}
+
+console.log(isPalindrome("racecar")); // Output: true
+console.log(isPalindrome("hello"));    // Output: false
+console.log(isPalindrome("A man a plan a canal Panama")); // Output: true
+--------------------------------------------------------------------------------------------------------------------------
+
+3. *Write a program to remove duplicates from an array.*
+
+const removeDuplicates = (arr) => {
+    return [...new Set(arr)];
+}
+
+const removeDuplicates = (arr) => {
+    let uniqueArr = [];
+    for (let i = 0; i < arr.length; i++) {
+        if (uniqueArr.indexOf(arr[i]) === -1) {
+            uniqueArr.push(arr[i]);
+        }
+    }
+    return uniqueArr;
+}
+
+const numbers = [1, 2, 3, 4, 3, 2, 5, 6, 1];
+console.log(removeDuplicates(numbers)); // Output: [1, 2, 3, 4, 5, 6]
+-------------------------------------------------------------------------------------------------------------------------------------
+
+4. *Program to reverse a string without using the built-in reverse() method.*
+
+const reverseString = (str) => {
+    return str.split('').reverse().join('');
+}
+
+const reverseString = (str) => {
+    let reversedStr = '';
+    for (let i = str.length - 1; i >= 0; i--) {
+        reversedStr += str[i];
+    }
+    return reversedStr;
+}
+
+console.log(reverseString("hello")); // Output: "olleh"
+console.log(reverseString("JavaScript")); // Output: "tpircSavaJ"
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+5. *Find the maximum count of consecutive 1’s in a binary array.*
+
+
+
+
+6. *Write a program to find the factorial of a given number.*
+7. *Given two sorted arrays [0, 3, 4, 31] and [4, 6, 30], merge them into a sorted array [0, 3, 4, 4, 6, 30, 31].*
+8. *Create a function that accepts two arrays arr1 and arr2. The function should return true if every value in arr1 has its corresponding value squared in arr2. The frequency of values must be the same.*
+9. *Given two strings, find out if one string can be formed by rearranging the letters of the other string (Anagram problem).*
+10. *Write logic to get unique objects from the following array:*
+   javascript
+   I/P: [{name: "sai"}, {name: "Nang"}, {name: "sai"}, {name: "Nang"}, {name: "111111"}];
+   O/P: [{name: "sai"}, {name: "Nang"}, {name: "111111"}];
+   
+11. *Write a JavaScript program to find the maximum number in an array.*
+12. *Write a function that takes an array of numbers and returns a new array with only the even numbers.*
+13. *Write a JavaScript function to check if a given number is prime.*
+14. *Write a program to find the largest element in a nested array. Example input: [[3, 4, 58], [709, 8, 9, [10, 11]], [111, 2]].*
+15. *Write a function that returns the Fibonacci sequence up to a given number of terms.*
+16. *Given a string, write a function to count the occurrences of each character in the string.*
+17. *Write a function that sorts an array of numbers in ascending order.*
+18. *Write a function that sorts an array of numbers in descending order.*
+19. *Write a function that reverses the order of words in a sentence without using the built-in reverse() method.*
+20. *Implement a function that flattens a nested array into a single-dimensional array.*
+21. *Write a function that converts a string input into an object. Example input: "a.b.c", "someValue". Output: {a: {b: {c: "someValue"}}}.*
