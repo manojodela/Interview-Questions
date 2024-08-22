@@ -90,22 +90,313 @@ console.log(reverseString("JavaScript")); // Output: "tpircSavaJ"
 
 5. *Find the maximum count of consecutive 1’s in a binary array.*
 
+const findMaxConsecutiveOnes = (arr) => {
+    let maxCount = 0;
+    let currentCount = 0;
 
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] === 1) {
+            currentCount++;
+            if (currentCount > maxCount) {
+                maxCount = currentCount;
+            }
+        } else {
+            currentCount = 0;
+        }
+    }
+
+    return maxCount;
+}
+
+const binaryArray = [1, 1, 0, 1, 1, 1];
+console.log(findMaxConsecutiveOnes(binaryArray)); // Output: 3
+--------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 6. *Write a program to find the factorial of a given number.*
+
+const factorial = (n) => {
+    let result = 1;
+    for (let i = 2; i <= n; i++) {
+        result *= i;
+    }
+    return result;
+}
+
+const factorial = (n) => {
+    if (n === 0 || n === 1) {
+        return 1;
+    }
+    return n * factorial(n - 1);
+}
+
+
+
+console.log(factorial(5)); // Output: 120
+console.log(factorial(0)); // Output: 1 (0! is defined as 1)
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+
 7. *Given two sorted arrays [0, 3, 4, 31] and [4, 6, 30], merge them into a sorted array [0, 3, 4, 4, 6, 30, 31].*
+
+function mergeSortedArrays(arr1, arr2) { 
+  return [...arr1, ...arr2].sort((a, b) => a - b); 
+} 
+
+const mergeSortedArrays = (arr1, arr2) => {
+    let mergedArray = [];
+    let i = 0;
+    let j = 0;
+
+    // Merge the arrays until one of them is exhausted
+    while (i < arr1.length && j < arr2.length) {
+        if (arr1[i] < arr2[j]) {
+            mergedArray.push(arr1[i]);
+            i++;
+        } else {
+            mergedArray.push(arr2[j]);
+            j++;
+        }
+    }
+
+    // If there are remaining elements in arr1, add them to mergedArray
+    while (i < arr1.length) {
+        mergedArray.push(arr1[i]);
+        i++;
+    }
+
+    // If there are remaining elements in arr2, add them to mergedArray
+    while (j < arr2.length) {
+        mergedArray.push(arr2[j]);
+        j++;
+    }
+
+    return mergedArray;
+}
+
+const arr1 = [0, 3, 4, 31];
+const arr2 = [4, 6, 30];
+console.log(mergeSortedArrays(arr1, arr2)); 
+// Output: [0, 3, 4, 4, 6, 30, 31]
+-----------------------------------------------------------------------------------------------------------------------------------
+
+
 8. *Create a function that accepts two arrays arr1 and arr2. The function should return true if every value in arr1 has its corresponding value squared in arr2. The frequency of values must be the same.*
+
+const sameFrequencySquared = (arr1, arr2) => {
+    if (arr1.length !== arr2.length) {
+        return false;
+    }
+
+    // Create frequency maps
+    let frequencyMap1 = {};
+    let frequencyMap2 = {};
+
+    for (let num of arr1) {
+        frequencyMap1[num] = (frequencyMap1[num] || 0) + 1;
+    }
+
+    for (let num of arr2) {
+        frequencyMap2[num] = (frequencyMap2[num] || 0) + 1;
+    }
+
+    // Compare frequency maps
+    for (let key in frequencyMap1) {
+        let squaredKey = key ** 2;
+        if (frequencyMap2[squaredKey] !== frequencyMap1[key]) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+console.log(sameFrequencySquared([1, 2, 3], [1, 4, 9])); // Output: true
+console.log(sameFrequencySquared([1, 2, 3], [1, 9])); // Output: false
+console.log(sameFrequencySquared([1, 2, 1], [4, 4, 1])); // Output: false
+console.log(sameFrequencySquared([1, 2, 1], [1, 4, 1])); // Output: true
+----------------------------------------------------------------------------------------------------------------------------------------------------
 9. *Given two strings, find out if one string can be formed by rearranging the letters of the other string (Anagram problem).*
+
+const isAnagram = (str1, str2) => {
+    // If lengths are not equal, they cannot be anagrams
+    if (str1.length !== str2.length) {
+        return false;
+    }
+
+    // Sort both strings and compare them
+    const sortedStr1 = str1.split('').sort().join('');
+    const sortedStr2 = str2.split('').sort().join('');
+
+    return sortedStr1 === sortedStr2;
+}
+
+
+
+function isStringCreated(str1, str2) {
+  if (str1.length !== str2.length) return false;
+
+  let freq = {};
+
+  // Count the frequency of each character in str1
+  for (let val of str1) {
+    freq[val] = (freq[val] || 0) + 1;
+  }
+
+  // Decrease the frequency based on str2
+  for (let val of str2) {
+    if (freq[val]) {
+      freq[val] -= 1;
+    } else {
+      return false; // If char not found or frequency becomes negative
+    }
+  }
+
+  return true; // All characters matched
+}
+
+console.log(isStringCreated('anagram', 'nagaram')); // Output: true
+
+console.log(isStringCreated("listen", "silent")); // Output: true
+console.log(isAnagram("hello", "world"));   // Output: false
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
 10. *Write logic to get unique objects from the following array:*
    javascript
    I/P: [{name: "sai"}, {name: "Nang"}, {name: "sai"}, {name: "Nang"}, {name: "111111"}];
    O/P: [{name: "sai"}, {name: "Nang"}, {name: "111111"}];
+
+function getUniqueArr(array){
+const uniqueArr = [];
+const seen = {};
+  for(let i=0; i<=array.length-1;i++){
+  const currentItem = array[i].name;
+    if(!seen[currentItem]){
+    uniqueArr.push(array[i]);
+    seen[currentItem] = true;
+    }
+  }
+return uniqueArr;
+}
+
+let arr = [{name: "sai"},{name:"Nang"},{name: "sai"},{name:"Nang"},{name:"111111"}];
+console.log(getUniqueArr(arr))
+
+const getUniqueObjects = (arr) => {
+    const uniqueNames = new Set();
+    return arr.filter(obj => {
+        if (!uniqueNames.has(obj.name)) {
+            uniqueNames.add(obj.name);
+            return true;
+        }
+        return false;
+    });
+}
+
+const inputArray = [
+    { name: "sai" },
+    { name: "Nang" },
+    { name: "sai" },
+    { name: "Nang" },
+    { name: "111111" }
+];
+
+const uniqueObjects = getUniqueObjects(inputArray);
+console.log(uniqueObjects); 
+// Output: [{name: "sai"}, {name: "Nang"}, {name: "111111"}]
+----------------------------------------------------------------------------------------------------------------------------------------
    
 11. *Write a JavaScript program to find the maximum number in an array.*
+
+const findMax = (arr) => {
+    return Math.max(...arr);
+}
+
+const numbers = [10, 20, 5, 3, 99, 65];
+console.log(findMax(numbers)); // Output: 99
+
+const findMax = (arr) => {
+    let max = arr[0]; // Initialize max to the first element in the array
+    for (let i = 1; i < arr.length; i++) {
+        if (arr[i] > max) {
+            max = arr[i];
+        }
+    }
+    return max;
+}
+
+const numbers = [10, 20, 5, 3, 99, 65];
+console.log(findMax(numbers)); // Output: 99
+--------------------------------------------------------------------------------------------------------------------------------------------
 12. *Write a function that takes an array of numbers and returns a new array with only the even numbers.*
+
+const filterEvenNumbers = (arr) => {
+    return arr.filter(number => number % 2 === 0);
+}
+
+const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+console.log(filterEvenNumbers(numbers)); // Output: [2, 4, 6, 8, 10]
+
+
+const filterEvenNumbers = (arr) => {
+    let evenNumbers = [];
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] % 2 === 0) {
+            evenNumbers.push(arr[i]);
+        }
+    }
+    return evenNumbers;
+}
+
+const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+console.log(filterEvenNumbers(numbers)); // Output: [2, 4, 6, 8, 10]
+
+------------------------------------------------------------------------------------------------------------------------------------------------
 13. *Write a JavaScript function to check if a given number is prime.*
+
+const isPrime = (num) => {
+    if (num <= 1) return false; // 0 and 1 are not prime numbers
+    if (num === 2) return true; // 2 is the only even prime number
+
+    for (let i = 2; i <= Math.sqrt(num); i++) {
+        if (num % i === 0) {
+            return false; // If num is divisible by any number other than 1 and itself, it's not prime
+        }
+    }
+    return true; // If no divisors were found, the number is prime
+}
+
+console.log(isPrime(7));  // Output: true
+console.log(isPrime(10)); // Output: false
+console.log(isPrime(11)); // Output: true
+console.log(isPrime(1));  // Output: false
+console.log(isPrime(2));  // Output: true
+
+=-------------------------------------------------------------------------------------------------------------------------
 14. *Write a program to find the largest element in a nested array. Example input: [[3, 4, 58], [709, 8, 9, [10, 11]], [111, 2]].*
+
+const findLargestInNestedArray = (arr) => {
+    let largest = -Infinity;
+
+    const findLargest = (nestedArr) => {
+        for (let element of nestedArr) {
+            if (Array.isArray(element)) {
+                findLargest(element); // Recursively check nested arrays
+            } else {
+                if (element > largest) {
+                    largest = element; // Update largest if current element is greater
+                }
+            }
+        }
+    }
+
+    findLargest(arr);
+    return largest;
+}
+
+const inputArray = [[3, 4, 58], [709, 8, 9, [10, 11]], [111, 2]];
+console.log(findLargestInNestedArray(inputArray)); // Output: 709
+-------------------------------------------------------------------------------------------------------------------
+
 15. *Write a function that returns the Fibonacci sequence up to a given number of terms.*
 16. *Given a string, write a function to count the occurrences of each character in the string.*
 17. *Write a function that sorts an array of numbers in ascending order.*
