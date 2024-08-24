@@ -398,9 +398,153 @@ console.log(findLargestInNestedArray(inputArray)); // Output: 709
 -------------------------------------------------------------------------------------------------------------------
 
 15. *Write a function that returns the Fibonacci sequence up to a given number of terms.*
+
+function fibonacciSequence(num) {
+    let fibSequence = [0, 1];
+    
+    if (num === 1) {
+        return [0];
+    } else if (num === 2) {
+        return fibSequence;
+    }
+    
+    for (let i = 2; i < num; i++) {
+        fibSequence.push(fibSequence[i - 1] + fibSequence[i - 2]);
+    }
+    
+    return fibSequence;
+}
+
+// Example usage:
+console.log(fibonacciSequence(10)); // Output: [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
+
+---------------------------------------------------------------------------------------------------------------------------------------------
 16. *Given a string, write a function to count the occurrences of each character in the string.*
+
+function countCharacterOccurrences(str) {
+    let charCount = {};
+
+    for (let char of str) {
+        if (charCount[char]) {
+            charCount[char]++;
+        } else {
+            charCount[char] = 1;
+        }
+    }
+
+    return charCount;
+}
+
+// Example usage:
+console.log(countCharacterOccurrences("hello world"));
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+
 17. *Write a function that sorts an array of numbers in ascending order.*
+
+function sortArrayAscending(arr) {
+    return arr.sort((a, b) => a - b);
+}
+
+function sortArrayAscending(arr) {
+    for (let i = 0; i < arr.length - 1; i++) {
+        for (let j = 0; j < arr.length - 1 - i; j++) {
+            if (arr[j] > arr[j + 1]) {
+                // Swap the elements
+                let temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
+    return arr;
+}
+
+// Example usage:
+console.log(sortArrayAscending([5, 3, 8, 1, 2])); // Output: [1, 2, 3, 5, 8]
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
 18. *Write a function that sorts an array of numbers in descending order.*
+
+function sortArrayDescending(arr) {
+    for (let i = 0; i < arr.length - 1; i++) {
+        for (let j = 0; j < arr.length - 1 - i; j++) {
+            if (arr[j] < arr[j + 1]) {
+                // Swap the elements
+                let temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
+    return arr;
+}
+
+// Example usage:
+console.log(sortArrayDescending([5, 3, 8, 1, 2])); // Output: [8, 5, 3, 2, 1]
+-------------------------------------------------------------------------------------------------------------------------------------------------------
 19. *Write a function that reverses the order of words in a sentence without using the built-in reverse() method.*
+
+function reverseWordsInSentence(sentence) {
+    let words = sentence.split(' ');
+    let reversedSentence = '';
+
+    for (let i = words.length - 1; i >= 0; i--) {
+        reversedSentence += words[i];
+        if (i > 0) {
+            reversedSentence += ' ';
+        }
+    }
+
+    return reversedSentence;
+}
+
+// Example usage:
+console.log(reverseWordsInSentence("Hello world this is a test")); // Output: "test a is this world Hello"
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
 20. *Implement a function that flattens a nested array into a single-dimensional array.*
+
+const flattenArray = (arr) =>{
+    let result = [];
+    const nestFunction = (arr) => {
+        for(let i=0; i< arr.length; i++){
+            if(Array.isArray(arr[i])){
+                nestFunction(arr[i]);
+            }else{
+                result.push(arr[i]);
+            }
+        }
+    }
+    nestFunction(arr);
+    return result;
+}
+
+
+console.log(flattenArray([1, [2, [3, 4], 5], 6])); 
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 21. *Write a function that converts a string input into an object. Example input: "a.b.c", "someValue". Output: {a: {b: {c: "someValue"}}}.*
+
+function stringToNestedObject(path, value) {
+    let keys = path.split('.'); // Split the string by dots to get the keys
+    let result = {}; // Initialize the final object
+    let current = result; // Start with the final object
+
+    for (let i = 0; i < keys.length; i++) {
+        let key = keys[i];
+
+        if (i === keys.length - 1) {
+            // If it's the last key, set the value
+            current[key] = value;
+        } else {
+            // Otherwise, create a new object and move to the next level
+            current[key] = {};
+            current = current[key];
+        }
+    }
+
+    return result;
+}
+
+// Example usage:
+console.log(stringToNestedObject("a.b.c", "someValue"));
+// Output: {a: {b: {c: "someValue"}}}
