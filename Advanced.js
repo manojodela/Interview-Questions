@@ -194,6 +194,17 @@ myPromise.then((result) => {
 get the value which occured 2 times first occurance and print the value
 const ar = ["a", "b", "c", "b", "a", "a"];
 
+String 
+indexOf() returns the position of the first occurrence of a value in a string.
+The indexOf() method returns -1 if the value is not found.
+The indexOf() method is case sensitive.
+
+Array.indexof()
+The indexOf() method returns the first index (position) of a specified value.
+The indexOf() method returns -1 if the value is not found.
+The indexOf() method starts at a specified index and searches from left to right (from the given start postion to the end of the array).
+By default the search starts at the first element and ends at the last.
+	
 const result = ar.find((value, index, array) => array.indexOf(value) !== index);
 console.log(result);
 
